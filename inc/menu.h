@@ -7,11 +7,11 @@
 #include <writer.h>
 #include <layer.h>
 
-class Panel : public Layer
+class Menu : public Layer
 {
     public:
-        Panel();
-        ~Panel();
+        Menu();
+        ~Menu();
         bool Init( Volume& viewport );
         void Resize( int width, int height );
         void Toggle();
@@ -20,7 +20,7 @@ class Panel : public Layer
     private:
         // Methods
         void Defaults();
-        void RenderPanel();
+        void RenderMenu();
         void RenderContent();
 
     private:
@@ -28,12 +28,12 @@ class Panel : public Layer
         Writer* _writer;
         bool _visible;
         int _margin;
-        int _panel_percent;
+        int _menu_percent;
         Volume _frame;
 
         double _frame_width;
         double _font_color[4];
-        double _panel_color[4];
+        double _menu_color[4];
         double _frame_color[4];
 };
 

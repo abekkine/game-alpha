@@ -15,7 +15,7 @@ Display::~Display()
     puts("Display::~Display()");
 
     delete _fps_timer;
-    delete _panel;
+    delete _menu;
     delete _event;
     delete _background;
     delete _galaxy;
@@ -40,7 +40,7 @@ void Display::Defaults()
     _clear_alpha = 1.0;
 
     // Component defaults.
-    _panel = 0;
+    _menu = 0;
     _event = 0;
     _background = 0;
     _galaxy = 0;
@@ -109,9 +109,9 @@ bool Display::InitComponents()
         result = false;
     }
 
-    _panel = new Panel();
-    if( not _panel->Init( _viewport ) ) {
-        fprintf( stderr, "Unable to initialize Panel instance!\n" );
+    _menu = new Menu();
+    if( not _menu->Init( _viewport ) ) {
+        fprintf( stderr, "Unable to initialize Menu instance!\n" );
         result = false;
     }
 
@@ -180,7 +180,7 @@ void Display::Reshape( int width, int height )
 // TODO : [PROPOSAL] Following ones would be executed through a list.
     _background->Resize( width, height );
     _galaxy->Resize( width, height );
-    _panel->Resize( width, height );
+    _menu->Resize( width, height );
 }
 
 void Display::Render()
@@ -189,7 +189,7 @@ void Display::Render()
 
     _background->Render();
     _galaxy->Render();
-    _panel->Render();
+    _menu->Render();
 }
 
 void Display::Update()
@@ -228,7 +228,7 @@ void Display::ProcessCommands()
                 break;
 
             case Event::cmd_TOGGLE_PANEL:
-                _panel->Toggle();
+                _menu->Toggle();
                 break;
 
             case Event::cmd_ZOOM:

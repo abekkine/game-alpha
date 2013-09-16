@@ -12,7 +12,7 @@ int main()
     show_version();
 
     Config* config = Config::Instance();
-    config->Read( "../conf/explore.conf" );
+    config->Read( "../conf/default.conf" );
     
     Application* app = new Application();
 

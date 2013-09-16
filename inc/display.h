@@ -7,7 +7,7 @@
 #include <definitions.h>
 #include <timer.h>
 #include <writer.h>
-#include <panel.h>
+#include <menu.h>
 #include <event.h>
 #include <background.h>
 #include <galaxy.h>
@@ -42,8 +42,8 @@ class Display
     private:
         // Components.
 
-        // Display panel.
-        Panel* _panel;
+        // Display menu.
+        Menu* _menu;
 
         // User events.
         Event* _event;

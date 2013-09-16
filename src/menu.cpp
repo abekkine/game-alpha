@@ -1,23 +1,23 @@
 #include <GL/gl.h>
 #include <version.h>
 #include <config.h>
-#include <panel.h>
+#include <menu.h>
 
-Panel::Panel()
+Menu::Menu()
 {
-    puts("Panel::Panel()");
+    puts("Menu::Menu()");
 
     Defaults();
 }
 
-Panel::~Panel()
+Menu::~Menu()
 {
-    puts("Panel::~Panel()");
+    puts("Menu::~Menu()");
 
     delete _writer;
 }
 
-void Panel::Defaults()
+void Menu::Defaults()
 {
     // These values will be calculated on resize.
     _frame.left = -1;
@@ -25,8 +25,8 @@ void Panel::Defaults()
     _frame.bottom = -1;
     _frame.top = -1;
 
-    _margin = Config::Instance()->panel_margin;
-    _panel_percent = Config::Instance()->panel_percent;
+    _margin = Config::Instance()->menu_margin;
+    _menu_percent = Config::Instance()->menu_percent;
 
     _visible = true;
 
@@ -37,10 +37,10 @@ void Panel::Defaults()
     _frame_color[2] = Config::Instance()->frame_color_blue;
     _frame_color[3] = Config::Instance()->frame_color_alpha;
    
-    _panel_color[0] = Config::Instance()->panel_color_red;
-    _panel_color[1] = Config::Instance()->panel_color_green;
-    _panel_color[2] = Config::Instance()->panel_color_blue;
-    _panel_color[3] = Config::Instance()->panel_color_alpha;
+    _menu_color[0] = Config::Instance()->menu_color_red;
+    _menu_color[1] = Config::Instance()->menu_color_green;
+    _menu_color[2] = Config::Instance()->menu_color_blue;
+    _menu_color[3] = Config::Instance()->menu_color_alpha;
 
     _font_color[0] = Config::Instance()->font_color_red;
 //DEBUG
@@ -51,7 +51,7 @@ void Panel::Defaults()
     _font_color[3] = Config::Instance()->font_color_alpha;
 }
 
-bool Panel::Init( Volume& viewport )
+bool Menu::Init( Volume& viewport )
 {
     bool result = true;
 
@@ -78,40 +78,40 @@ bool Panel::Init( Volume& viewport )
     return result;
 }
 
-void Panel::Resize( int width, int height )
+void Menu::Resize( int width, int height )
 {
     Layer::Resize(width, height);
 
     _frame.left = _margin;
     _frame.right = width - _margin;
     _frame.bottom = height - _margin;
-    _frame.top = height * ( 100 - _panel_percent ) / 100.0;
+    _frame.top = height * ( 100 - _menu_percent ) / 100.0;
 
 // TODO : [PROPOSAL] Also, an update for window limits would be suitable. Even if just for cropping.
     Vector2i origin(_frame.left, _frame.top);
     _writer->UpdateOrigin( origin );
 }
 
-void Panel::Toggle() {
+void Menu::Toggle() {
 
     _visible = not _visible;
 }
 
-void Panel::Render()
+void Menu::Render()
 {
     if( _visible ) {
 
         PreRender();
-        RenderPanel();
+        RenderMenu();
         RenderContent();
         PostRender();
     }
 }
 
-void Panel::RenderPanel()
+void Menu::RenderMenu()
 {
     // Background
-    glColor4dv( _panel_color );
+    glColor4dv( _menu_color );
     glBegin( GL_QUADS );
         glVertex2d( _frame.left, _frame.top );
         glVertex2d( _frame.right, _frame.top );
@@ -130,7 +130,7 @@ void Panel::RenderPanel()
     glEnd();
 }
 
-void Panel::RenderContent()
+void Menu::RenderContent()
 {
     _writer->Render();
 }

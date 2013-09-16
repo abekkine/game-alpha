@@ -43,7 +43,7 @@ bool Config::Read( std::string configFile )
         ReadGalaxy();
         ReadDisplay();
         ReadEvent();
-        ReadPanel();
+        ReadMenu();
         ReadFont();
 
         config_destroy( &_config );
@@ -135,7 +135,7 @@ void Config::Defaults()
     // Wheel zoom step value
     wheel_step = 10;
 
-    // Panel
+    // Menu
     // Frame width
     frame_width = 1.0;
     // Frame color
@@ -143,19 +143,19 @@ void Config::Defaults()
     frame_color_green = 1.0;
     frame_color_blue = 1.0;
     frame_color_alpha = 1.0;
-    // Panel color
-    panel_color_red = 0.0;
-    panel_color_green = 0.0;
-    panel_color_blue = 0.5;
-    panel_color_alpha = 0.5;
+    // Menu color
+    menu_color_red = 0.0;
+    menu_color_green = 0.0;
+    menu_color_blue = 0.5;
+    menu_color_alpha = 0.5;
     // Font color
     font_color_red = 1.0;
     font_color_green = 1.0;
     font_color_blue = 1.0;
     font_color_alpha = 1.0;
-    // Panel margin
-    panel_margin = 10;
-    panel_percent = 20;
+    // Menu margin
+    menu_margin = 10;
+    menu_percent = 20;
 
     // Galaxy
     galaxy_size_factor = 10.0;
@@ -241,35 +241,35 @@ void Config::ReadEvent() {
     }
 }
 
-void Config::ReadPanel() {
+void Config::ReadMenu() {
 
-    _setting = config_lookup( &_config, "config.panel" );
+    _setting = config_lookup( &_config, "config.menu" );
     if( _setting != 0 ) {
 
         config_setting_lookup_float( _setting, "frame_width", &frame_width );
-        config_setting_lookup_int( _setting, "margin", &panel_margin );
-        config_setting_lookup_int( _setting, "percent", &panel_percent );
+        config_setting_lookup_int( _setting, "margin", &menu_margin );
+        config_setting_lookup_int( _setting, "percent", &menu_percent );
 
-        ReadPanelColor();
-        ReadPanelFontColor();
-        ReadPanelFrameColor();
+        ReadMenuColor();
+        ReadMenuFontColor();
+        ReadMenuFrameColor();
     }
 }
 
-void Config::ReadPanelColor() {
+void Config::ReadMenuColor() {
 
-    _setting = config_lookup( &_config, "config.panel.bg_color" );
+    _setting = config_lookup( &_config, "config.menu.bg_color" );
     if( _setting != 0 ) {
-        config_setting_lookup_float( _setting, "red", &panel_color_red );
-        config_setting_lookup_float( _setting, "green", &panel_color_green );
-        config_setting_lookup_float( _setting, "blue", &panel_color_blue );
-        config_setting_lookup_float( _setting, "alpha", &panel_color_alpha );
+        config_setting_lookup_float( _setting, "red", &menu_color_red );
+        config_setting_lookup_float( _setting, "green", &menu_color_green );
+        config_setting_lookup_float( _setting, "blue", &menu_color_blue );
+        config_setting_lookup_float( _setting, "alpha", &menu_color_alpha );
     }
 }
 
-void Config::ReadPanelFontColor() {
+void Config::ReadMenuFontColor() {
 
-    _setting = config_lookup( &_config, "config.panel.font_color" );
+    _setting = config_lookup( &_config, "config.menu.font_color" );
     if( _setting != 0 ) {
         config_setting_lookup_float( _setting, "red", &font_color_red );
         config_setting_lookup_float( _setting, "green", &font_color_green );
@@ -278,9 +278,9 @@ void Config::ReadPanelFontColor() {
     } 
 }
 
-void Config::ReadPanelFrameColor() {
+void Config::ReadMenuFrameColor() {
 
-    _setting = config_lookup( &_config, "config.panel.frame_color" );
+    _setting = config_lookup( &_config, "config.menu.frame_color" );
     if( _setting != 0 ) {
         config_setting_lookup_float( _setting, "red", &frame_color_red );
         config_setting_lookup_float( _setting, "green", &frame_color_green );

@@ -1,7 +1,7 @@
 #include <vector.h>
 #include <config.h>
 #include <event.h>
-#include <panel.h>
+#include <menu.h>
 #include <writer.h>
 
 int Event::_zoom_delta = 0;
