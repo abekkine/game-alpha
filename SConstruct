@@ -6,7 +6,7 @@ sys.path.append( './lib' )
 import revlib
 
 VERSION_INC = 'inc/version.h'
-TARGET_NAME = 'explore'
+TARGET_NAME = 'gameAlpha'
 
 env = Environment()
 
