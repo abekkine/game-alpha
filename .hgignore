@@ -1,0 +1,12 @@
+syntax: glob
+
+.sconsign.dblite
+bin/explore
+*.pyc
+inc/version.h
+.*.swp
+*.o
+*.conf
+*.log
+new.supp
+

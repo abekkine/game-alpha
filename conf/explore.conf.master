@@ -1,0 +1,140 @@
+config = 
+{
+    // General settings.
+    application = 
+    {
+        frequency = 20;
+        timestep = 0.5;
+    };
+
+    // Noise generataor settings.
+    generator = 
+    {
+        octaves = 1;
+    };
+
+    // Layer base settings.
+    layer = 
+    {
+        zoom_factor = 0.002;
+        pan_factor = 1.0;
+    };
+
+    // Background settings.
+    background = 
+    {
+        size = 0.05;
+        size_delta = 0.01;
+        offset  = 
+        {
+            delta = 0.01;
+            red = 0.1;
+            green = 0.2;
+            blue = 0.3;
+        };
+        zoom_factor = 0.0005;
+        pan_factor = 0.1;
+        octaves = 5;
+    };
+
+    // Galaxy settings.
+    galaxy = 
+    {
+        size_factor = 0.01;
+
+        zoom_factor = 0.002;
+        pan_factor = 1.0;
+        octaves = 4;
+
+        step_delta = 0.5;
+
+        exist_offset = 1.2;
+        exist_min = 0.5;
+        exist_max = 0.6;
+        
+        dx_offset = -52.5;
+        dy_offset = 52.5;
+        d_factor = 0.125;        
+    };
+
+    // Display configuration.
+    display = 
+    {
+        // Screen dimensions.
+        screen = 
+        {
+            width = 800;
+            height = 800;
+        };
+
+        // World coordinates.
+        world = 
+        {
+            width = 1.0;
+            height = 1.0;
+        };
+
+        // Clear color. 
+        clear = 
+        {
+            red = 0.0;
+            green = 0.0;
+            blue = 0.0;
+        };
+    };
+
+    // Event configuration
+    event = 
+    {
+        speed_factor_min = 1;
+        speed_factor_max = 2;
+        zoom_limit_max = 1250;
+        zoom_limit_min = -250;
+        wheel_step = 10;
+    };
+
+    // Panel configuration
+    panel = 
+    {
+        font_color = {
+            red = 1.0;
+            green = 1.0;
+            blue = 1.0;
+            alpha = 1.0;
+        };
+
+        bg_color = {
+            red = 0.0;
+            green = 0.0;
+            blue = 0.5;
+            alpha = 0.3;
+        };
+
+        frame_color = {
+            red = 1.0;
+            green = 1.0;
+            blue = 1.0;
+            alpha = 0.2;
+        };
+
+        frame_width = 1.0;
+
+        margin = 10;
+        percent = 30;
+    };
+
+    // Font parameters
+    font = 
+    {
+        //name = "DejaVuSansMono.ttf";
+        //name = "DroidSansMono.ttf";
+        //name = "FreeMono.ttf";
+        name = "UbuntuCondensed.ttf";
+        //name = "UbuntuLight.ttf";
+        //name = "UbuntuMono.ttf";
+        //name = "Ubuntu.ttf";
+        folder = "../fonts/";
+        size = 14;
+    }
+};
+

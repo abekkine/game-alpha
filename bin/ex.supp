@@ -1,0 +1,55 @@
+{
+   LibNoise_1
+   Memcheck:Value8
+   fun:_ZN5noise15GradientNoise3DEdddiiii
+   ...
+}
+
+{
+   Floor
+   Memcheck:Cond
+   fun:floor
+   ...
+}
+
+{
+   Application_Run_1
+   Memcheck:Cond
+   ...
+   fun:_ZN11Application3RunEv
+}
+
+{
+   Nvidia_1
+   Memcheck:Cond
+   ...
+   obj:*libnvidia-glcore*
+}
+
+{
+   GL_1
+   Memcheck:Leak
+   ...
+   obj:*libGL*
+}
+
+{
+   SDL_Init_1
+   Memcheck:Leak
+   ...
+   fun:SDL_Init
+}
+
+{
+   SDL_SetVideoMode_1
+   Memcheck:Leak
+   ...
+   fun:SDL_SetVideoMode
+}
+
+{
+   SDL_VideoInit_1
+   Memcheck:Leak
+   ...
+   fun:SDL_VideoInit
+}
