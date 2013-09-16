@@ -40,7 +40,7 @@ bool Config::Read( std::string configFile )
         ReadBackground();
         ReadGenerator();
         ReadLayer();
-        ReadGalaxy();
+        ReadForeground();
         ReadDisplay();
         ReadEvent();
         ReadMenu();
@@ -116,14 +116,13 @@ void Config::Defaults()
     // Zoom and Pan
     layer_zoom_factor = 0.002;
     layer_pan_factor = 1.0;
-    galaxy_zoom_factor = 0.002;
-    galaxy_pan_factor = 1.0;
+    foreground_zoom_factor = 0.002;
+    foreground_pan_factor = 1.0;
     bg_zoom_factor = 0.002;
     bg_pan_factor = 1.0;
 
     // Octave counts
     bg_octaves = 4;
-    galaxy_octaves = 4;
 
     // Event
     // Speed factor
@@ -156,16 +155,6 @@ void Config::Defaults()
     // Menu margin
     menu_margin = 10;
     menu_percent = 20;
-
-    // Galaxy
-    galaxy_size_factor = 10.0;
-    galaxy_step_delta = 0.25;
-    star_exist_offset = 0.12;
-    star_exist_min = 0.5;
-    star_exist_max = 0.6;
-    star_dx_offset = -52.5;
-    star_dy_offset = 52.5;
-    star_d_factor = 0.125;
 
     // Font
     font_name = "freemono.ttf";
@@ -208,23 +197,13 @@ void Config::ReadFont() {
     }
 }
 
-void Config::ReadGalaxy() {
+void Config::ReadForeground() {
 
-    _setting = config_lookup( &_config, "config.galaxy" );
+    _setting = config_lookup( &_config, "config.foreground" );
     if( _setting != 0 ) {
 
-        config_setting_lookup_float( _setting, "size_factor", &galaxy_size_factor );
-        config_setting_lookup_float( _setting, "zoom_factor", &galaxy_zoom_factor );
-        config_setting_lookup_float( _setting, "pan_factor", &galaxy_pan_factor );
-        config_setting_lookup_int( _setting, "octaves", &galaxy_octaves );
-
-        config_setting_lookup_float( _setting, "step_delta", &galaxy_step_delta );
-        config_setting_lookup_float( _setting, "exist_offset", &star_exist_offset );
-        config_setting_lookup_float( _setting, "exist_min", &star_exist_min );
-        config_setting_lookup_float( _setting, "exist_max", &star_exist_max );
-        config_setting_lookup_float( _setting, "dx_offset", &star_dx_offset );
-        config_setting_lookup_float( _setting, "dy_offset", &star_dy_offset );
-        config_setting_lookup_float( _setting, "d_factor", &star_d_factor );
+        config_setting_lookup_float( _setting, "zoom_factor", &foreground_zoom_factor );
+        config_setting_lookup_float( _setting, "pan_factor", &foreground_pan_factor );
     }
 }
 

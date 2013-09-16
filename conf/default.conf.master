@@ -37,24 +37,11 @@ config =
         octaves = 5;
     };
 
-    // Galaxy settings.
-    galaxy = 
+    // Foreground settings.
+    foreground = 
     {
-        size_factor = 0.01;
-
         zoom_factor = 0.002;
         pan_factor = 1.0;
-        octaves = 4;
-
-        step_delta = 0.5;
-
-        exist_offset = 1.2;
-        exist_min = 0.5;
-        exist_max = 0.6;
-        
-        dx_offset = -52.5;
-        dy_offset = 52.5;
-        d_factor = 0.125;        
     };
 
     // Display configuration.

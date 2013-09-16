@@ -10,7 +10,7 @@
 #include <menu.h>
 #include <event.h>
 #include <background.h>
-#include <galaxy.h>
+#include <foreground.h>
 
 //! @brief Class responsible for rendering objects.
 class Display
@@ -51,8 +51,8 @@ class Display
         // Background layer.
         Background* _background;
 
-        // Galaxy layer.
-        Galaxy* _galaxy;
+        // Foreground layer.
+        Foreground* _foreground;
 
     private:
         // Members

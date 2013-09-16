@@ -32,7 +32,7 @@ class Config
         void ReadBackgroundOffsets();
         void ReadGenerator();
         void ReadLayer();
-        void ReadGalaxy();
+        void ReadForeground();
         void ReadDisplay();
         void ReadEvent();
         void ReadFont();
@@ -93,14 +93,13 @@ class Config
         //! Zoom and pan parameters.
         double layer_zoom_factor;
         double layer_pan_factor;
-        double galaxy_zoom_factor;
-        double galaxy_pan_factor;
+        double foreground_zoom_factor;
+        double foreground_pan_factor;
         double bg_zoom_factor;
         double bg_pan_factor;
 
         //! Octave counts.
         int bg_octaves;
-        int galaxy_octaves;
 
         //! Event parameters
         int speed_factor_min;
@@ -129,16 +128,6 @@ class Config
 
         int menu_margin;
         int menu_percent;
-
-        //! Galaxy parameters
-        double galaxy_size_factor;
-        double galaxy_step_delta;
-        double star_exist_offset;
-        double star_exist_min;
-        double star_exist_max;
-        double star_dx_offset;
-        double star_dy_offset;
-        double star_d_factor;
 
         //! Font parameters
         std::string font_name;

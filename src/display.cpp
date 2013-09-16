@@ -18,7 +18,7 @@ Display::~Display()
     delete _menu;
     delete _event;
     delete _background;
-    delete _galaxy;
+    delete _foreground;
 }
 
 void Display::Defaults()
@@ -43,7 +43,7 @@ void Display::Defaults()
     _menu = 0;
     _event = 0;
     _background = 0;
-    _galaxy = 0;
+    _foreground = 0;
 
     // Layer viewport
     _viewport.left = -0.5 * Config::Instance()->world_width;
@@ -121,9 +121,9 @@ bool Display::InitComponents()
         result = false;
     }
 
-    _galaxy = new Galaxy();
-    if( not _galaxy->Init( _viewport ) ) {
-        fprintf( stderr, "Unable to initialize Galaxy instance!\n" );
+    _foreground = new Foreground();
+    if( not _foreground->Init( _viewport ) ) {
+        fprintf( stderr, "Unable to initialize Foreground instance!\n" );
         result = false;
     }
 
@@ -179,7 +179,7 @@ void Display::Reshape( int width, int height )
 
 // TODO : [PROPOSAL] Following ones would be executed through a list.
     _background->Resize( width, height );
-    _galaxy->Resize( width, height );
+    _foreground->Resize( width, height );
     _menu->Resize( width, height );
 }
 
@@ -188,7 +188,7 @@ void Display::Render()
     _fps = _fps_timer->GetFPS();
 
     _background->Render();
-    _galaxy->Render();
+    _foreground->Render();
     _menu->Render();
 }
 
@@ -224,7 +224,7 @@ void Display::ProcessCommands()
                 break;
 
             case Event::cmd_TOGGLE_STAR:
-                _galaxy->Toggle();
+                _foreground->Toggle();
                 break;
 
             case Event::cmd_TOGGLE_PANEL:
@@ -293,6 +293,6 @@ bool Display::CheckError()
 void Display::ToggleWireframe()
 {
     _background->ToggleWireframe();
-    _galaxy->ToggleWireframe();
+    _foreground->ToggleWireframe();
 }
 

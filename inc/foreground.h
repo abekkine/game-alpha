@@ -3,13 +3,12 @@
 
 #include <definitions.h>
 #include <layer.h>
-#include <starbuilder.h>
 
-class Galaxy : public Layer
+class Foreground : public Layer
 {
     public:
-        Galaxy();
-        ~Galaxy();
+        Foreground();
+        ~Foreground();
         bool Init( Volume& viewport );
         void Render();
         void Toggle();
@@ -18,15 +17,12 @@ class Galaxy : public Layer
     private:
         // Methods.
         void Defaults();
-        void RenderGalaxyLayer();
+        void RenderForegroundLayer();
 
     private:
         // Member.
-        StarBuilder* _starbuilder;
-
         bool _visible;
         bool _wireframe;
-        double _step_delta;
 };
 
 #endif
