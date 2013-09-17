@@ -7,12 +7,6 @@ config =
         timestep = 0.5;
     };
 
-    // Noise generataor settings.
-    generator = 
-    {
-        octaves = 1;
-    };
-
     // Layer base settings.
     layer = 
     {

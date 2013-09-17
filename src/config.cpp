@@ -38,7 +38,6 @@ bool Config::Read( std::string configFile )
     {
         ReadApplication();
         ReadBackground();
-        ReadGenerator();
         ReadLayer();
         ReadForeground();
         ReadDisplay();
@@ -96,9 +95,6 @@ void Config::Defaults()
     background_red_offset = 0.0;
     background_green_offset = 0.0;
     background_blue_offset = 0.0;
-
-    // Generator
-    generator_octaves = 1;
 
     // Display Screen
     screen_width = 512;
@@ -294,16 +290,6 @@ void Config::ReadBackgroundOffsets()
         config_setting_lookup_float( _setting, "green", &background_green_offset );
         config_setting_lookup_float( _setting, "blue", &background_blue_offset );
     }
-}
-
-void Config::ReadGenerator()
-{
-    _setting = config_lookup( &_config, "config.generator" );
-    if( _setting != 0 )
-    {
-        config_setting_lookup_int( _setting, "octaves", &generator_octaves );
-    }
-
 }
 
 void Config::ReadDisplay()

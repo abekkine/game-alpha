@@ -3,7 +3,6 @@
 
 #include <vector.h>
 #include <definitions.h>
-#include <generator.h>
 #include <layer.h>
 
 class Background : public Layer

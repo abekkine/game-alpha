@@ -30,7 +30,6 @@ class Config
         void ReadApplication();
         void ReadBackground();
         void ReadBackgroundOffsets();
-        void ReadGenerator();
         void ReadLayer();
         void ReadForeground();
         void ReadDisplay();
@@ -71,9 +70,6 @@ class Config
         //! Increment/Decrement delta value for color offsets.
         double background_offset_delta;
 
-        // Generator settings.
-        //! Perlin noise octave value for noise generation.
-        int generator_octaves;
         // Display settings.
         //! Display screen width.
         int screen_width;
