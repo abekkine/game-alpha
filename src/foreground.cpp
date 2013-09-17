@@ -1,5 +1,4 @@
 #include <stdio.h>
-//#include <GL/gl.h>
 
 #include <vector.h>
 #include <config.h>
@@ -67,17 +66,18 @@ void Foreground::RenderForegroundLayer()
 {
     // TODO : Game foreground objects (enemies, player, obstacles, etc.) will be rendered here.
     static double alpha = 0.0;
-    alpha += 2.5;
+    const double SIZE = 0.1;
+    alpha += 0.05;
     glPushMatrix();
     glLoadIdentity();
     glTranslated( 0.0, 0.0, 0.0 );
     glRotated( alpha, 0.0, 0.0, 1.0 );
-    glColor3d( 1.0, 1.0, 1.0 );
+    glColor3d( 0.6, 0.6, 0.6 );
     glBegin( GL_LINE_LOOP );
-    glVertex2d( -0.1, -0.1 );
-    glVertex2d( -0.1,  0.1 );
-    glVertex2d(  0.1,  0.1 );
-    glVertex2d(  0.1, -0.1 );
+    glVertex2d( -SIZE, -SIZE );
+    glVertex2d( -SIZE,  SIZE );
+    glVertex2d(  SIZE,  SIZE );
+    glVertex2d(  SIZE, -SIZE );
     glEnd();
     glPopMatrix();
     // END

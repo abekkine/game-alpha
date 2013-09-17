@@ -8,10 +8,6 @@
 
 class Background : public Layer
 {
-    private:
-        const double INTERIOR_ANGLE;
-        const double WIRE_COLOR;
-
     public:
         Background();
         ~Background();
@@ -25,26 +21,10 @@ class Background : public Layer
         void Defaults();
         void RenderBackground();
 
-        void VertexColor( Vector2d& p );
-        void Triangle( Vector2d& A );
-        void ReverseTriangle( Vector2d& A );
-        void Mesh( Vector2d& p1 );
-
     private:
         // Members.
-        Generator* _generator;
-
         bool _visible;
-        int _vertexCount;
         bool _wireframe;
-        float _size_initial;
-        float _size;
-        float _height;
-        float _halfSide;
-        float _brightness;
-        float _red_offset;
-        float _green_offset;
-        float _blue_offset;
 };
 
 #endif
