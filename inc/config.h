@@ -35,10 +35,10 @@ class Config
         void ReadDisplay();
         void ReadEvent();
         void ReadFont();
-        void ReadMenu();
-        void ReadMenuColor();
-        void ReadMenuFrameColor();
-        void ReadMenuFontColor();
+        void ReadPanel();
+        void ReadPanelColor();
+        void ReadPanelFrameColor();
+        void ReadPanelFontColor();
         void ReadDisplayScreen();
         void ReadDisplayWorld();
         void ReadDisplayColor();
@@ -104,7 +104,7 @@ class Config
         int zoom_limit_max;
         int wheel_step;
 
-        //! Menu parameters
+        //! Panel parameters
         double frame_width;
 
         double frame_color_red;
@@ -112,18 +112,18 @@ class Config
         double frame_color_blue;
         double frame_color_alpha;
 
-        double menu_color_red;
-        double menu_color_green;
-        double menu_color_blue;
-        double menu_color_alpha;
+        double panel_color_red;
+        double panel_color_green;
+        double panel_color_blue;
+        double panel_color_alpha;
 
         double font_color_red;
         double font_color_green;
         double font_color_blue;
         double font_color_alpha;        
 
-        int menu_margin;
-        int menu_percent;
+        int panel_margin;
+        int panel_percent;
 
         //! Font parameters
         std::string font_name;

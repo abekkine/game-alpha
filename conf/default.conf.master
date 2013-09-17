@@ -74,8 +74,8 @@ config =
         wheel_step = 10;
     };
 
-    // Menu configuration
-    menu = 
+    // Panel configuration
+    panel = 
     {
         font_color = {
             red = 1.0;
