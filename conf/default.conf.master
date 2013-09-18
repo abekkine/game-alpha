@@ -1,5 +1,7 @@
 config = 
 {
+    debug = 1;
+
     // General settings.
     application = 
     {

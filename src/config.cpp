@@ -36,6 +36,7 @@ bool Config::Read( std::string configFile )
 
     if( config_read_file( &_config, _configFile.c_str() ) )
     {
+        ReadDebug();
         ReadApplication();
         ReadBackground();
         ReadLayer();
@@ -82,6 +83,10 @@ void Config::Init()
 void Config::Defaults()
 {
 // TODO : [COMMENT] Explain default values by comments. Also, constants/defines can be used here.
+
+    // Debug
+    debug = 0;
+
     // Application
     application_frequency = 20;
     application_timestep = 1.0;
@@ -156,6 +161,13 @@ void Config::Defaults()
     font_name = "freemono.ttf";
     font_folder = "../fonts/";
     font_size = 12;
+}
+
+void Config::ReadDebug()
+{
+    config_lookup_int( &_config, "config.debug", &debug );
+    //DEBUG
+    printf("%d\n", debug);
 }
 
 void Config::ReadApplication()

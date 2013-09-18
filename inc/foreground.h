@@ -19,6 +19,12 @@ class Foreground : public Layer
         void Defaults();
         void RenderForegroundLayer();
 
+        void RenderGround();
+        void RenderPlayer();
+        void RenderObstacles();
+        void RenderEnemy();
+        void RenderScore();
+
     private:
         // Member.
         bool _visible;

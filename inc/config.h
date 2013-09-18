@@ -27,6 +27,7 @@ class Config
         // Methods
         void Defaults();
         void Init();
+        void ReadDebug();
         void ReadApplication();
         void ReadBackground();
         void ReadBackgroundOffsets();
@@ -51,6 +52,8 @@ class Config
 
     public:
         // Configuration items.
+        // Debug settings.
+        int debug;
         // Application settings.
         //! Application running frequency.
         double application_frequency;

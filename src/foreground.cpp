@@ -65,21 +65,58 @@ void Foreground::Render()
 void Foreground::RenderForegroundLayer()
 {
     // TODO : Game foreground objects (enemies, player, obstacles, etc.) will be rendered here.
-    static double alpha = 0.0;
-    const double SIZE = 0.1;
-    alpha += 0.05;
+    if( Config::Instance()->debug ) {
+        static double alpha = 0.0;
+        const double SIZE = 0.1;
+        alpha += 0.05;
+        glPushMatrix();
+        glLoadIdentity();
+        glTranslated( 0.0, 0.0, 0.0 );
+        glRotated( alpha, 0.0, 0.0, 1.0 );
+        glColor3d( 0.6, 0.6, 0.6 );
+        glBegin( GL_LINE_LOOP );
+        glVertex2d( -SIZE, -SIZE );
+        glVertex2d( -SIZE,  SIZE );
+        glVertex2d(  SIZE,  SIZE );
+        glVertex2d(  SIZE, -SIZE );
+        glEnd();
+        glPopMatrix();
+    }
+
+    RenderGround();
+    RenderPlayer();
+    RenderObstacles();
+    RenderEnemy();
+    RenderScore();
+}
+
+void Foreground::RenderGround() {
+
+    static double w = 1.0;
+    static double h = 0.1;
     glPushMatrix();
     glLoadIdentity();
-    glTranslated( 0.0, 0.0, 0.0 );
-    glRotated( alpha, 0.0, 0.0, 1.0 );
-    glColor3d( 0.6, 0.6, 0.6 );
-    glBegin( GL_LINE_LOOP );
-    glVertex2d( -SIZE, -SIZE );
-    glVertex2d( -SIZE,  SIZE );
-    glVertex2d(  SIZE,  SIZE );
-    glVertex2d(  SIZE, -SIZE );
+    glTranslated( 0.0, -0.45, 0.0 );
+    glColor3d( 0.4, 0.4, 0.4 );
+    glBegin( GL_QUADS );
+    glVertex2d( -w, -h );
+    glVertex2d( -w,  h );
+    glVertex2d(  w,  h );
+    glVertex2d(  w, -h );
     glEnd();
     glPopMatrix();
-    // END
 }
+
+void Foreground::RenderPlayer() {
+}
+
+void Foreground::RenderObstacles() {
+}
+
+void Foreground::RenderEnemy() {
+}
+
+void Foreground::RenderScore() {
+}
+
 

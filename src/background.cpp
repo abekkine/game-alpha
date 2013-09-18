@@ -59,20 +59,22 @@ void Background::Render()
 void Background::RenderBackground()
 {
     // TODO : Render game background.
-    static double alpha = 0.0;
-    const double SIZE = 0.05;
-    alpha += 0.3;
-    glPushMatrix();
-    glLoadIdentity();
-    glTranslated( 0.0, 0.0, 0.0 );
-    glRotated( alpha, 0.0, 0.0, -1.0 );
-    glColor3d( 0.2, 0.2, 0.2 );
-    glBegin( GL_LINE_LOOP );
-    glVertex2d( -SIZE, -SIZE );
-    glVertex2d( -SIZE,  SIZE );
-    glVertex2d(  SIZE,  SIZE );
-    glVertex2d(  SIZE, -SIZE );
-    glEnd();
-    glPopMatrix();
+    if( Config::Instance()->debug ) {
+        static double alpha = 0.0;
+        const double SIZE = 0.05;
+        alpha += 0.3;
+        glPushMatrix();
+        glLoadIdentity();
+        glTranslated( 0.0, 0.0, 0.0 );
+        glRotated( alpha, 0.0, 0.0, -1.0 );
+        glColor3d( 0.2, 0.2, 0.2 );
+        glBegin( GL_LINE_LOOP );
+        glVertex2d( -SIZE, -SIZE );
+        glVertex2d( -SIZE,  SIZE );
+        glVertex2d(  SIZE,  SIZE );
+        glVertex2d(  SIZE, -SIZE );
+        glEnd();
+        glPopMatrix();
+    }
 }
 
