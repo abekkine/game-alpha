@@ -45,14 +45,14 @@ config =
         screen = 
         {
             width = 800;
-            height = 800;
+            height = 450;
         };
 
         // World coordinates.
         world = 
         {
-            width = 1.0;
-            height = 1.0;
+            width = 1.6;
+            height = 0.9;
         };
 
         // Clear color. 
