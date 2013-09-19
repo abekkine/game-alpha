@@ -16,7 +16,6 @@ Display::~Display()
 
     delete _fps_timer;
     delete _panel;
-    delete _event;
     delete _background;
     delete _foreground;
 }
@@ -41,7 +40,6 @@ void Display::Defaults()
 
     // Component defaults.
     _panel = 0;
-    _event = 0;
     _background = 0;
     _foreground = 0;
 
@@ -102,12 +100,6 @@ bool Display::InitComponents()
 
     _fps_timer = new Timer();
     _fps_timer->Reset();
-
-    _event = new Event();
-    if( not _event->Init() ) {
-        fprintf( stderr, "Unable to initialize Event instance!\n" );
-        result = false;
-    }
 
     _panel = new Panel();
     if( not _panel->Init( _viewport ) ) {
@@ -202,7 +194,7 @@ void Display::Update()
     // Swap buffers.
     SDL_GL_SwapBuffers();
 
-    _event->Update();
+    Event::Instance()->Update();
         
     ProcessCommands();
 }
@@ -212,7 +204,7 @@ void Display::ProcessCommands()
     Event::CommandType commandCode; 
 
     do {
-        commandCode = _event->GetCommandCode();
+        commandCode = Event::Instance()->GetCommand();
         switch( commandCode ) {
 
             case Event::cmd_TOGGLE_WIREFRAME:
@@ -223,7 +215,7 @@ void Display::ProcessCommands()
                 _background->Toggle();
                 break;
 
-            case Event::cmd_TOGGLE_STAR:
+            case Event::cmd_TOGGLE_FOREGROUND:
                 _foreground->Toggle();
                 break;
 
@@ -237,6 +229,9 @@ void Display::ProcessCommands()
                 break;
 
             case Event::cmd_NONE:
+                break;
+
+            default:
                 break;
         }
     } while( commandCode != Event::cmd_NONE );

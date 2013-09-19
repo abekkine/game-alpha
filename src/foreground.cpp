@@ -90,7 +90,8 @@ void Foreground::RenderForegroundLayer()
     RenderScore();
 }
 
-void Foreground::RenderGround() {
+void Foreground::RenderGround()
+{
 
     static double w = 1.0;
     static double h = 0.1;
@@ -107,8 +108,8 @@ void Foreground::RenderGround() {
     glPopMatrix();
 }
 
-void Foreground::RenderPlayer() {
-
+void Foreground::RenderPlayer()
+{
     static double w = 0.02;
     static double h = 0.06;
     glPushMatrix();
@@ -132,13 +133,15 @@ void Foreground::RenderPlayer() {
     glPopMatrix();
 }
 
-void Foreground::RenderObstacles() {
+void Foreground::RenderObstacles()
+{
 }
 
-void Foreground::RenderEnemy() {
+void Foreground::RenderEnemy()
+{
 }
 
-void Foreground::RenderScore() {
+void Foreground::RenderScore()
+{
 }
-
 

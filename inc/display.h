@@ -45,9 +45,6 @@ class Display
         // Display panel.
         Panel* _panel;
 
-        // User events.
-        Event* _event;
-
         // Background layer.
         Background* _background;
 

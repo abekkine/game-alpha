@@ -15,7 +15,7 @@ class Event
             cmd_NONE = 0,
             cmd_TOGGLE_WIREFRAME,
             cmd_TOGGLE_BACKGROUND,
-            cmd_TOGGLE_STAR,
+            cmd_TOGGLE_FOREGROUND,
             cmd_TOGGLE_PANEL,
             cmd_ZOOM,
             cmd_PAN
@@ -39,12 +39,16 @@ class Event
              bs_RELEASED
         };
 
-    public:
+    private:
+        static Event* _instance;
         Event();
+
+    public:
+        static Event* Instance();
         ~Event();
         bool Init();
         bool Update();
-        CommandType GetCommandCode();
+        CommandType GetCommand();
         void GetMousePosition( Vector2i& mouse );
         
     private:

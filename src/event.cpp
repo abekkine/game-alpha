@@ -4,16 +4,29 @@
 #include <panel.h>
 #include <writer.h>
 
+Event* Event::_instance = 0;
+
 int Event::_zoom_delta = 0;
 Vector2i Event::_pan_delta(0, 0);
 
 bool Event::_quit_condition = false;
+
+Event* Event::Instance()
+{
+    if( _instance == 0 )
+    {
+        _instance = new Event();
+    }
+
+    return _instance;
+}
 
 Event::Event()
 {
     puts("Event::Event()");
 
     Defaults();
+    Init();
 }
 
 Event::~Event()
@@ -173,7 +186,7 @@ void Event::KeyEvent( SDL_KeyboardEvent& key )
             break;
 
         case SDLK_s:
-            PushCommand( cmd_TOGGLE_STAR );
+            PushCommand( cmd_TOGGLE_FOREGROUND );
             break;
             
         case SDLK_p:
@@ -188,7 +201,7 @@ void Event::KeyEvent( SDL_KeyboardEvent& key )
         case SDLK_LSHIFT:
             _speed_factor = Config::Instance()->speed_factor_max;
             break;
-       
+      
         default:
             break;
     }
@@ -361,7 +374,7 @@ void Event::Poll()
     }
 }
 
-Event::CommandType Event::GetCommandCode()
+Event::CommandType Event::GetCommand()
 {
     CommandType command_code = cmd_NONE;
 
