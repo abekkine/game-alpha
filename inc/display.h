@@ -36,11 +36,10 @@ class Display
         void Reshape( int width, int height );
         
         void ProcessCommands();
-        void ProcessEvents();
-        void ToggleWireframe();
 
     private:
         // Components.
+        std::vector< Layer * > _components;
 
         // Display panel.
         Panel* _panel;

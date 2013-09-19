@@ -18,7 +18,12 @@ class Event
             cmd_TOGGLE_FOREGROUND,
             cmd_TOGGLE_PANEL,
             cmd_ZOOM,
-            cmd_PAN
+            cmd_PAN,
+            cmd_UP,
+            cmd_DOWN,
+            cmd_LEFT,
+            cmd_RIGHT,
+            cmd_FIRE
         };
 
     private:

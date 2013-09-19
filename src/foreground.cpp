@@ -19,6 +19,8 @@ Foreground::~Foreground()
 
 void Foreground::Defaults()
 {
+    _player_x = 0.0;
+    _player_y = -0.36;
     _visible = true;
     _wireframe = false;
 
@@ -114,7 +116,7 @@ void Foreground::RenderPlayer()
     static double h = 0.06;
     glPushMatrix();
     glLoadIdentity();
-    glTranslated( 0.0, -0.36, 0.0 );
+    glTranslated( _player_x, _player_y, 0.0 );
     // Ship
     glColor3d( 1.0, 1.0, 1.0 );
     glBegin( GL_TRIANGLES );
@@ -143,5 +145,30 @@ void Foreground::RenderEnemy()
 
 void Foreground::RenderScore()
 {
+}
+
+void Foreground::ProcessCommand( Event::CommandType cmdCode )
+{
+    if( cmdCode != Event::cmd_NONE )
+    {
+        switch( cmdCode )
+        {
+            case Event::cmd_TOGGLE_WIREFRAME:
+                ToggleWireframe(); break;
+            case Event::cmd_TOGGLE_FOREGROUND:
+                Toggle(); break;
+            case Event::cmd_LEFT:
+                _player_x -= 0.005; break;
+            case Event::cmd_RIGHT:
+                _player_x += 0.005; break;
+
+            case Event::cmd_UP:
+            case Event::cmd_DOWN:
+            case Event::cmd_FIRE:
+                puts("Player action!");
+            default:
+                break;
+        }
+    }
 }
 

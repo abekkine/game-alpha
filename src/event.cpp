@@ -201,6 +201,27 @@ void Event::KeyEvent( SDL_KeyboardEvent& key )
         case SDLK_LSHIFT:
             _speed_factor = Config::Instance()->speed_factor_max;
             break;
+
+        case SDLK_UP:
+            PushCommand( cmd_UP );
+            break;
+
+        case SDLK_DOWN:
+            PushCommand( cmd_DOWN );
+            break;
+
+        case SDLK_LEFT:
+            PushCommand( cmd_LEFT );
+            break;
+
+        
+        case SDLK_RIGHT:
+            PushCommand( cmd_RIGHT );
+            break;
+
+        case SDLK_LCTRL:
+            PushCommand( cmd_FIRE );
+            break;
       
         default:
             break;

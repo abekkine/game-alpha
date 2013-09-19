@@ -3,12 +3,17 @@
 
 #include <vector.h>
 #include <definitions.h>
+#include <event.h>
 
 class Layer
 {
     public:
         Layer();
         ~Layer();
+
+    // Interface
+    public:
+        virtual void ProcessCommand( Event::CommandType cmdCode ) = 0;
 
     protected:
         void PreRender();

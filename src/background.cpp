@@ -78,3 +78,19 @@ void Background::RenderBackground()
     }
 }
 
+void Background::ProcessCommand( Event::CommandType cmdCode )
+{
+    if( cmdCode != Event::cmd_NONE )
+    {
+        switch( cmdCode )
+        {
+            case Event::cmd_TOGGLE_WIREFRAME:
+                ToggleWireframe(); break;
+            case Event::cmd_TOGGLE_BACKGROUND:
+                Toggle(); break;
+            default:
+                break;
+        }
+    }
+}
+

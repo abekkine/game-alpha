@@ -106,18 +106,21 @@ bool Display::InitComponents()
         fprintf( stderr, "Unable to initialize Panel instance!\n" );
         result = false;
     }
+    _components.push_back( _panel );
 
     _background = new Background();
     if( not _background->Init( _viewport ) ) {
         fprintf( stderr, "Unable to initialize Background instance!\n" );
         result = false;
     }
+    _components.push_back( _background );
 
     _foreground = new Foreground();
     if( not _foreground->Init( _viewport ) ) {
         fprintf( stderr, "Unable to initialize Foreground instance!\n" );
         result = false;
     }
+    _components.push_back( _foreground );
 
     return result;
 }
@@ -201,39 +204,23 @@ void Display::Update()
 
 void Display::ProcessCommands()
 {
+    std::vector< Layer * >::iterator iter;
+    Layer* l;
     Event::CommandType commandCode; 
 
     do {
         commandCode = Event::Instance()->GetCommand();
-        switch( commandCode ) {
-
-            case Event::cmd_TOGGLE_WIREFRAME:
-                ToggleWireframe();
-                break;
-
-            case Event::cmd_TOGGLE_BACKGROUND:
-                _background->Toggle();
-                break;
-
-            case Event::cmd_TOGGLE_FOREGROUND:
-                _foreground->Toggle();
-                break;
-
-            case Event::cmd_TOGGLE_PANEL:
-                _panel->Toggle();
-                break;
-
-            case Event::cmd_ZOOM:
-            case Event::cmd_PAN:
-                Reshape();
-                break;
-
-            case Event::cmd_NONE:
-                break;
-
-            default:
-                break;
+        for( iter = _components.begin(); iter != _components.end(); ++iter )
+        {
+            l = *iter;
+            l->ProcessCommand( commandCode );
         }
+
+        if( (commandCode == Event::cmd_ZOOM) || (commandCode == Event::cmd_PAN) )
+        {
+            Reshape();
+        }
+
     } while( commandCode != Event::cmd_NONE );
 }
 
@@ -283,11 +270,5 @@ bool Display::CheckError()
     }
 
     return result;
-}
-
-void Display::ToggleWireframe()
-{
-    _background->ToggleWireframe();
-    _foreground->ToggleWireframe();
 }
 

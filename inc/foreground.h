@@ -3,6 +3,7 @@
 
 #include <definitions.h>
 #include <layer.h>
+#include <event.h>
 
 class Foreground : public Layer
 {
@@ -13,6 +14,7 @@ class Foreground : public Layer
         void Render();
         void Toggle();
         void ToggleWireframe();
+        void ProcessCommand( Event::CommandType cmdCode );
 
     private:
         // Methods.
@@ -29,6 +31,9 @@ class Foreground : public Layer
         // Member.
         bool _visible;
         bool _wireframe;
+
+        double _player_x;
+        double _player_y;
 };
 
 #endif

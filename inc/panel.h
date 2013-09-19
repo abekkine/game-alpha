@@ -16,6 +16,7 @@ class Panel : public Layer
         void Resize( int width, int height );
         void Toggle();
         void Render();
+        void ProcessCommand( Event::CommandType cmdCode );
 
     private:
         // Methods

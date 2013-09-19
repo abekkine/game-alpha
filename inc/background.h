@@ -14,6 +14,7 @@ class Background : public Layer
         void Render();
         void Toggle();
         void ToggleWireframe();
+        void ProcessCommand( Event::CommandType cmdCode );
 
     private:
         // Methods.
