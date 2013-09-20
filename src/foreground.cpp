@@ -136,9 +136,15 @@ void Foreground::RenderPlayer()
 
     switch( _move_horizontal ) {
         case move_LEFT:
-            _player_x -= 0.005; break;
+            if( _player_x > -0.48 * Config::Instance()->world_width ) {
+                _player_x -= 0.005; 
+            }
+            break;
         case move_RIGHT:
-            _player_x += 0.005; break;
+            if( _player_x < 0.48 * Config::Instance()->world_width ) {
+                _player_x += 0.005;
+            }
+            break;
         default:
             break;
     }
