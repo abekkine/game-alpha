@@ -21,8 +21,10 @@ class Event
             cmd_PAN,
             cmd_UP,
             cmd_DOWN,
-            cmd_LEFT,
-            cmd_RIGHT,
+            cmd_LEFT_ENABLE,
+            cmd_LEFT_DISABLE,
+            cmd_RIGHT_ENABLE,
+            cmd_RIGHT_DISABLE,
             cmd_FIRE
         };
 
@@ -67,7 +69,7 @@ class Event
         void LimitZoom();
         void ZoomCommand();
         void ZoomUpdate();
-        void KeyEvent( SDL_KeyboardEvent& key );
+        void KeyEvent( SDL_KeyboardEvent& key, int state );
         void MotionEvent( SDL_MouseMotionEvent& motion );
         void ButtonEvent( SDL_MouseButtonEvent& button );
         void ProcessLeftButton( SDL_MouseButtonEvent& button );

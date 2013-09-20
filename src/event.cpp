@@ -173,24 +173,32 @@ void Event::CommandProcess()
     }
 }
 
-void Event::KeyEvent( SDL_KeyboardEvent& key )
+void Event::KeyEvent( SDL_KeyboardEvent& key, int state )
 {
     switch( key.keysym.sym )
     {
         case SDLK_w:
-            PushCommand( cmd_TOGGLE_WIREFRAME );
+            if( state == SDL_KEYDOWN ) {
+                PushCommand( cmd_TOGGLE_WIREFRAME );
+            }
             break;
 
         case SDLK_b:
-            PushCommand( cmd_TOGGLE_BACKGROUND );
+            if( state == SDL_KEYDOWN ) {
+                PushCommand( cmd_TOGGLE_BACKGROUND );
+            }
             break;
 
         case SDLK_s:
-            PushCommand( cmd_TOGGLE_FOREGROUND );
+            if( state == SDL_KEYDOWN ) {
+                PushCommand( cmd_TOGGLE_FOREGROUND );
+            }
             break;
             
         case SDLK_p:
-            PushCommand( cmd_TOGGLE_PANEL );
+            if( state == SDL_KEYDOWN ) {
+                PushCommand( cmd_TOGGLE_PANEL );
+            }
             break;
             
         case SDLK_q:
@@ -199,7 +207,11 @@ void Event::KeyEvent( SDL_KeyboardEvent& key )
             break;
 
         case SDLK_LSHIFT:
-            _speed_factor = Config::Instance()->speed_factor_max;
+            if( state == SDL_KEYDOWN ) {
+                _speed_factor = Config::Instance()->speed_factor_max;
+            } else {
+                _speed_factor = Config::Instance()->speed_factor_min;
+            }
             break;
 
         case SDLK_UP:
@@ -211,12 +223,19 @@ void Event::KeyEvent( SDL_KeyboardEvent& key )
             break;
 
         case SDLK_LEFT:
-            PushCommand( cmd_LEFT );
+            if( state == SDL_KEYDOWN ) {
+                PushCommand( cmd_LEFT_ENABLE );
+            } else {
+                PushCommand( cmd_LEFT_DISABLE );
+            }
             break;
-
         
         case SDLK_RIGHT:
-            PushCommand( cmd_RIGHT );
+            if( state == SDL_KEYDOWN ) {
+                PushCommand( cmd_RIGHT_ENABLE );
+            } else {
+                PushCommand( cmd_RIGHT_DISABLE );
+            }
             break;
 
         case SDLK_LCTRL:
@@ -372,11 +391,11 @@ void Event::Poll()
         switch( event.type )
         {
             case SDL_KEYDOWN:
-                KeyEvent( event.key );
+                KeyEvent( event.key, event.type );
                 break;
 
             case SDL_KEYUP:
-                _speed_factor = Config::Instance()->speed_factor_min;
+                KeyEvent( event.key, event.type );
                 break;
 
             case SDL_MOUSEMOTION:

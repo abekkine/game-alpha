@@ -19,6 +19,7 @@ Foreground::~Foreground()
 
 void Foreground::Defaults()
 {
+    _move_horizontal = move_NONE;
     _player_x = 0.0;
     _player_y = -0.36;
     _visible = true;
@@ -55,7 +56,6 @@ void Foreground::ToggleWireframe() {
 
 void Foreground::Render()
 {
-
     if( _visible ) {
 
         PreRender();
@@ -133,6 +133,15 @@ void Foreground::RenderPlayer()
     glVertex2d(  w, -0.01 );
     glEnd();
     glPopMatrix();
+
+    switch( _move_horizontal ) {
+        case move_LEFT:
+            _player_x -= 0.005; break;
+        case move_RIGHT:
+            _player_x += 0.005; break;
+        default:
+            break;
+    }
 }
 
 void Foreground::RenderObstacles()
@@ -157,10 +166,14 @@ void Foreground::ProcessCommand( Event::CommandType cmdCode )
                 ToggleWireframe(); break;
             case Event::cmd_TOGGLE_FOREGROUND:
                 Toggle(); break;
-            case Event::cmd_LEFT:
-                _player_x -= 0.005; break;
-            case Event::cmd_RIGHT:
-                _player_x += 0.005; break;
+            case Event::cmd_LEFT_ENABLE:
+                _move_horizontal = move_LEFT; break;
+            case Event::cmd_LEFT_DISABLE:
+                _move_horizontal = move_NONE; break;
+            case Event::cmd_RIGHT_ENABLE:
+                _move_horizontal = move_RIGHT; break;
+            case Event::cmd_RIGHT_DISABLE:
+                _move_horizontal = move_NONE; break;
 
             case Event::cmd_UP:
             case Event::cmd_DOWN:
