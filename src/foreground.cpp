@@ -20,13 +20,13 @@ Foreground::~Foreground()
 void Foreground::Defaults()
 {
     _move_horizontal = move_NONE;
-    _player_x = 0.0;
-    _player_y = -0.36;
     _visible = true;
     _wireframe = false;
 
     _zoom_factor = 0.0;
     _pan_factor = 0.0;
+
+    _player = 0;
 }
 
 bool Foreground::Init( Volume& viewport )
@@ -40,6 +40,10 @@ bool Foreground::Init( Volume& viewport )
 
     Writer::Instance()->Add("X( %f )", &_viewport.left );
     Writer::Instance()->Add("Y( %f )", &_viewport.bottom );
+
+    _player = new Player(0.0, -0.36);
+    _enemyMgr = new EnemyManager();
+    _enemyMgr->Init();
 
     return result;
 }
@@ -112,38 +116,14 @@ void Foreground::RenderGround()
 
 void Foreground::RenderPlayer()
 {
-    static double w = 0.02;
-    static double h = 0.06;
-    glPushMatrix();
-    glLoadIdentity();
-    glTranslated( _player_x, _player_y, 0.0 );
-    // Ship
-    glColor3d( 1.0, 1.0, 1.0 );
-    glBegin( GL_TRIANGLES );
-    glVertex2d( 0.0, h );
-    glVertex2d(  w, 0.0 );
-    glVertex2d( -w, 0.0 );
-    glEnd();
-    // Shadow
-    glColor3d( 0.3, 0.3, 0.3 );
-    glBegin( GL_QUADS );
-    glVertex2d( -w, -0.01 );
-    glVertex2d( -w, -0.02 );
-    glVertex2d(  w, -0.02 );
-    glVertex2d(  w, -0.01 );
-    glEnd();
-    glPopMatrix();
+    _player->Render();
 
     switch( _move_horizontal ) {
         case move_LEFT:
-            if( _player_x > -0.48 * Config::Instance()->world_width ) {
-                _player_x -= 0.005; 
-            }
+            _player->MoveLeft();
             break;
         case move_RIGHT:
-            if( _player_x < 0.48 * Config::Instance()->world_width ) {
-                _player_x += 0.005;
-            }
+            _player->MoveRight();
             break;
         default:
             break;
@@ -156,6 +136,7 @@ void Foreground::RenderObstacles()
 
 void Foreground::RenderEnemy()
 {
+    _enemyMgr->Render();
 }
 
 void Foreground::RenderScore()

@@ -4,6 +4,8 @@
 #include <definitions.h>
 #include <layer.h>
 #include <event.h>
+#include <player.h>
+#include <enemymanager.h>
 
 class Foreground : public Layer
 {
@@ -42,8 +44,8 @@ class Foreground : public Layer
         bool _wireframe;
 
         MoveType _move_horizontal;
-        double _player_x;
-        double _player_y;
+        Player* _player;
+        EnemyManager* _enemyMgr;
 };
 
 #endif
