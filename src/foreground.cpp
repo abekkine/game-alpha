@@ -44,6 +44,8 @@ bool Foreground::Init( Volume& viewport )
     _player = new Player(0.0, -0.36);
     _enemyMgr = new EnemyManager();
     _enemyMgr->Init();
+    _obstacleMgr = new ObstacleManager();
+    _obstacleMgr->Init();
 
     return result;
 }
@@ -132,6 +134,7 @@ void Foreground::RenderPlayer()
 
 void Foreground::RenderObstacles()
 {
+    _obstacleMgr->Render();
 }
 
 void Foreground::RenderEnemy()
