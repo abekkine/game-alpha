@@ -15,6 +15,7 @@ class ObstacleManager
 
     private:
         void Defaults();
+        void CreateBlock(double x, double y, double w, double h, double d);
 
     private:
         std::vector<Obstacle *> _obstacles;
