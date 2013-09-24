@@ -4,6 +4,7 @@
 
 #include <obstacle.h>
 #include <config.h>
+#include <util.h>
 
 Obstacle::Obstacle(double x, double y, double r)
 {
@@ -34,7 +35,6 @@ void Obstacle::Render()
     glTranslated( _x, _y, 0.0 );
     
     glColor3d(0.7, 0.7, 0.7);
-//    glBegin( GL_LINE_LOOP );
     glBegin(GL_POLYGON);
     for(int i=0; i<4; i++)
     {
@@ -44,24 +44,13 @@ void Obstacle::Render()
     glPopMatrix();
 }
 
-double Obstacle::RandomValue(double min, double max)
-{
-    double r_value;
-
-    r_value = (double) rand() / (double) RAND_MAX;
-    r_value *= (max-min);
-    r_value += min;
-
-    return r_value;
-}
-
 void Obstacle::Randomize(double r, double a)
 {
     double r_dev, a_dev;
     for(int i=0; i<4; i++)
     {
-        r_dev = RandomValue( -r, r );
-        a_dev = RandomValue( -a, a );
+        r_dev = Util::Instance()->RandomValue( -r, r );
+        a_dev = Util::Instance()->RandomValue( -a, a );
         _r[i] *= (1.0 + 0.01 * r_dev);
         _a[i] *= (1.0 + 0.01 * a_dev);
     }

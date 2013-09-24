@@ -38,6 +38,15 @@ void Player::Render()
     glPopMatrix();
 }
 
+Bullet* Player::Fire()
+{
+    Bullet* bullet = new Bullet(_x, _y+0.06);
+    bullet->Owner(0);
+    bullet->Velocity(0.0, 0.00075);
+
+    return bullet;
+}
+
 void Player::MoveLeft()
 {
     if( _x > -0.48 * Config::Instance()->world_width ) {

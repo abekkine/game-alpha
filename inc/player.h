@@ -2,6 +2,7 @@
 #define PLAYER_H
 
 #include <object.h>
+#include <bullet.h>
 
 class Player : public Object
 {
@@ -9,6 +10,7 @@ class Player : public Object
         Player(double x, double y);
         ~Player();
         void Render();
+        Bullet* Fire();
         void MoveLeft();
         void MoveRight();
 };

@@ -239,7 +239,9 @@ void Event::KeyEvent( SDL_KeyboardEvent& key, int state )
             break;
 
         case SDLK_LCTRL:
-            PushCommand( cmd_FIRE );
+            if( state == SDL_KEYDOWN ) {
+                PushCommand( cmd_FIRE );
+            }
             break;
       
         default:

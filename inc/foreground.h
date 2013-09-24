@@ -35,8 +35,6 @@ class Foreground : public Layer
 
         void RenderGround();
         void RenderPlayer();
-        void RenderObstacles();
-        void RenderEnemy();
         void RenderScore();
 
     private:
