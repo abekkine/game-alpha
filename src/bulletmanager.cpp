@@ -1,3 +1,5 @@
+#include <stdio.h>
+
 #include <bulletmanager.h>
 
 BulletManager* BulletManager::_instance = 0;
@@ -29,7 +31,18 @@ void BulletManager::Render()
     for(iter=_bullets.begin(); iter!=_bullets.end(); ++iter)
     {
         aBullet = *iter;
-        aBullet->Render();
+        if( aBullet->Alive() )
+        {
+            aBullet->Render();
+        }
+        else
+        {
+            delete aBullet;
+            iter = _bullets.erase( iter );
+            if( iter == _bullets.end() ){
+                break;
+            }
+        }
     }
 }
 

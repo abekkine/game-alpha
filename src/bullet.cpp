@@ -3,12 +3,15 @@
 #include <bullet.h>
 #include <config.h>
 
-Bullet::Bullet(double x, double y)
+Bullet::Bullet(double x, double y) :
+ LIFE_MAX(1.0),
+ LIFE_DELTA(0.001)
 {
     _x = x;
     _y = y;
     _vx = 0.0;
     _vy = 0.0;
+    _life = LIFE_MAX;
     _owner = 0;
 }
 
@@ -49,5 +52,11 @@ void Bullet::Render()
 
     _x += _vx;
     _y += _vy;
+
+    _life -= LIFE_DELTA;
 }
 
+bool Bullet::Alive()
+{
+    return (_life > 0.0);
+}

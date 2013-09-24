@@ -15,8 +15,6 @@ class Enemy : public Object
     private:
         double _vx;
         double _vy;
-        double _x0;
-        double _y0;
         double _alpha;
         double _span;
         double _reload_max;

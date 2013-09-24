@@ -12,8 +12,6 @@ Enemy::Enemy(double x, double y)
     _y = y;
     _vx = 0.0;
     _vy = 0.0;
-    _x0 = _x;
-    _y0 = _y;
     _alpha = 0.0;
     _span = 0.02;
     _reload_max = 250.0;
