@@ -5,8 +5,11 @@
 
 Player::Player(double x, double y)
 {
-    _x = x;
-    _y = y;
+    _position.x = x;
+    _position.y = y;
+    _size = 0.05;
+    _group = 0;
+    _type = objPlayer;
 }
 
 Player::~Player()
@@ -19,7 +22,7 @@ void Player::Render()
     static double h = 0.06;
     glPushMatrix();
     glLoadIdentity();
-    glTranslated( _x, _y, 0.0 );
+    glTranslated( _position.x, _position.y, 0.0 );
     // Ship
     glColor3d( 1.0, 1.0, 1.0 );
     glBegin( GL_TRIANGLES );
@@ -40,8 +43,8 @@ void Player::Render()
 
 Bullet* Player::Fire()
 {
-    Bullet* bullet = new Bullet(_x, _y+0.06);
-    bullet->Owner(0);
+    Bullet* bullet = new Bullet(_position.x, _position.y+0.06);
+    bullet->Group(0);
     bullet->Velocity(0.0, 0.00075);
 
     return bullet;
@@ -49,15 +52,15 @@ Bullet* Player::Fire()
 
 void Player::MoveLeft()
 {
-    if( _x > -0.48 * Config::Instance()->world_width ) {
-        _x -= 0.005; 
+    if( _position.x > -0.48 * Config::Instance()->world_width ) {
+        _position.x -= 0.005; 
     }
 }
 
 void Player::MoveRight()
 {
-    if( _x < 0.48 * Config::Instance()->world_width ) {
-        _x += 0.005;
+    if( _position.x < 0.48 * Config::Instance()->world_width ) {
+        _position.x += 0.005;
     }
 }
  
@@ -66,3 +69,31 @@ bool Player::Alive()
     // TODO : implement
     return true;
 }
+
+bool Player::CollisionWith(Object* object)
+{
+    object = object;
+
+    return false;
+}
+ 
+Vector2 const& Player::Position()
+{
+    return _position;
+}
+
+double Player::Size()
+{
+    return _size;
+}
+
+void Player::Group(int group)
+{
+    _group = group;
+}
+
+int Player::Group()
+{
+    return _group;
+}
+

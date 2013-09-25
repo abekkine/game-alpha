@@ -18,6 +18,9 @@ class ObjectManager
         void Add(Object* object);
 
     private:
+        void CheckCollision(Object* object);
+
+    private:
         std::vector<Object *> _objects;
 };
 

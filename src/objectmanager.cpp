@@ -29,6 +29,7 @@ void ObjectManager::Render()
     {
         if( (*iObject)->Alive() )
         {
+            CheckCollision( *iObject );
             (*iObject)->Render();
         }
         else
@@ -46,6 +47,19 @@ void ObjectManager::Render()
 void ObjectManager::Add(Object* object)
 {
     _objects.push_back( object );
+}
+
+void ObjectManager::CheckCollision(Object* object)
+{
+    std::vector<Object *>::iterator iObject;
+
+    for(iObject=_objects.begin(); iObject!=_objects.end(); ++iObject)
+    {
+        if( object != *iObject )
+        {
+            object->CollisionWith(*iObject);
+        }
+    }
 }
 
 

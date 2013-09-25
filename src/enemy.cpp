@@ -8,8 +8,11 @@
 
 Enemy::Enemy(double x, double y)
 {
-    _x = x;
-    _y = y;
+    _position.x = x;
+    _position.y = y;
+    _size = 0.03;
+    _group = 1;
+    _type = objEnemy;
     _vx = 0.0;
     _vy = 0.0;
     _alpha = 0.0;
@@ -29,7 +32,7 @@ void Enemy::Render()
     const double h = 0.02;
     glPushMatrix();
     glLoadIdentity();
-    glTranslated( _x, _y, 0.0 );
+    glTranslated( _position.x, _position.y, 0.0 );
 
     glColor3d(1.0, 1.0, 1.0);
     glBegin( GL_QUADS );
@@ -45,8 +48,8 @@ void Enemy::Render()
     _vx = _span * sin(_alpha) * 0.01;
     _vy = 0.005 * sin(_alpha * 4.0) * 0.01;
 
-    _x += _vx;
-    _y += _vy;
+    _position.x += _vx;
+    _position.y += _vy;
 
     // Fire
     if( _reload_value < _reload_max )
@@ -62,9 +65,9 @@ void Enemy::Render()
 
 Bullet* Enemy::Fire()
 {
-    Bullet* bullet = new Bullet(_x, _y-0.02);
+    Bullet* bullet = new Bullet(_position.x, _position.y-0.02);
     
-    bullet->Owner(1);
+    bullet->Group(1);
     bullet->Velocity(_vx, -0.00075);
 
     return bullet;
@@ -75,3 +78,31 @@ bool Enemy::Alive()
     // TODO : implement.
     return true;
 }
+
+bool Enemy::CollisionWith(Object* object)
+{
+    object = object;
+    
+    return false;
+}
+
+Vector2 const& Enemy::Position()
+{
+    return _position;
+}
+
+double Enemy::Size()
+{
+    return _size;
+}
+
+void Enemy::Group(int group)
+{
+    _group = group;
+}
+
+int Enemy::Group()
+{
+    return _group;
+}
+

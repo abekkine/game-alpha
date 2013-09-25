@@ -8,9 +8,11 @@
 
 Obstacle::Obstacle(double x, double y, double r)
 {
-    _x = x;
-    _y = y;
-    _radii = r;
+    _position.x = x;
+    _position.y = y;
+    _type = objObstacle;
+    _size = r;
+    _group = 2;
     Defaults();
 }
 
@@ -22,7 +24,7 @@ void Obstacle::Defaults()
 {
     for(int i=0; i<4; i++)
     {
-        _r[i] = _radii;
+        _r[i] = _size;
         _a[i] = 0.5 * i * M_PI + 0.25 * M_PI;
         printf("%f %f\n", _r[i], _a[i]);
     }
@@ -32,7 +34,7 @@ void Obstacle::Render()
 {
     glPushMatrix();
     glLoadIdentity();
-    glTranslated( _x, _y, 0.0 );
+    glTranslated( _position.x, _position.y, 0.0 );
     
     glColor3d(0.7, 0.7, 0.7);
     glBegin(GL_POLYGON);
@@ -60,5 +62,32 @@ bool Obstacle::Alive()
 {
     // TODO : implement
     return true;
+}
+
+bool Obstacle::CollisionWith(Object* object)
+{
+    object = object;
+
+    return false;
+}
+
+Vector2 const& Obstacle::Position()
+{
+    return _position;
+}
+
+double Obstacle::Size()
+{
+    return _size;
+}
+
+int Obstacle::Group()
+{
+    return _group;
+}
+
+void Obstacle::Group(int group)
+{
+    _group = group;
 }
 
