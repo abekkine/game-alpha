@@ -87,7 +87,8 @@ bool Bullet::CollisionWith(Object* object)
 
     if(dr < (_size+objSize) ) {
         collision = true;
-        _life = 0.0;
+        _vx = 0.0;
+        _vy = 0.0;
     }
 
     return collision;
