@@ -4,7 +4,7 @@
 #include <enemy.h>
 #include <config.h>
 #include <util.h>
-#include <bulletmanager.h>
+#include <objectmanager.h>
 
 Enemy::Enemy(double x, double y)
 {
@@ -56,7 +56,7 @@ void Enemy::Render()
     else
     {
         _reload_value = 0.0;
-        BulletManager::Instance()->AddBullet( Fire() );
+        ObjectManager::Instance()->Add( Fire() );
     }
 }
 
@@ -70,3 +70,8 @@ Bullet* Enemy::Fire()
     return bullet;
 }
 
+bool Enemy::Alive()
+{
+    // TODO : implement.
+    return true;
+}

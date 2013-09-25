@@ -56,3 +56,9 @@ void Obstacle::Randomize(double r, double a)
     }
 }
 
+bool Obstacle::Alive()
+{
+    // TODO : implement
+    return true;
+}
+

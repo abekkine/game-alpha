@@ -1,3 +1,4 @@
+#include <objectmanager.h>
 #include <enemymanager.h>
 
 EnemyManager::EnemyManager()
@@ -11,7 +12,6 @@ EnemyManager::~EnemyManager()
 
 void EnemyManager::Defaults()
 {
-    _enemies.clear();
 }
 
 void EnemyManager::Init()
@@ -23,20 +23,8 @@ void EnemyManager::Init()
         for(double iy=0.3; iy>=0.0; iy-=0.1)
         {
             anEnemy = new Enemy(ix, iy);
-            _enemies.push_back( anEnemy );
+            ObjectManager::Instance()->Add( anEnemy );
         }
-    }
-}
-
-void EnemyManager::Render()
-{
-    Enemy* iEnemy;
-    std::vector< Enemy* >::iterator iter;
-
-    for(iter=_enemies.begin(); iter!=_enemies.end(); ++iter)
-    {
-        iEnemy = *iter;
-        iEnemy->Render();
     }
 }
 

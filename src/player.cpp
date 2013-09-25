@@ -61,3 +61,8 @@ void Player::MoveRight()
     }
 }
  
+bool Player::Alive()
+{
+    // TODO : implement
+    return true;
+}

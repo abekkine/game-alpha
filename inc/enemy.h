@@ -11,6 +11,7 @@ class Enemy : public Object
         ~Enemy();
         Bullet* Fire();
         void Render();
+        bool Alive();
 
     private:
         double _vx;

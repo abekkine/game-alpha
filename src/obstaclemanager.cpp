@@ -1,5 +1,6 @@
 #include <stdio.h>
 
+#include <objectmanager.h>
 #include <obstaclemanager.h>
 
 ObstacleManager::ObstacleManager()
@@ -13,7 +14,6 @@ ObstacleManager::~ObstacleManager()
 
 void ObstacleManager::Defaults()
 {
-    _obstacles.clear();
 }
 
 void ObstacleManager::Init()
@@ -43,20 +43,8 @@ void ObstacleManager::CreateBlock(double x, double y, double w, double h, double
             anObstacle = new Obstacle(ix, iy, 0.85 * step);
             // %10.0 deviation for both radius and angle.
             anObstacle->Randomize(10.0, 10.0);
-            _obstacles.push_back( anObstacle );
+            ObjectManager::Instance()->Add( anObstacle );
         }
-    }
-}
-
-void ObstacleManager::Render()
-{
-    Obstacle* iObstacle;
-    std::vector<Obstacle *>::iterator iter;
-
-    for(iter=_obstacles.begin(); iter!=_obstacles.end(); ++iter)
-    {
-        iObstacle = *iter;
-        iObstacle->Render();
     }
 }
 

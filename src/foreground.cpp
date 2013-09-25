@@ -4,7 +4,7 @@
 #include <config.h>
 #include <writer.h>
 #include <foreground.h>
-#include <bulletmanager.h>
+#include <objectmanager.h>
 
 Foreground::Foreground()
 {
@@ -43,6 +43,8 @@ bool Foreground::Init( Volume& viewport )
     Writer::Instance()->Add("Y( %f )", &_viewport.bottom );
 
     _player = new Player(0.0, -0.36);
+    ObjectManager::Instance()->Add( _player );
+
     _enemyMgr = new EnemyManager();
     _enemyMgr->Init();
     _obstacleMgr = new ObstacleManager();
@@ -96,9 +98,7 @@ void Foreground::RenderForegroundLayer()
     RenderPlayer();
     RenderScore();
 
-    _obstacleMgr->Render();
-    _enemyMgr->Render();
-    BulletManager::Instance()->Render();
+    ObjectManager::Instance()->Render();
 }
 
 void Foreground::RenderGround()
@@ -121,8 +121,6 @@ void Foreground::RenderGround()
 
 void Foreground::RenderPlayer()
 {
-    _player->Render();
-
     switch( _move_horizontal ) {
         case move_LEFT:
             _player->MoveLeft();
@@ -159,7 +157,7 @@ void Foreground::ProcessCommand( Event::CommandType cmdCode )
                 _move_horizontal = move_NONE; break;
 
             case Event::cmd_FIRE:
-                BulletManager::Instance()->AddBullet( _player->Fire() );
+                ObjectManager::Instance()->Add( _player->Fire() );
                 break;    
 
             case Event::cmd_UP:
