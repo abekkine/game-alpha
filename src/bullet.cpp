@@ -15,6 +15,7 @@ Bullet::Bullet(double x, double y) :
     _vy = 0.0;
     _life = LIFE_MAX;
     _size = 0.003;
+    _visible = true;
 }
 
 Bullet::~Bullet()
@@ -32,20 +33,23 @@ void Bullet::Render()
     const double w = 0.002;
     const double h = 0.005;
 
-    glPushMatrix();
-    glLoadIdentity();
-    glTranslated(_position.x, _position.y, 0.0);
+    if( _visible ) {
 
-    glColor3d(0.8, 0.8, 0.8);
+        glPushMatrix();
+        glLoadIdentity();
+        glTranslated(_position.x, _position.y, 0.0);
 
-    glBegin(GL_QUADS);
-    glVertex2d( -w, -h );
-    glVertex2d( -w,  h );
-    glVertex2d(  w,  h );
-    glVertex2d(  w, -h );
-    glEnd();
+        glColor3d(0.8, 0.8, 0.8);
 
-    glPopMatrix();
+        glBegin(GL_QUADS);
+        glVertex2d( -w, -h );
+        glVertex2d( -w,  h );
+        glVertex2d(  w,  h );
+        glVertex2d(  w, -h );
+        glEnd();
+
+        glPopMatrix();
+    }
 
     _position.x += _vx;
     _position.y += _vy;
@@ -71,9 +75,11 @@ bool Bullet::CollisionWith(Object* object)
 
     if(dr < (_size+objSize) ) {
         collision = true;
-        _vx = 0.0;
-        _vy = 0.0;
+        _visible = false;
+        object->AddDamage( 0.25 );
+        _life = LIFE_DELTA;
     }
+
 
     return collision;
 }

@@ -19,6 +19,7 @@ class Object
         void Group(int group);
         double Size();
         Vector2 const& Position();
+        void AddDamage(double damage);
 
     protected:
         typedef enum {
@@ -34,6 +35,7 @@ class Object
         double _size;
         int _group;
         double _life;
+        bool _visible;
 };
 
 #endif

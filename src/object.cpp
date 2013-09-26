@@ -25,3 +25,8 @@ bool Object::Alive()
     return (_life > 0.0);
 }
 
+void Object::AddDamage(double damage)
+{
+    _life -= damage;
+}
+

@@ -9,6 +9,7 @@
 Obstacle::Obstacle(double x, double y, double r)
 {
     _life = 1.0;
+    _visible = true;
     _position.x = x;
     _position.y = y;
     _type = objObstacle;
@@ -33,18 +34,20 @@ void Obstacle::Defaults()
 
 void Obstacle::Render()
 {
-    glPushMatrix();
-    glLoadIdentity();
-    glTranslated( _position.x, _position.y, 0.0 );
+    if( _visible ) {
+        glPushMatrix();
+        glLoadIdentity();
+        glTranslated( _position.x, _position.y, 0.0 );
     
-    glColor3d(0.7, 0.7, 0.7);
-    glBegin(GL_POLYGON);
-    for(int i=0; i<4; i++)
-    {
-        glVertex2d( _r[i] * cos(_a[i]), _r[i] * sin(_a[i]) );
+        glColor4d(0.7, 0.7, 0.7, _life/1.0);
+        glBegin(GL_POLYGON);
+        for(int i=0; i<4; i++)
+        {
+            glVertex2d( _r[i] * cos(_a[i]), _r[i] * sin(_a[i]) );
+        }
+        glEnd();
+        glPopMatrix();
     }
-    glEnd();
-    glPopMatrix();
 }
 
 void Obstacle::Randomize(double r, double a)

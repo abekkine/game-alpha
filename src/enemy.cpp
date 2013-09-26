@@ -9,6 +9,7 @@
 Enemy::Enemy(double x, double y)
 {
     _life = 1.0;
+    _visible = true;
     _position.x = x;
     _position.y = y;
     _size = 0.03;
@@ -29,20 +30,23 @@ Enemy::~Enemy()
 
 void Enemy::Render()
 {
-    const double w = 0.02;
-    const double h = 0.02;
-    glPushMatrix();
-    glLoadIdentity();
-    glTranslated( _position.x, _position.y, 0.0 );
+    if( _visible )
+    {
+        const double w = 0.02;
+        const double h = 0.02;
+        glPushMatrix();
+        glLoadIdentity();
+        glTranslated( _position.x, _position.y, 0.0 );
 
-    glColor3d(1.0, 1.0, 1.0);
-    glBegin( GL_QUADS );
-    glVertex2d( -w, -h );
-    glVertex2d( -w,  h );
-    glVertex2d(  w,  h );
-    glVertex2d(  w, -h );
-    glEnd();
-    glPopMatrix();
+        glColor3d(1.0, 1.0, 1.0);
+        glBegin( GL_QUADS );
+        glVertex2d( -w, -h );
+        glVertex2d( -w,  h );
+        glVertex2d(  w,  h );
+        glVertex2d(  w, -h );
+        glEnd();
+        glPopMatrix();
+    }
 
     // Movement
     _alpha += 0.01;

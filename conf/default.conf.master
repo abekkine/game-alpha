@@ -1,6 +1,6 @@
 config = 
 {
-    debug = 1;
+    debug = 0;
 
     // General settings.
     application = 
@@ -46,8 +46,8 @@ config =
         // Screen dimensions.
         screen = 
         {
-            width = 800;
-            height = 450;
+            width = 800; //1200; //400;
+            height = 450; //675; //225; 
         };
 
         // World coordinates.
