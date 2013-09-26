@@ -12,11 +12,7 @@ class Enemy : public Object
         Bullet* Fire();
         void Render();
         bool Alive();
-        int Group();
-        void Group(int group);
         bool CollisionWith(Object* object);
-        Vector2 const& Position();
-        double Size();
 
     private:
         double _vx;

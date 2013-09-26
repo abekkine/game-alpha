@@ -85,24 +85,3 @@ bool Enemy::CollisionWith(Object* object)
     
     return false;
 }
-
-Vector2 const& Enemy::Position()
-{
-    return _position;
-}
-
-double Enemy::Size()
-{
-    return _size;
-}
-
-void Enemy::Group(int group)
-{
-    _group = group;
-}
-
-int Enemy::Group()
-{
-    return _group;
-}
-

@@ -77,23 +77,3 @@ bool Player::CollisionWith(Object* object)
     return false;
 }
  
-Vector2 const& Player::Position()
-{
-    return _position;
-}
-
-double Player::Size()
-{
-    return _size;
-}
-
-void Player::Group(int group)
-{
-    _group = group;
-}
-
-int Player::Group()
-{
-    return _group;
-}
-

@@ -14,22 +14,11 @@ Bullet::Bullet(double x, double y) :
     _vx = 0.0;
     _vy = 0.0;
     _life = LIFE_MAX;
-    _group = 0;
     _size = 0.003;
 }
 
 Bullet::~Bullet()
 {
-}
-
-void Bullet::Group(int group)
-{
-    _group = group;
-}
-
-int Bullet::Group()
-{
-    return _group;
 }
 
 void Bullet::Velocity(double vx, double vy)
@@ -92,15 +81,5 @@ bool Bullet::CollisionWith(Object* object)
     }
 
     return collision;
-}
-
-Vector2 const& Bullet::Position()
-{
-    return _position;
-}
-
-double Bullet::Size()
-{
-    return _size;
 }
 

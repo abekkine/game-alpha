@@ -11,11 +11,7 @@ class Obstacle : public Object
         void Render();
         bool Alive();
         bool CollisionWith(Object* object);
-        int Group();
-        void Group(int group);
         void Randomize(double r, double a);
-        Vector2 const& Position();
-        double Size();
 
     private:
         void Defaults();

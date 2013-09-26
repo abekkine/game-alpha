@@ -10,13 +10,15 @@ struct Vector2
 class Object
 {
     public:
-        virtual Vector2 const& Position() = 0;
-        virtual double Size() = 0;
         virtual void Render() = 0;
         virtual bool Alive() = 0;
-        virtual int Group() = 0;
-        virtual void Group(int group) = 0;
         virtual bool CollisionWith(Object* object) = 0;
+
+    public:
+        int Group();
+        void Group(int group);
+        double Size();
+        Vector2 const& Position();
 
     protected:
         typedef enum {

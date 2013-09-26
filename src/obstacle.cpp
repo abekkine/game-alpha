@@ -71,23 +71,3 @@ bool Obstacle::CollisionWith(Object* object)
     return false;
 }
 
-Vector2 const& Obstacle::Position()
-{
-    return _position;
-}
-
-double Obstacle::Size()
-{
-    return _size;
-}
-
-int Obstacle::Group()
-{
-    return _group;
-}
-
-void Obstacle::Group(int group)
-{
-    _group = group;
-}
-
