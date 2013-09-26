@@ -10,7 +10,6 @@ class Bullet : public Object
         ~Bullet();
         void Velocity(double vx, double vy);
         void Render();
-        bool Alive();
         bool CollisionWith(Object* object);
 
     private:

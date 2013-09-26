@@ -53,11 +53,6 @@ void Bullet::Render()
     _life -= LIFE_DELTA;
 }
 
-bool Bullet::Alive()
-{
-    return (_life > 0.0);
-}
-
 bool Bullet::CollisionWith(Object* object)
 {
     bool collision = false;

@@ -8,6 +8,7 @@
 
 Obstacle::Obstacle(double x, double y, double r)
 {
+    _life = 1.0;
     _position.x = x;
     _position.y = y;
     _type = objObstacle;
@@ -56,12 +57,6 @@ void Obstacle::Randomize(double r, double a)
         _r[i] *= (1.0 + 0.01 * r_dev);
         _a[i] *= (1.0 + 0.01 * a_dev);
     }
-}
-
-bool Obstacle::Alive()
-{
-    // TODO : implement
-    return true;
 }
 
 bool Obstacle::CollisionWith(Object* object)

@@ -20,3 +20,8 @@ Vector2 const& Object::Position()
     return _position;
 }
 
+bool Object::Alive()
+{
+    return (_life > 0.0);
+}
+

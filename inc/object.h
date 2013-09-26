@@ -11,10 +11,10 @@ class Object
 {
     public:
         virtual void Render() = 0;
-        virtual bool Alive() = 0;
         virtual bool CollisionWith(Object* object) = 0;
 
     public:
+        bool Alive();
         int Group();
         void Group(int group);
         double Size();
@@ -33,6 +33,7 @@ class Object
         Vector2 _position;
         double _size;
         int _group;
+        double _life;
 };
 
 #endif

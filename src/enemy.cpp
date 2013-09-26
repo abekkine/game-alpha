@@ -8,6 +8,7 @@
 
 Enemy::Enemy(double x, double y)
 {
+    _life = 1.0;
     _position.x = x;
     _position.y = y;
     _size = 0.03;
@@ -71,12 +72,6 @@ Bullet* Enemy::Fire()
     bullet->Velocity(_vx, -0.00075);
 
     return bullet;
-}
-
-bool Enemy::Alive()
-{
-    // TODO : implement.
-    return true;
 }
 
 bool Enemy::CollisionWith(Object* object)

@@ -5,6 +5,7 @@
 
 Player::Player(double x, double y)
 {
+    _life = 1.0;
     _position.x = x;
     _position.y = y;
     _size = 0.05;
@@ -64,12 +65,6 @@ void Player::MoveRight()
     }
 }
  
-bool Player::Alive()
-{
-    // TODO : implement
-    return true;
-}
-
 bool Player::CollisionWith(Object* object)
 {
     object = object;

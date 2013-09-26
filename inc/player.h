@@ -10,7 +10,6 @@ class Player : public Object
         Player(double x, double y);
         ~Player();
         void Render();
-        bool Alive();
         bool CollisionWith(Object* object);
         Bullet* Fire();
         void MoveLeft();
