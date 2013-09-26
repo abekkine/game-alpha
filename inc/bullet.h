@@ -15,7 +15,6 @@ class Bullet : public Object
     private:
         const double LIFE_MAX;
         const double LIFE_DELTA;
-        double _life;
         double _vx;
         double _vy;
 };

@@ -1,3 +1,5 @@
+#include <stdio.h>
+
 #include <objectmanager.h>
 
 ObjectManager* ObjectManager::_instance = 0;
