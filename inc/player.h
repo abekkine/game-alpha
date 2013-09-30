@@ -14,6 +14,8 @@ class Player : public Object
         Bullet* Fire();
         void MoveLeft();
         void MoveRight();
+        void RenderV1();
+        void RenderV2();
 };
 
 #endif
