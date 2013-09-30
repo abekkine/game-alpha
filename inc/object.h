@@ -27,7 +27,8 @@ class Object
             objPlayer,
             objEnemy,
             objObstacle,
-            objBullet
+            objBullet,
+            objEffect
         } ObjectType;
         
         ObjectType _type;

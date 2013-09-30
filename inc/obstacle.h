@@ -14,7 +14,6 @@ class Obstacle : public Object
 
     private:
         void Defaults();
-        double RandomValue(double min, double max);
 
     private:
         double _r[4];

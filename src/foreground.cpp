@@ -5,6 +5,7 @@
 #include <writer.h>
 #include <foreground.h>
 #include <objectmanager.h>
+#include <effectmanager.h>
 
 Foreground::Foreground()
 {
@@ -99,6 +100,7 @@ void Foreground::RenderForegroundLayer()
     RenderScore();
 
     ObjectManager::Instance()->Render();
+    EffectManager::Instance()->Render();
 }
 
 void Foreground::RenderGround()

@@ -3,6 +3,7 @@
 
 #include <bullet.h>
 #include <config.h>
+#include <effectmanager.h>
 
 Bullet::Bullet(double x, double y) :
  LIFE_MAX(1.0),
@@ -78,6 +79,8 @@ bool Bullet::CollisionWith(Object* object)
         _visible = false;
         object->AddDamage( 0.25 );
         _life = LIFE_DELTA;
+
+        EffectManager::Instance()->Explode(_position.x, _position.y);
     }
 
 
