@@ -19,6 +19,7 @@ class Event
             cmd_TOGGLE_PANEL,
             cmd_ZOOM,
             cmd_PAN,
+            cmd_SELECT,
             cmd_UP,
             cmd_DOWN,
             cmd_LEFT_ENABLE,

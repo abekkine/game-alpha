@@ -1,6 +1,7 @@
 #include <version.h>
 #include <config.h>
 #include <writer.h>
+#include <gamestate.h>
 #include <display.h>
 
 Display::Display()
@@ -101,6 +102,14 @@ bool Display::InitComponents()
     _fps_timer = new Timer();
     _fps_timer->Reset();
 
+   
+    _menu = new Menu();
+    if( not _menu->Init( _viewport ) ) {
+        fprintf( stderr, "Unable to initialize Menu instance!\n" );
+        result = false;
+    } 
+    _components.push_back( _menu );
+
     _panel = new Panel();
     if( not _panel->Init( _viewport ) ) {
         fprintf( stderr, "Unable to initialize Panel instance!\n" );
@@ -182,8 +191,21 @@ void Display::Render()
 {
     _fps = _fps_timer->GetFPS();
 
-    _background->Render();
-    _foreground->Render();
+    switch( GameState::Instance()->State() )
+    {
+        case GameState::gsPLAY:
+            _background->Render();
+            _foreground->Render();
+            break;
+
+        case GameState::gsMENU:
+            _menu->Render();
+            break;
+
+        default:
+            break;
+    }
+    
     _panel->Render();
 }
 

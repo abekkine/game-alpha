@@ -11,6 +11,7 @@
 #include <event.h>
 #include <background.h>
 #include <foreground.h>
+#include <menu.h>
 
 //! @brief Class responsible for rendering objects.
 class Display
@@ -49,6 +50,9 @@ class Display
 
         // Foreground layer.
         Foreground* _foreground;
+
+        // Menu layer.
+        Menu* _menu;
 
     private:
         // Members

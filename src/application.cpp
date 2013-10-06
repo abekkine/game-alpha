@@ -1,5 +1,6 @@
 #include <config.h>
 #include <application.h>
+#include <gamestate.h>
 
 Application::Application()
 {
@@ -36,6 +37,8 @@ bool Application::Initialize()
 
     _timer = new Timer(); 
     _display = new Display();
+
+    GameState::Instance()->State(GameState::gsMENU);
 
     result = _display->Init();
     if( result )

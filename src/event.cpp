@@ -214,6 +214,10 @@ void Event::KeyEvent( SDL_KeyboardEvent& key, int state )
             }
             break;
 
+        case SDLK_RETURN:
+            PushCommand( cmd_SELECT );
+            break;
+
         case SDLK_UP:
             PushCommand( cmd_UP );
             break;
