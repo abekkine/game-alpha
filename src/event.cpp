@@ -9,8 +9,6 @@ Event* Event::_instance = 0;
 int Event::_zoom_delta = 0;
 Vector2i Event::_pan_delta(0, 0);
 
-bool Event::_quit_condition = false;
-
 Event* Event::Instance()
 {
     if( _instance == 0 )
@@ -203,7 +201,7 @@ void Event::KeyEvent( SDL_KeyboardEvent& key, int state )
             
         case SDLK_q:
         case SDLK_ESCAPE:
-            _quit_condition = true;
+            PushCommand( cmd_QUIT );
             break;
 
         case SDLK_LSHIFT:
@@ -414,7 +412,7 @@ void Event::Poll()
                 break;
 
             case SDL_QUIT:
-                _quit_condition = true;
+                PushCommand( cmd_QUIT );
                 break;
         }
     }

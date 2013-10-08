@@ -26,7 +26,8 @@ class Event
             cmd_LEFT_DISABLE,
             cmd_RIGHT_ENABLE,
             cmd_RIGHT_DISABLE,
-            cmd_FIRE
+            cmd_FIRE,
+            cmd_QUIT
         };
 
     private:
@@ -86,8 +87,6 @@ class Event
     public:
         static int _zoom_delta;
         static Vector2i _pan_delta;
-
-        static bool _quit_condition;
 
     private:
         // Members.

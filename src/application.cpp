@@ -64,7 +64,7 @@ void Application::Run()
 {
     puts("Application::Run()");
 
-    while( not Event::_quit_condition )
+    while( GameState::Instance()->State() != GameState::gsQUIT )
     {
         _num_ticks = _timer->GetElapsed();
         if( _num_ticks > _ticks_period )
