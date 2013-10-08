@@ -46,10 +46,14 @@ void Font::SetColor( double* color ) {
     memcpy( _font_color, color, 4 * sizeof(double) );
 }
 
-void Font::SelectFont( std::string name, int size )
+void Font::Size( int size ) {
+
+    _font_size = size;
+}
+
+void Font::Face( std::string name )
 {
     _font_name = name;
-    _font_size = size;
 }
 
 void Font::Print( int x, int y, std::string text )

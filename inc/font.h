@@ -13,7 +13,8 @@ class Font
         ~Font();
         bool Init();
         void SetColor( double* color );
-        void SelectFont( std::string name, int size );
+        void Size( int size );
+        void Face( std::string name );
         void Print( int x, int y, std::string text );
 
     private:
