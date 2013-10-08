@@ -56,7 +56,16 @@ void Layer::PostRender() {
 
 bool Layer::Init( Volume& viewport ) {
 
-    _viewport = viewport;
+    if( _use_screen_coords ) {
+        _viewport.left = 0.0;
+        _viewport.right = Config::Instance()->screen_width;
+        _viewport.bottom = Config::Instance()->screen_height;
+        _viewport.top = 0.0;
+        _viewport.near = -1.0;
+        _viewport.far = 1.0;
+    } else {
+        _viewport = viewport;
+    }
 
     return true;
 }
@@ -67,14 +76,7 @@ void Layer::Resize(int width, int height) {
     height = height;
 
 // TODO : [COMMENT] Add comment to explain what's going on here.
-    if( _use_screen_coords ) {
-        _viewport.left = 0.0;
-        _viewport.right = width;
-        _viewport.bottom = height;
-        _viewport.top = 0.0;
-        _viewport.near = -1.0;
-        _viewport.far = 1.0;
-    } else {
+    if( ! _use_screen_coords ) {
         UpdateViewport();
     }
 }
