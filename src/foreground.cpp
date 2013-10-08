@@ -6,6 +6,7 @@
 #include <foreground.h>
 #include <objectmanager.h>
 #include <effectmanager.h>
+#include <gamestate.h>
 
 Foreground::Foreground()
 {
@@ -165,6 +166,10 @@ void Foreground::ProcessCommand( Event::CommandType cmdCode )
             case Event::cmd_UP:
             case Event::cmd_DOWN:
                 puts("Player action!");
+                break;
+
+            case Event::cmd_QUIT:
+                GameState::Instance()->State(GameState::gsMENU);
                 break;
 
             default:
