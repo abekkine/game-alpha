@@ -1,6 +1,8 @@
 #ifndef MENU_H
 #define MENU_H
 
+#include <map>
+
 #include <font.h>
 #include <layer.h>
 
@@ -25,7 +27,8 @@ class Menu : public Layer
         Font* _font;
         Vector2i _cursor;
         Vector2i _origin;
-        std::vector< std::string > _options;
+        int _selected_id;
+        std::map< int, std::string > _options;
 };
 
 #endif

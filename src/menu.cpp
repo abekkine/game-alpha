@@ -24,6 +24,7 @@ void Menu::Defaults()
     _origin.y = 10+_font_height;
 
     _cursor = _origin;
+    _selected_id = 0;
 }
 
 bool Menu::Init(Volume& viewport)
@@ -42,8 +43,8 @@ bool Menu::Init(Volume& viewport)
     result = _font->Init();
 
     _options.clear();
-    _options.push_back("START");
-    _options.push_back("EXIT");
+    _options[ 0 ] = "START";
+    _options[ 1 ] = "EXIT";
 
     return result;
 }
@@ -67,12 +68,26 @@ void Menu::ProcessCommand(Event::CommandType cmdCode)
         switch( cmdCode )
         {
             case Event::cmd_UP:
+                if( _selected_id != 0 ) {
+                    _selected_id = 0;
+                }
                 break;
+
             case Event::cmd_DOWN:
+                if( _selected_id != 1 ) {
+                    _selected_id = 1;
+                }
                 break;
+
             case Event::cmd_SELECT:
-                GameState::Instance()->State(GameState::gsPLAY);
+                if( _selected_id == 0 ) {
+                    GameState::Instance()->State(GameState::gsPLAY);
+                }
+                else {
+                    GameState::Instance()->State(GameState::gsQUIT);
+                }
                 break;
+
             default:
                 break;
         }
@@ -81,12 +96,22 @@ void Menu::ProcessCommand(Event::CommandType cmdCode)
 
 void Menu::RenderOptions()
 {
-    std::vector< std::string >::iterator iOption;
+    // TODO : Optimize
+    double selectionColor[] = { 1.0, 1.0, 0.0, 1.0 };
+    double textColor[] = { 1.0, 1.0, 1.0, 1.0 };
+
+    std::map< int, std::string >::iterator iOption;
 
     _cursor = _origin;
     for(iOption=_options.begin(); iOption!=_options.end(); ++iOption)
     {
-        _font->Print( _cursor.x, _cursor.y, *iOption );
+        if( iOption->first == _selected_id )
+        {
+            _font->SetColor( selectionColor );
+            _font->Print( _cursor.x, _cursor.y, ">" );
+        }
+        _font->SetColor( textColor );
+        _font->Print( _cursor.x+10, _cursor.y, iOption->second );
         _cursor.y += _font_height+_line_step;
     }
 }
