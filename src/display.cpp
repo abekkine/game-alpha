@@ -185,6 +185,7 @@ void Display::Reshape( int width, int height )
     _background->Resize( width, height );
     _foreground->Resize( width, height );
     _panel->Resize( width, height );
+    _menu->Resize( width, height );
 }
 
 void Display::Render()

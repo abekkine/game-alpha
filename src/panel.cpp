@@ -55,9 +55,9 @@ bool Panel::Init( Volume& viewport )
 {
     bool result = true;
 
+    _use_screen_coords = true;
     Layer::Init( viewport );
 
-    _use_screen_coords = true;
 // TODO : [REVISE] Do we still need to assign these? Check.
     _zoom_factor = 0.0;
     _pan_factor = 0.0;
