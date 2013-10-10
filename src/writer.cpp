@@ -54,10 +54,6 @@ bool Writer::Init()
     _font = new Font();
     
     result = _font->Init();
-
-//DEBUG
-    printf( "_font_height(%d)\n", _font_height );
-//END
     
     return result;
 }

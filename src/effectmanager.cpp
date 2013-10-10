@@ -26,9 +26,6 @@ EffectManager::~EffectManager()
 
 int EffectManager::Explode(double x, double y)
 {
-    //DEBUG
-    puts("EffectManager::Explode()");
-
     Particle* p = 0;
 
     _effect_count++;

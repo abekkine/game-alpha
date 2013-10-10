@@ -28,7 +28,6 @@ void Obstacle::Defaults()
     {
         _r[i] = _size;
         _a[i] = 0.5 * i * M_PI + 0.25 * M_PI;
-        printf("%f %f\n", _r[i], _a[i]);
     }
 }
 

@@ -43,9 +43,6 @@ void Panel::Defaults()
     _panel_color[3] = Config::Instance()->panel_color_alpha;
 
     _font_color[0] = Config::Instance()->font_color_red;
-//DEBUG
-    printf("font_color_red(%f)\n", _font_color[0] );
-//END
     _font_color[1] = Config::Instance()->font_color_green;
     _font_color[2] = Config::Instance()->font_color_blue;
     _font_color[3] = Config::Instance()->font_color_alpha;
@@ -67,9 +64,6 @@ bool Panel::Init( Volume& viewport )
         puts("Writer::Init() ERROR!");
     }
 
-    //DEBUG
-    printf("_font_color(%f, %f, %f, %f)\n", _font_color[0], _font_color[1], _font_color[2], _font_color[3]);
-    //END
     _writer->SetColor( _font_color );
 
     // TODO : Find and alternate way and place to show version string.

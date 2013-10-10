@@ -166,8 +166,6 @@ void Config::Defaults()
 void Config::ReadDebug()
 {
     config_lookup_int( &_config, "config.debug", &debug );
-    //DEBUG
-    printf("%d\n", debug);
 }
 
 void Config::ReadApplication()

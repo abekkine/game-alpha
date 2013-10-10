@@ -165,7 +165,6 @@ void Foreground::ProcessCommand( Event::CommandType cmdCode )
 
             case Event::cmd_UP:
             case Event::cmd_DOWN:
-                puts("Player action!");
                 break;
 
             case Event::cmd_QUIT:
