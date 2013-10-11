@@ -24,16 +24,26 @@ EffectManager::~EffectManager()
 {
 }
 
-int EffectManager::Explode(double x, double y)
+int EffectManager::Explode(explosionType type, double x, double y)
 {
     Particle* p = 0;
+    Particle::spreadType spread;
+
+    if( type == EffectManager::explosionAIR )
+    {
+        spread = Particle::stALL;
+    }
+    else
+    {
+        spread = Particle::stUP;
+    }
 
     _effect_count++;
 
     for(int i=0; i<20; i++)
     {
         p = new Particle(_effect_count, x, y);
-        p->Randomize();
+        p->Randomize( spread );
         _particles.push_back( p );
     }
 

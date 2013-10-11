@@ -27,12 +27,26 @@ void Particle::Defaults()
     _group = 3;
 }
 
-void Particle::Randomize()
+void Particle::Randomize( spreadType spread )
 {
     // Direction between 0..360.
-    double dir = Util::Instance()->RandomValue( 0.0, 2*M_PI );
+    double dir;
     // Speed between 0.0 .. 0.005.
     double speed = Util::Instance()->RandomValue( 0.0, 0.005 );
+
+    switch( spread )
+    {
+        case stALL:
+            dir = Util::Instance()->RandomValue( 0.0, 2*M_PI );
+            break;
+
+        case stUP:
+            dir = Util::Instance()->RandomValue( 0.0, M_PI );
+            break;
+
+        default:
+            break;
+    }
 
     _vx = speed * cos( dir );
     _vy = speed * sin( dir );

@@ -7,6 +7,12 @@
 
 class EffectManager
 {
+    public:
+        typedef enum {
+            explosionAIR = 1,
+            explosionGROUND
+        } explosionType;
+
     private:
         static EffectManager* _instance;
         EffectManager();
@@ -15,7 +21,7 @@ class EffectManager
         static EffectManager* Instance();
         ~EffectManager();
         void Render();
-        int Explode(double x, double y);
+        int Explode(explosionType type, double x, double y);
 
     private:
         int _effect_count;
