@@ -1,3 +1,5 @@
+#!/usr/bin/python
+
 import sys
 from bitbucket.bitbucket import Bitbucket
 

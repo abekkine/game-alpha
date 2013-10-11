@@ -30,7 +30,6 @@ env.Append( CPPPATH = [ 'inc' ] )
 env.Append( LIBS = [ 'GL' ] )
 env.Append( LIBS = [ 'ftgl' ] )
 env.Append( LIBS = [ 'config' ] )
-env.Append( LIBS = [ 'noise' ] )
 env.Append( LIBS = [ 'gomp' ] )
 env.Append( LIBS = [ 'm' ] )
 
