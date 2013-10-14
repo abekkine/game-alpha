@@ -3,6 +3,7 @@
 #include <event.h>
 #include <panel.h>
 #include <writer.h>
+#include <gamestate.h>
 #include <command.h>
 
 Event* Event::_instance = 0;
@@ -85,7 +86,8 @@ void Event::PanUpdate()
         _pan_delta.x = (_mouse.x - _pan_start.x) * _speed_factor;
         _pan_delta.y = (_mouse.y - _pan_start.y) * _speed_factor;
 
-        Command::Instance()->PushCommand( Command::cmd_PAN );
+        // -1 is for all layers.
+        CommandManager::Instance()->Push(new Command(Command::cmd_PAN, -1) );
 
         _pan_start = _mouse;
     }
@@ -106,7 +108,7 @@ void Event::ZoomUpdate()
 
         LimitZoom();
 
-        Command::Instance()->PushCommand( Command::cmd_ZOOM );
+        CommandManager::Instance()->Push(new Command(Command::cmd_ZOOM, -1));
 
         _zoom_start = _mouse;
     }
@@ -128,7 +130,7 @@ void Event::WheelZoom( SDL_MouseButtonEvent& button ) {
     LimitZoom();
     _pan_delta.x = 0;
     _pan_delta.y = 0;
-    Command::Instance()->PushCommand( Command::cmd_ZOOM );
+    CommandManager::Instance()->Push(new Command(Command::cmd_ZOOM, -1));
 }
 
 void Event::LimitZoom()
@@ -174,35 +176,37 @@ void Event::Process()
 
 void Event::KeyEvent( SDL_KeyboardEvent& key, int state )
 {
+    int gState = (int) GameState::Instance()->State();
+
     switch( key.keysym.sym )
     {
         case SDLK_w:
             if( state == SDL_KEYDOWN ) {
-                Command::Instance()->PushCommand( Command::cmd_TOGGLE_WIREFRAME );
+                CommandManager::Instance()->Push( new Command(Command::cmd_TOGGLE_WIREFRAME, gState) );
             }
             break;
 
         case SDLK_b:
             if( state == SDL_KEYDOWN ) {
-                Command::Instance()->PushCommand( Command::cmd_TOGGLE_BACKGROUND );
+                CommandManager::Instance()->Push( new Command(Command::cmd_TOGGLE_BACKGROUND, gState) );
             }
             break;
 
         case SDLK_s:
             if( state == SDL_KEYDOWN ) {
-                Command::Instance()->PushCommand( Command::cmd_TOGGLE_FOREGROUND );
+                CommandManager::Instance()->Push( new Command(Command::cmd_TOGGLE_FOREGROUND, gState) );
             }
             break;
             
         case SDLK_p:
             if( state == SDL_KEYDOWN ) {
-                Command::Instance()->PushCommand( Command::cmd_TOGGLE_PANEL );
+                CommandManager::Instance()->Push( new Command(Command::cmd_TOGGLE_PANEL, gState) );
             }
             break;
             
         case SDLK_q:
         case SDLK_ESCAPE:
-            Command::Instance()->PushCommand( Command::cmd_QUIT );
+            CommandManager::Instance()->Push( new Command(Command::cmd_QUIT, gState) );
             break;
 
         case SDLK_LSHIFT:
@@ -214,36 +218,36 @@ void Event::KeyEvent( SDL_KeyboardEvent& key, int state )
             break;
 
         case SDLK_RETURN:
-            Command::Instance()->PushCommand( Command::cmd_SELECT );
+            CommandManager::Instance()->Push( new Command(Command::cmd_SELECT, gState) );
             break;
 
         case SDLK_UP:
-            Command::Instance()->PushCommand( Command::cmd_UP );
+            CommandManager::Instance()->Push( new Command(Command::cmd_UP, gState) );
             break;
 
         case SDLK_DOWN:
-            Command::Instance()->PushCommand( Command::cmd_DOWN );
+            CommandManager::Instance()->Push( new Command(Command::cmd_DOWN, gState) );
             break;
 
         case SDLK_LEFT:
             if( state == SDL_KEYDOWN ) {
-                Command::Instance()->PushCommand( Command::cmd_LEFT_ENABLE );
+                CommandManager::Instance()->Push( new Command(Command::cmd_LEFT_ENABLE, gState) );
             } else {
-                Command::Instance()->PushCommand( Command::cmd_LEFT_DISABLE );
+                CommandManager::Instance()->Push( new Command(Command::cmd_LEFT_DISABLE, gState) );
             }
             break;
         
         case SDLK_RIGHT:
             if( state == SDL_KEYDOWN ) {
-                Command::Instance()->PushCommand( Command::cmd_RIGHT_ENABLE );
+                CommandManager::Instance()->Push( new Command(Command::cmd_RIGHT_ENABLE, gState) );
             } else {
-                Command::Instance()->PushCommand( Command::cmd_RIGHT_DISABLE );
+                CommandManager::Instance()->Push( new Command(Command::cmd_RIGHT_DISABLE, gState) );
             }
             break;
 
         case SDLK_LCTRL:
             if( state == SDL_KEYDOWN ) {
-                Command::Instance()->PushCommand( Command::cmd_FIRE );
+                CommandManager::Instance()->Push( new Command(Command::cmd_FIRE, gState) );
             }
             break;
       
@@ -405,7 +409,7 @@ void Event::Poll()
                 break;
 
             case SDL_QUIT:
-                Command::Instance()->PushCommand( Command::cmd_QUIT );
+                CommandManager::Instance()->Push( new Command(Command::cmd_QUIT, (int) GameState::Instance()->State()) );
                 break;
         }
     }

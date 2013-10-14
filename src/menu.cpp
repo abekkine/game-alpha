@@ -61,11 +61,14 @@ void Menu::Resize(int width, int height)
     Layer::Resize(width, height);
 }
 
-void Menu::ProcessCommand(Command::CommandType cmdCode)
+void Menu::ProcessCommand(Command* cmd)
 {
-    if( cmdCode != Command::cmd_NONE )
+    Command::CommandType code;
+
+    if( cmd != 0 )
     {
-        switch( cmdCode )
+        code = cmd->Code((int) GameState::Instance()->State());
+        switch( code )
         {
             case Command::cmd_UP:
                 if( _selected_id != 0 ) {

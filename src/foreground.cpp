@@ -140,11 +140,14 @@ void Foreground::RenderScore()
 {
 }
 
-void Foreground::ProcessCommand( Command::CommandType cmdCode )
+void Foreground::ProcessCommand( Command* cmd )
 {
-    if( cmdCode != Command::cmd_NONE )
+    Command::CommandType code;
+
+    if( cmd != 0 )
     {
-        switch( cmdCode )
+        code = cmd->Code((int) GameState::Instance()->State());
+        switch( code )
         {
             case Command::cmd_TOGGLE_WIREFRAME:
                 ToggleWireframe(); break;

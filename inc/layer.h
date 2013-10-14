@@ -13,7 +13,7 @@ class Layer
 
     // Interface
     public:
-        virtual void ProcessCommand( Command::CommandType cmdCode ) = 0;
+        virtual void ProcessCommand( Command* cmd ) = 0;
 
     protected:
         void PreRender();

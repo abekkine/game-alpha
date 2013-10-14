@@ -240,22 +240,25 @@ void Display::ProcessCommands()
 {
     std::vector< Layer * >::iterator iter;
     Layer* l;
-    Command::CommandType commandCode; 
+    Command* cmd; 
 
     do {
-        commandCode = Command::Instance()->GetCommand();
-        for( iter = _components.begin(); iter != _components.end(); ++iter )
+        cmd = CommandManager::Instance()->Get();
+        if( cmd != 0 )
         {
-            l = *iter;
-            l->ProcessCommand( commandCode );
+            for( iter = _components.begin(); iter != _components.end(); ++iter )
+            {
+                l = *iter;
+                l->ProcessCommand( cmd );
+            }
+
+            if( (cmd->Code() == Command::cmd_ZOOM) || (cmd->Code() == Command::cmd_PAN) )
+            {
+                Reshape();
+            }
         }
 
-        if( (commandCode == Command::cmd_ZOOM) || (commandCode == Command::cmd_PAN) )
-        {
-            Reshape();
-        }
-
-    } while( commandCode != Command::cmd_NONE );
+    } while( cmd != 0 );
 }
 
 // Following method will be used to trace and debug potential OpenGL errors.

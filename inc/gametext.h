@@ -12,7 +12,7 @@ class GameText : public Layer
         bool Init( Volume& viewport );
         void Render();
         void Resize(int width, int height);
-        void ProcessCommand( Command::CommandType cmdCode );
+        void ProcessCommand( Command* cmd );
         void ShowHealth( double health );
 
     private:

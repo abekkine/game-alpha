@@ -26,19 +26,41 @@ class Command
             cmd_QUIT
         };
 
+        Command(CommandType code, int page) {
+            _code = code;
+            _page = page;
+        }
+
+        CommandType Code(int page=-1) {
+
+            CommandType value;
+            if( page == _page ) {
+                value = _code;
+            } else {
+                value = cmd_NONE;
+            }
+            return value;
+        }
+
     private:
-        static Command* _instance;
-        Command();
+        CommandType _code;
+        int _page;
+};
+
+class CommandManager
+{
+    private:
+        static CommandManager* _instance;
+        CommandManager();
 
     public:
-        static Command* Instance();
-        ~Command();
-        CommandType GetCommand();
-        void PushCommand( CommandType code );
+        static CommandManager* Instance();
+        ~CommandManager();
+        Command* Get();
+        void Push( Command* cmd );
 
     private:
-        std::queue< CommandType > _command_queue;
-
+        std::queue< Command* > _command_queue;
 };
 
 #endif

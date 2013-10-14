@@ -65,9 +65,9 @@ void GameText::Resize(int width, int height)
     Layer::Resize(width, height);
 }
 
-void GameText::ProcessCommand(Command::CommandType cmdCode)
+void GameText::ProcessCommand(Command* cmd)
 {
-    cmdCode = cmdCode;
+    cmd = cmd;
 }
 
 void GameText::ShowHealth( double health )

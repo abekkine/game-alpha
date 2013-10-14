@@ -2,6 +2,7 @@
 #include <version.h>
 #include <config.h>
 #include <panel.h>
+#include <gamestate.h>
 
 Panel::Panel()
 {
@@ -129,11 +130,14 @@ void Panel::RenderContent()
     _writer->Render();
 }
 
-void Panel::ProcessCommand( Command::CommandType cmdCode )
+void Panel::ProcessCommand( Command* cmd )
 {
-    if( cmdCode != Command::cmd_NONE )
+    Command::CommandType code;
+
+    if( cmd != 0 )
     {
-        switch( cmdCode )
+        code = cmd->Code( (int) GameState::Instance()->State() );
+        switch( code )
         {
             case Command::cmd_TOGGLE_PANEL:
                 Toggle(); break;

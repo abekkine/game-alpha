@@ -1,43 +1,43 @@
 #include <command.h>
 
-Command* Command::_instance = 0;
+CommandManager* CommandManager::_instance = 0;
 
-Command* Command::Instance()
+CommandManager* CommandManager::Instance()
 {
     if( _instance == 0 )
     {
-        _instance = new Command();
+        _instance = new CommandManager();
     }
 
     return _instance;
 }
 
-Command::Command()
+CommandManager::CommandManager()
 {
 }
 
-Command::~Command()
+CommandManager::~CommandManager()
 {
 }
 
-Command::CommandType Command::GetCommand()
+Command* CommandManager::Get()
 {
-    CommandType command_code = cmd_NONE;
+    Command* cmd = 0;
 
     if( !_command_queue.empty() )
     {
-        command_code = _command_queue.front();
+        cmd = _command_queue.front();
         _command_queue.pop();
     }
 
-    return command_code;
+    return cmd;
 }
 
-void Command::PushCommand( CommandType code )
+void CommandManager::Push( Command* cmd )
 {
-    if( code != cmd_NONE )
+    if( cmd != 0 )
     {
-        _command_queue.push( code );
+        _command_queue.push( cmd );
     }
 }
 

@@ -26,7 +26,7 @@ class Foreground : public Layer
         void Render();
         void Toggle();
         void ToggleWireframe();
-        void ProcessCommand( Command::CommandType cmdCode );
+        void ProcessCommand( Command* cmd );
         double PlayerHealth();
 
     private:
