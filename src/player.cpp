@@ -7,7 +7,7 @@
 
 Player::Player(Vector2d position)
 {
-    _life = 1.0;
+    _life = 5.0;
     _position = position;
     _size = 0.05;
     _group = 0;
@@ -17,6 +17,11 @@ Player::Player(Vector2d position)
 Player::~Player()
 {
     GameState::Instance()->State(GameState::gsGAMEOVER);
+}
+
+double Player::Health()
+{
+    return _life / 5.0;
 }
 
 void Player::Render()

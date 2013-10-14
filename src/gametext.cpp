@@ -21,6 +21,8 @@ void GameText::Defaults()
     _game_over_height = 0.0;
     _game_over_x = 0;
     _game_over_y = 0;
+
+    _player_health = 0.0;
 }
 
 bool GameText::Init(Volume& viewport)
@@ -49,6 +51,7 @@ bool GameText::Init(Volume& viewport)
 void GameText::Render()
 {
     PreRender();
+    RenderPlayerHealth();
     if( GameState::Instance()->State() == GameState::gsGAMEOVER )
     {
         RenderGameOver();
@@ -65,6 +68,41 @@ void GameText::Resize(int width, int height)
 void GameText::ProcessCommand(Event::CommandType cmdCode)
 {
     cmdCode = cmdCode;
+}
+
+void GameText::ShowHealth( double health )
+{
+    _player_health = health;
+}
+
+void GameText::RenderPlayerHealth()
+{
+    const double fWIDTH = 80.0;
+    const double fHEIGHT = 20.0;
+    double bar_width = 0.0;
+
+    glPushMatrix();
+    glLoadIdentity();
+    glTranslated(20.5, 20.5, 0.0);
+    // Health Filler
+    bar_width = fWIDTH * _player_health;
+    glColor3d( 1.0, 0.0, 0.0 );
+    glBegin(GL_QUADS);
+        glVertex2d(0.0, 0.0);
+        glVertex2d(bar_width, 0.0);
+        glVertex2d(bar_width, fHEIGHT);
+        glVertex2d(0.0, fHEIGHT);
+    glEnd();
+    // Health Frame
+    glLineWidth(1.2);
+    glColor3d( 1.0, 1.0, 1.0 );
+    glBegin(GL_LINE_LOOP);
+        glVertex2d( 0.0, 0.0 );
+        glVertex2d( fWIDTH, 0 );
+        glVertex2d( fWIDTH, fHEIGHT );
+        glVertex2d( 0, fHEIGHT );
+    glEnd();
+    glPopMatrix();
 }
 
 void GameText::RenderGameOver()

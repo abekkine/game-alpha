@@ -13,9 +13,11 @@ class GameText : public Layer
         void Render();
         void Resize(int width, int height);
         void ProcessCommand( Event::CommandType cmdCode );
+        void ShowHealth( double health );
 
     private:
         void Defaults();
+        void RenderPlayerHealth();
         void RenderGameOver();
         void RenderScore();
 
@@ -27,7 +29,8 @@ class GameText : public Layer
         int _game_over_x;
         int _game_over_y;
         Font* _game_over_font;
-        
+
+        double _player_health;
 };
 
 #endif

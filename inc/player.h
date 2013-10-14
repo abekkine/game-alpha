@@ -16,6 +16,7 @@ class Player : public Object
         void MoveRight();
         void RenderV1();
         void RenderV2();
+        double Health();
 };
 
 #endif

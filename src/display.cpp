@@ -216,6 +216,8 @@ void Display::Render()
             break;
     }
     
+    _gametext->ShowHealth( _foreground->PlayerHealth() );
+
     _panel->Render();
 }
 

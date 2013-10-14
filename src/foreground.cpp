@@ -177,3 +177,8 @@ void Foreground::ProcessCommand( Event::CommandType cmdCode )
     }
 }
 
+double Foreground::PlayerHealth()
+{
+    return _player->Health();
+}
+
