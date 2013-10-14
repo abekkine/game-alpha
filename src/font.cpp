@@ -11,6 +11,9 @@ Font::Font()
     _font_folder = Config::Instance()->font_folder;
     _font_size = Config::Instance()->font_size;
 
+    _width = -1.0;
+    _height = -1.0;
+
     _font_color[0] = 1.0;
     _font_color[1] = 1.0;
     _font_color[2] = 1.0;
@@ -54,6 +57,23 @@ void Font::Size( int size ) {
 void Font::Face( std::string name )
 {
     _font_name = name;
+}
+
+void Font::Box( std::string text )
+{
+    _box = _font->BBox( text.c_str() );
+    _width = _box.Upper().X() - _box.Lower().X();
+    _height = _box.Upper().Y() - _box.Lower().Y();
+}
+
+double Font::Width()
+{
+    return _width;
+}
+
+double Font::Height()
+{
+    return _height;
 }
 
 void Font::Print( int x, int y, std::string text )
