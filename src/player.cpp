@@ -1,6 +1,7 @@
 #include <math.h>
 #include <GL/gl.h>
 
+#include <gamestate.h>
 #include <player.h>
 #include <config.h>
 
@@ -16,6 +17,7 @@ Player::Player(double x, double y)
 
 Player::~Player()
 {
+    GameState::Instance()->State(GameState::gsGAMEOVER);
 }
 
 void Player::Render()
