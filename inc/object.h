@@ -10,6 +10,7 @@ struct Vector2
 class Object
 {
     public:
+        virtual ~Object() = 0;
         virtual void Render() = 0;
         virtual bool CollisionWith(Object* object) = 0;
 

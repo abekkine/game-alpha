@@ -1,5 +1,9 @@
 #include <object.h>
 
+Object::~Object()
+{
+}
+
 void Object::Group(int group)
 {
     _group = group;
