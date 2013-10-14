@@ -58,7 +58,7 @@ void Bullet::Render()
 
     if( _position.y < -0.4 ) {
         _life = LIFE_DELTA;
-        EffectManager::Instance()->Explode(EffectManager::explosionGROUND, _position.x, _position.y);
+        EffectManager::Instance()->Explode(EffectManager::explosionGROUND, _position);
     }
 
     _life -= LIFE_DELTA;
@@ -86,7 +86,7 @@ bool Bullet::CollisionWith(Object* object)
         object->AddDamage( 0.25 );
         _life = LIFE_DELTA;
 
-        EffectManager::Instance()->Explode(EffectManager::explosionAIR, _position.x, _position.y);
+        EffectManager::Instance()->Explode(EffectManager::explosionAIR, _position);
     }
 
 

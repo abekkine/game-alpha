@@ -24,7 +24,7 @@ EffectManager::~EffectManager()
 {
 }
 
-int EffectManager::Explode(explosionType type, double x, double y)
+int EffectManager::Explode(explosionType type, Vector2d position)
 {
     Particle* p = 0;
     Particle::spreadType spread;
@@ -42,7 +42,7 @@ int EffectManager::Explode(explosionType type, double x, double y)
 
     for(int i=0; i<20; i++)
     {
-        p = new Particle(_effect_count, x, y);
+        p = new Particle(_effect_count, position.x, position.y);
         p->Randomize( spread );
         _particles.push_back( p );
     }

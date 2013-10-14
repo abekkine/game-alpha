@@ -3,6 +3,7 @@
 
 #include <vector>
 
+#include <vector.h>
 #include <particle.h>
 
 class EffectManager
@@ -21,7 +22,7 @@ class EffectManager
         static EffectManager* Instance();
         ~EffectManager();
         void Render();
-        int Explode(explosionType type, double x, double y);
+        int Explode(explosionType type, Vector2d position);
 
     private:
         int _effect_count;
