@@ -42,7 +42,7 @@ int EffectManager::Explode(explosionType type, Vector2d position)
 
     for(int i=0; i<20; i++)
     {
-        p = new Particle(_effect_count, position.x, position.y);
+        p = new Particle(_effect_count, position);
         p->Randomize( spread );
         _particles.push_back( p );
     }

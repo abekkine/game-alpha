@@ -5,11 +5,10 @@
 #include <player.h>
 #include <config.h>
 
-Player::Player(double x, double y)
+Player::Player(Vector2d position)
 {
     _life = 1.0;
-    _position.x = x;
-    _position.y = y;
+    _position = position;
     _size = 0.05;
     _group = 0;
     _type = objPlayer;
@@ -52,9 +51,9 @@ void Player::RenderV1()
 
 Bullet* Player::Fire()
 {
-    Bullet* bullet = new Bullet(_position.x, _position.y+0.06);
+    Bullet* bullet = new Bullet(Vector2d(_position.x, _position.y+0.06));
     bullet->Group(0);
-    bullet->Velocity(0.0, 0.00075);
+    bullet->Velocity(Vector2d(0.0, 0.00075));
 
     return bullet;
 }

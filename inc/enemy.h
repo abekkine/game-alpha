@@ -7,15 +7,14 @@
 class Enemy : public Object
 {
     public:
-        Enemy(double x, double y);
+        Enemy(Vector2d position);
         ~Enemy();
         Bullet* Fire();
         void Render();
         bool CollisionWith(Object* object);
 
     private:
-        double _vx;
-        double _vy;
+        Vector2d _velocity;
         double _alpha;
         double _span;
         double _reload_max;

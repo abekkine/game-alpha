@@ -5,11 +5,10 @@
 #include <particle.h>
 #include <util.h>
 
-Particle::Particle(int id, double x, double y)
+Particle::Particle(int id, Vector2d position)
 {
     _effect_id = id;
-    _position.x = x;
-    _position.y = y;
+    _position = position;
 
     Defaults();
 }
@@ -48,8 +47,8 @@ void Particle::Randomize( spreadType spread )
             break;
     }
 
-    _vx = speed * cos( dir );
-    _vy = speed * sin( dir );
+    _velocity.x = speed * cos( dir );
+    _velocity.y = speed * sin( dir );
 }
 
 void Particle::Render()
@@ -68,8 +67,8 @@ void Particle::Render()
     }
 
     _life -= 0.005;
-    _position.x += _vx;
-    _position.y += _vy;
+    _position.x += _velocity.x;
+    _position.y += _velocity.y;
 }
 
 bool Particle::CollisionWith(Object* object)

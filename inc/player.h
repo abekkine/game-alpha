@@ -7,7 +7,7 @@
 class Player : public Object
 {
     public:
-        Player(double x, double y);
+        Player(Vector2d position);
         ~Player();
         void Render();
         bool CollisionWith(Object* object);

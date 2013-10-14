@@ -22,7 +22,7 @@ void EnemyManager::Init()
     {
         for(double iy=0.3; iy>=0.0; iy-=0.1)
         {
-            anEnemy = new Enemy(ix, iy);
+            anEnemy = new Enemy(Vector2d(ix, iy));
             ObjectManager::Instance()->Add( anEnemy );
         }
     }

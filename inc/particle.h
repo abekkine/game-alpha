@@ -12,7 +12,7 @@ class Particle : public Object
         } spreadType;
 
     public:
-        Particle(int id, double x, double y);
+        Particle(int id, Vector2d position);
         ~Particle();
         void Render();
         bool CollisionWith(Object* object);
@@ -23,8 +23,7 @@ class Particle : public Object
 
     private:
         int _effect_id;
-        double _vx;
-        double _vy;
+        Vector2d _velocity;
 };
 
 #endif

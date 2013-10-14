@@ -6,17 +6,16 @@
 class Bullet : public Object
 {
     public:
-        Bullet(double x, double y);
+        Bullet(Vector2d position);
         ~Bullet();
-        void Velocity(double vx, double vy);
+        void Velocity(Vector2d velocity);
         void Render();
         bool CollisionWith(Object* object);
 
     private:
         const double LIFE_MAX;
         const double LIFE_DELTA;
-        double _vx;
-        double _vy;
+        Vector2d _velocity;
 };
 
 #endif

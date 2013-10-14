@@ -44,7 +44,7 @@ bool Foreground::Init( Volume& viewport )
     Writer::Instance()->Add("X( %f )", &_viewport.left );
     Writer::Instance()->Add("Y( %f )", &_viewport.bottom );
 
-    _player = new Player(0.0, -0.36);
+    _player = new Player(Vector2d(0.0, -0.36));
     ObjectManager::Instance()->Add( _player );
 
     _enemyMgr = new EnemyManager();

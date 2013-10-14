@@ -6,17 +6,15 @@
 #include <util.h>
 #include <objectmanager.h>
 
-Enemy::Enemy(double x, double y)
+Enemy::Enemy(Vector2d position)
 {
     _life = 1.0;
     _visible = true;
-    _position.x = x;
-    _position.y = y;
+    _position = position;
     _size = 0.03;
     _group = 1;
     _type = objEnemy;
-    _vx = 0.0;
-    _vy = 0.0;
+    _velocity = Vector2d(0.0, 0.0);
     _alpha = 0.0;
     _span = 0.02;
     _reload_max = 50.0;
@@ -50,11 +48,11 @@ void Enemy::Render()
 
     // Movement
     _alpha += 0.01;
-    _vx = _span * sin(_alpha) * 0.01;
-    _vy = 0.005 * sin(_alpha * 4.0) * 0.01;
+    _velocity.x = _span * sin(_alpha) * 0.01;
+    _velocity.y = 0.005 * sin(_alpha * 4.0) * 0.01;
 
-    _position.x += _vx;
-    _position.y += _vy;
+    _position.x += _velocity.x;
+    _position.y += _velocity.y;
 
     // Fire
     if( _reload_value < _reload_max )
@@ -70,10 +68,9 @@ void Enemy::Render()
 
 Bullet* Enemy::Fire()
 {
-    Bullet* bullet = new Bullet(_position.x, _position.y-0.02);
-    
+    Bullet* bullet = new Bullet(Vector2d(_position.x, _position.y-0.02));
     bullet->Group(1);
-    bullet->Velocity(_vx, -0.00075);
+    bullet->Velocity(Vector2d(_velocity.x, -0.00075));
 
     return bullet;
 }

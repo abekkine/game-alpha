@@ -6,15 +6,14 @@
 #include <config.h>
 #include <effectmanager.h>
 
-Bullet::Bullet(double x, double y) :
+Bullet::Bullet(Vector2d position) :
  LIFE_MAX(1.0),
  LIFE_DELTA(0.001)
 {
-    _position.x = x;
-    _position.y = y;
+    _position = position;
+    _velocity = Vector2d(0.0, 0.0);
+
     _type = objBullet;
-    _vx = 0.0;
-    _vy = 0.0;
     _life = LIFE_MAX;
     _size = 0.003;
     _visible = true;
@@ -24,10 +23,9 @@ Bullet::~Bullet()
 {
 }
 
-void Bullet::Velocity(double vx, double vy)
+void Bullet::Velocity(Vector2d velocity)
 {
-    _vx = vx;
-    _vy = vy;
+    _velocity = velocity;
 }
 
 void Bullet::Render()
@@ -53,8 +51,8 @@ void Bullet::Render()
         glPopMatrix();
     }
 
-    _position.x += _vx;
-    _position.y += _vy;
+    _position.x += _velocity.x;
+    _position.y += _velocity.y;
 
     if( _position.y < -0.4 ) {
         _life = LIFE_DELTA;
