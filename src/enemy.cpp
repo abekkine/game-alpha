@@ -19,7 +19,7 @@ Enemy::Enemy(double x, double y)
     _vy = 0.0;
     _alpha = 0.0;
     _span = 0.02;
-    _reload_max = 250.0;
+    _reload_max = 50.0;
     _reload_value = Util::Instance()->RandomValue(0.0, _reload_max);
     _reload_delta = 0.01;
 }
