@@ -1,6 +1,7 @@
 #include <math.h>
 #include <GL/gl.h>
 
+#include <vector.h>
 #include <bullet.h>
 #include <config.h>
 #include <effectmanager.h>
@@ -66,7 +67,7 @@ void Bullet::Render()
 bool Bullet::CollisionWith(Object* object)
 {
     bool collision = false;
-    Vector2 objPos;
+    Vector2d objPos;
     double objSize;
     double dx, dy, dr;
 

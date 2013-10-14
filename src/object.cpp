@@ -1,3 +1,4 @@
+#include <vector.h>
 #include <object.h>
 
 Object::~Object()
@@ -19,7 +20,7 @@ double Object::Size()
     return _size;
 }
 
-Vector2 const& Object::Position()
+Vector2d const& Object::Position()
 {
     return _position;
 }

@@ -1,11 +1,7 @@
 #ifndef OBJECT_H
 #define OBJECT_H
 
-struct Vector2
-{
-    double x;
-    double y;
-};
+#include <vector.h>
 
 class Object
 {
@@ -19,7 +15,7 @@ class Object
         int Group();
         void Group(int group);
         double Size();
-        Vector2 const& Position();
+        Vector2d const& Position();
         void AddDamage(double damage);
 
     protected:
@@ -33,7 +29,7 @@ class Object
         } ObjectType;
         
         ObjectType _type;
-        Vector2 _position;
+        Vector2d _position;
         double _size;
         int _group;
         double _life;
