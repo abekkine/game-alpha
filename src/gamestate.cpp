@@ -1,3 +1,5 @@
+#include <stdio.h>
+
 #include <gamestate.h>
 
 GameState* GameState::_instance = 0;
@@ -10,6 +12,23 @@ GameState* GameState::Instance()
     }
 
     return _instance;
+}
+
+void GameState::Dump()
+{
+    switch( _state )
+    {
+        case GameState::gsMENU:
+            puts("[ gsMENU     ]"); break;
+        case GameState::gsPLAY:
+            puts("[ gsPLAY     ]"); break;
+        case GameState::gsQUIT:
+            puts("[ gsQUIT     ]"); break;
+        case GameState::gsGAMEOVER:
+            puts("[ gsGAMEOVER ]"); break;
+        case GameState::gsPAUSE:
+            puts("[ gsPAUSE    ]"); break;
+    }
 }
 
 GameState::GameState()

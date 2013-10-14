@@ -15,6 +15,7 @@ class GameState
     private:
         static GameState* _instance;
         GameState();
+        void Dump();
 
     public:
         static GameState* Instance();
