@@ -102,13 +102,19 @@ bool Display::InitComponents()
     _fps_timer = new Timer();
     _fps_timer->Reset();
 
-   
     _menu = new Menu();
     if( not _menu->Init( _viewport ) ) {
         fprintf( stderr, "Unable to initialize Menu instance!\n" );
         result = false;
     } 
     _components.push_back( _menu );
+
+    _gametext = new GameText();
+    if( not _gametext->Init( _viewport ) ) {
+        fprintf( stderr, "Unable to initialize GameText instance!\n" );
+        result = false;
+    }
+    _components.push_back( _gametext );
 
     _panel = new Panel();
     if( not _panel->Init( _viewport ) ) {
@@ -194,9 +200,12 @@ void Display::Render()
 
     switch( GameState::Instance()->State() )
     {
+
         case GameState::gsPLAY:
+        case GameState::gsGAMEOVER:
             _background->Render();
             _foreground->Render();
+            _gametext->Render();
             break;
 
         case GameState::gsMENU:

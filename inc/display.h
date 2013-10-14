@@ -12,6 +12,7 @@
 #include <background.h>
 #include <foreground.h>
 #include <menu.h>
+#include <gametext.h>
 
 //! @brief Class responsible for rendering objects.
 class Display
@@ -53,6 +54,9 @@ class Display
 
         // Menu layer.
         Menu* _menu;
+
+        // Game text layer.
+        GameText* _gametext;
 
     private:
         // Members
