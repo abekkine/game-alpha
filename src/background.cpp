@@ -78,15 +78,15 @@ void Background::RenderBackground()
     }
 }
 
-void Background::ProcessCommand( Event::CommandType cmdCode )
+void Background::ProcessCommand( Command::CommandType cmdCode )
 {
-    if( cmdCode != Event::cmd_NONE )
+    if( cmdCode != Command::cmd_NONE )
     {
         switch( cmdCode )
         {
-            case Event::cmd_TOGGLE_WIREFRAME:
+            case Command::cmd_TOGGLE_WIREFRAME:
                 ToggleWireframe(); break;
-            case Event::cmd_TOGGLE_BACKGROUND:
+            case Command::cmd_TOGGLE_BACKGROUND:
                 Toggle(); break;
             default:
                 break;

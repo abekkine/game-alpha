@@ -9,27 +9,6 @@
 
 class Event
 {
-    public:
-        // Command Definitions.
-        enum CommandType {
-            cmd_NONE = 0,
-            cmd_TOGGLE_WIREFRAME,
-            cmd_TOGGLE_BACKGROUND,
-            cmd_TOGGLE_FOREGROUND,
-            cmd_TOGGLE_PANEL,
-            cmd_ZOOM,
-            cmd_PAN,
-            cmd_SELECT,
-            cmd_UP,
-            cmd_DOWN,
-            cmd_LEFT_ENABLE,
-            cmd_LEFT_DISABLE,
-            cmd_RIGHT_ENABLE,
-            cmd_RIGHT_DISABLE,
-            cmd_FIRE,
-            cmd_QUIT
-        };
-
     private:
         // Event Definitions.
         enum EventType {
@@ -57,19 +36,16 @@ class Event
         ~Event();
         bool Init();
         bool Update();
-        CommandType GetCommand();
         void GetMousePosition( Vector2i& mouse );
         
     private:
         // Methods.
         void Defaults();
         void Poll();
-        void CommandProcess();
-        void PanCommand();
+        void Process();
         void PanUpdate();
         void WheelZoom( SDL_MouseButtonEvent& button );
         void LimitZoom();
-        void ZoomCommand();
         void ZoomUpdate();
         void KeyEvent( SDL_KeyboardEvent& key, int state );
         void MotionEvent( SDL_MouseMotionEvent& motion );
@@ -80,7 +56,6 @@ class Event
         void QuitEvent();
         void PanMode( bool value );
         void ZoomMode( bool value );
-        void PushCommand( CommandType code );
         void PushEvent( EventType code );
         EventType PopEvent();
 
@@ -100,7 +75,6 @@ class Event
         int _zoom_total;
 
         std::queue< EventType > _event_queue;
-        std::queue< CommandType > _command_queue;
 };
 
 #endif

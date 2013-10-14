@@ -3,7 +3,7 @@
 
 #include <vector.h>
 #include <definitions.h>
-#include <event.h>
+#include <command.h>
 
 class Layer
 {
@@ -13,7 +13,7 @@ class Layer
 
     // Interface
     public:
-        virtual void ProcessCommand( Event::CommandType cmdCode ) = 0;
+        virtual void ProcessCommand( Command::CommandType cmdCode ) = 0;
 
     protected:
         void PreRender();

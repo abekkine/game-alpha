@@ -61,25 +61,25 @@ void Menu::Resize(int width, int height)
     Layer::Resize(width, height);
 }
 
-void Menu::ProcessCommand(Event::CommandType cmdCode)
+void Menu::ProcessCommand(Command::CommandType cmdCode)
 {
-    if( cmdCode != Event::cmd_NONE )
+    if( cmdCode != Command::cmd_NONE )
     {
         switch( cmdCode )
         {
-            case Event::cmd_UP:
+            case Command::cmd_UP:
                 if( _selected_id != 0 ) {
                     _selected_id = 0;
                 }
                 break;
 
-            case Event::cmd_DOWN:
+            case Command::cmd_DOWN:
                 if( _selected_id != 1 ) {
                     _selected_id = 1;
                 }
                 break;
 
-            case Event::cmd_SELECT:
+            case Command::cmd_SELECT:
                 if( _selected_id == 0 ) {
                     GameState::Instance()->State(GameState::gsPLAY);
                 }

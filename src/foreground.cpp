@@ -140,34 +140,34 @@ void Foreground::RenderScore()
 {
 }
 
-void Foreground::ProcessCommand( Event::CommandType cmdCode )
+void Foreground::ProcessCommand( Command::CommandType cmdCode )
 {
-    if( cmdCode != Event::cmd_NONE )
+    if( cmdCode != Command::cmd_NONE )
     {
         switch( cmdCode )
         {
-            case Event::cmd_TOGGLE_WIREFRAME:
+            case Command::cmd_TOGGLE_WIREFRAME:
                 ToggleWireframe(); break;
-            case Event::cmd_TOGGLE_FOREGROUND:
+            case Command::cmd_TOGGLE_FOREGROUND:
                 Toggle(); break;
-            case Event::cmd_LEFT_ENABLE:
+            case Command::cmd_LEFT_ENABLE:
                 _move_horizontal = move_LEFT; break;
-            case Event::cmd_LEFT_DISABLE:
+            case Command::cmd_LEFT_DISABLE:
                 _move_horizontal = move_NONE; break;
-            case Event::cmd_RIGHT_ENABLE:
+            case Command::cmd_RIGHT_ENABLE:
                 _move_horizontal = move_RIGHT; break;
-            case Event::cmd_RIGHT_DISABLE:
+            case Command::cmd_RIGHT_DISABLE:
                 _move_horizontal = move_NONE; break;
 
-            case Event::cmd_FIRE:
+            case Command::cmd_FIRE:
                 ObjectManager::Instance()->Add( _player->Fire() );
                 break;    
 
-            case Event::cmd_UP:
-            case Event::cmd_DOWN:
+            case Command::cmd_UP:
+            case Command::cmd_DOWN:
                 break;
 
-            case Event::cmd_QUIT:
+            case Command::cmd_QUIT:
                 GameState::Instance()->State(GameState::gsMENU);
                 break;
 

@@ -3,6 +3,7 @@
 #include <event.h>
 #include <panel.h>
 #include <writer.h>
+#include <command.h>
 
 Event* Event::_instance = 0;
 
@@ -66,7 +67,7 @@ bool Event::Update()
     
     Poll();
 
-    CommandProcess();
+    Process();
 
     return result;
 }
@@ -84,7 +85,7 @@ void Event::PanUpdate()
         _pan_delta.x = (_mouse.x - _pan_start.x) * _speed_factor;
         _pan_delta.y = (_mouse.y - _pan_start.y) * _speed_factor;
 
-        PushCommand( cmd_PAN );
+        Command::Instance()->PushCommand( Command::cmd_PAN );
 
         _pan_start = _mouse;
     }
@@ -105,7 +106,7 @@ void Event::ZoomUpdate()
 
         LimitZoom();
 
-        PushCommand( cmd_ZOOM );
+        Command::Instance()->PushCommand( Command::cmd_ZOOM );
 
         _zoom_start = _mouse;
     }
@@ -127,7 +128,7 @@ void Event::WheelZoom( SDL_MouseButtonEvent& button ) {
     LimitZoom();
     _pan_delta.x = 0;
     _pan_delta.y = 0;
-    PushCommand( cmd_ZOOM );
+    Command::Instance()->PushCommand( Command::cmd_ZOOM );
 }
 
 void Event::LimitZoom()
@@ -145,7 +146,7 @@ void Event::LimitZoom()
     _zoom_total += _zoom_delta;
 }
 
-void Event::CommandProcess()
+void Event::Process()
 {
     int event_code = PopEvent();
    
@@ -177,31 +178,31 @@ void Event::KeyEvent( SDL_KeyboardEvent& key, int state )
     {
         case SDLK_w:
             if( state == SDL_KEYDOWN ) {
-                PushCommand( cmd_TOGGLE_WIREFRAME );
+                Command::Instance()->PushCommand( Command::cmd_TOGGLE_WIREFRAME );
             }
             break;
 
         case SDLK_b:
             if( state == SDL_KEYDOWN ) {
-                PushCommand( cmd_TOGGLE_BACKGROUND );
+                Command::Instance()->PushCommand( Command::cmd_TOGGLE_BACKGROUND );
             }
             break;
 
         case SDLK_s:
             if( state == SDL_KEYDOWN ) {
-                PushCommand( cmd_TOGGLE_FOREGROUND );
+                Command::Instance()->PushCommand( Command::cmd_TOGGLE_FOREGROUND );
             }
             break;
             
         case SDLK_p:
             if( state == SDL_KEYDOWN ) {
-                PushCommand( cmd_TOGGLE_PANEL );
+                Command::Instance()->PushCommand( Command::cmd_TOGGLE_PANEL );
             }
             break;
             
         case SDLK_q:
         case SDLK_ESCAPE:
-            PushCommand( cmd_QUIT );
+            Command::Instance()->PushCommand( Command::cmd_QUIT );
             break;
 
         case SDLK_LSHIFT:
@@ -213,36 +214,36 @@ void Event::KeyEvent( SDL_KeyboardEvent& key, int state )
             break;
 
         case SDLK_RETURN:
-            PushCommand( cmd_SELECT );
+            Command::Instance()->PushCommand( Command::cmd_SELECT );
             break;
 
         case SDLK_UP:
-            PushCommand( cmd_UP );
+            Command::Instance()->PushCommand( Command::cmd_UP );
             break;
 
         case SDLK_DOWN:
-            PushCommand( cmd_DOWN );
+            Command::Instance()->PushCommand( Command::cmd_DOWN );
             break;
 
         case SDLK_LEFT:
             if( state == SDL_KEYDOWN ) {
-                PushCommand( cmd_LEFT_ENABLE );
+                Command::Instance()->PushCommand( Command::cmd_LEFT_ENABLE );
             } else {
-                PushCommand( cmd_LEFT_DISABLE );
+                Command::Instance()->PushCommand( Command::cmd_LEFT_DISABLE );
             }
             break;
         
         case SDLK_RIGHT:
             if( state == SDL_KEYDOWN ) {
-                PushCommand( cmd_RIGHT_ENABLE );
+                Command::Instance()->PushCommand( Command::cmd_RIGHT_ENABLE );
             } else {
-                PushCommand( cmd_RIGHT_DISABLE );
+                Command::Instance()->PushCommand( Command::cmd_RIGHT_DISABLE );
             }
             break;
 
         case SDLK_LCTRL:
             if( state == SDL_KEYDOWN ) {
-                PushCommand( cmd_FIRE );
+                Command::Instance()->PushCommand( Command::cmd_FIRE );
             }
             break;
       
@@ -266,14 +267,6 @@ Event::EventType Event::PopEvent()
     }
 
     return code;
-}
-
-void Event::PushCommand( CommandType code ) 
-{
-    if( code != cmd_NONE )
-    {
-        _command_queue.push( code );
-    }
 }
 
 void Event::MotionEvent( SDL_MouseMotionEvent& motion )
@@ -412,23 +405,10 @@ void Event::Poll()
                 break;
 
             case SDL_QUIT:
-                PushCommand( cmd_QUIT );
+                Command::Instance()->PushCommand( Command::cmd_QUIT );
                 break;
         }
     }
-}
-
-Event::CommandType Event::GetCommand()
-{
-    CommandType command_code = cmd_NONE;
-
-    if( !_command_queue.empty() )
-    {
-        command_code = _command_queue.front();
-        _command_queue.pop();
-    }
-
-    return command_code;
 }
 
 void Event::GetMousePosition( Vector2i& mouse )

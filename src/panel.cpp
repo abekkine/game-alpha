@@ -129,13 +129,13 @@ void Panel::RenderContent()
     _writer->Render();
 }
 
-void Panel::ProcessCommand( Event::CommandType cmdCode )
+void Panel::ProcessCommand( Command::CommandType cmdCode )
 {
-    if( cmdCode != Event::cmd_NONE )
+    if( cmdCode != Command::cmd_NONE )
     {
         switch( cmdCode )
         {
-            case Event::cmd_TOGGLE_PANEL:
+            case Command::cmd_TOGGLE_PANEL:
                 Toggle(); break;
 
             default:
