@@ -46,7 +46,7 @@ config =
         bullet_speed = 0.5;
         width = 0.02;
         height = 0.02;
-        reload_time = 1.0;
+        reload_time = 5.0;
         c1 = 0.2;
         c2 = 0.005;
         c3 = 4.0;
@@ -64,7 +64,7 @@ config =
     bullet = 
     {
         // Maximum bullet life in seconds.
-        max_life = 1.0;
+        max_life = 0.25;
         // Bullet decay rate as life per second.
         decay_rate = 0.1;
         width = 0.002;
