@@ -35,3 +35,8 @@ void Object::AddDamage(double damage)
     _life -= damage;
 }
 
+Object::ObjectType Object::Type()
+{
+    return _type;
+}
+

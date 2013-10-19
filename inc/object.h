@@ -6,6 +6,16 @@
 class Object
 {
     public:
+        typedef enum {
+            objNone = 0,
+            objPlayer,
+            objEnemy,
+            objObstacle,
+            objBullet,
+            objEffect
+        } ObjectType;
+
+    public:
         virtual ~Object() = 0;
         virtual void Render() = 0;
         virtual void Update(double timestep) = 0;
@@ -18,17 +28,9 @@ class Object
         double Size();
         Vector2d const& Position();
         void AddDamage(double damage);
+        ObjectType Type();
 
     protected:
-        typedef enum {
-            objNone = 0,
-            objPlayer,
-            objEnemy,
-            objObstacle,
-            objBullet,
-            objEffect
-        } ObjectType;
-        
         ObjectType _type;
         Vector2d _position;
         double _size;
