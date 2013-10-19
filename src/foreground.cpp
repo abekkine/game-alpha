@@ -8,19 +8,19 @@
 #include <effectmanager.h>
 #include <gamestate.h>
 
-Foreground::Foreground()
+ForegroundLayer::ForegroundLayer()
 {
-    puts("Foreground::Foreground()");
+    puts("ForegroundLayer::ForegroundLayer()");
 
     Defaults();
 }
 
-Foreground::~Foreground()
+ForegroundLayer::~ForegroundLayer()
 {
-    puts("Foreground::~Foreground()");
+    puts("ForegroundLayer::~ForegroundLayer()");
 }
 
-void Foreground::Defaults()
+void ForegroundLayer::Defaults()
 {
     _move_horizontal = move_NONE;
     _visible = true;
@@ -32,7 +32,7 @@ void Foreground::Defaults()
     _player = 0;
 }
 
-bool Foreground::Init( Volume& viewport )
+bool ForegroundLayer::Init( Volume& viewport )
 {
     bool result = true;
 
@@ -55,17 +55,17 @@ bool Foreground::Init( Volume& viewport )
     return result;
 }
 
-void Foreground::Toggle() {
+void ForegroundLayer::Toggle() {
 
     _visible = not _visible;
 }
 
-void Foreground::ToggleWireframe() {
+void ForegroundLayer::ToggleWireframe() {
 
     _wireframe = not _wireframe;
 }
 
-void Foreground::Render()
+void ForegroundLayer::Render()
 {
     if( _visible ) {
 
@@ -75,7 +75,7 @@ void Foreground::Render()
     }
 }
 
-void Foreground::RenderForegroundLayer()
+void ForegroundLayer::RenderForegroundLayer()
 {
     // TODO : Game foreground objects (enemies, player, obstacles, etc.) will be rendered here.
     if( Config::Instance()->debug ) {
@@ -104,7 +104,7 @@ void Foreground::RenderForegroundLayer()
     EffectManager::Instance()->Render();
 }
 
-void Foreground::RenderGround()
+void ForegroundLayer::RenderGround()
 {
 
     static double w = 1.0;
@@ -122,7 +122,7 @@ void Foreground::RenderGround()
     glPopMatrix();
 }
 
-void Foreground::RenderPlayer()
+void ForegroundLayer::RenderPlayer()
 {
     // TODO : This is user input and update code only, not render. 
     //      : In fact, player is rendered as object, by object manager class.
@@ -138,11 +138,12 @@ void Foreground::RenderPlayer()
     }
 }
 
-void Foreground::RenderScore()
+// TODO : remove following function, since it's implemented on elsewhere.
+void ForegroundLayer::RenderScore()
 {
 }
 
-void Foreground::ProcessCommand( Command* cmd )
+void ForegroundLayer::ProcessCommand( Command* cmd )
 {
     Command::CommandType code;
 
@@ -182,7 +183,7 @@ void Foreground::ProcessCommand( Command* cmd )
     }
 }
 
-double Foreground::PlayerHealth()
+double ForegroundLayer::PlayerHealth()
 {
     return _player->Health();
 }

@@ -131,9 +131,9 @@ bool Display::InitComponents()
     }
     _components.push_back( _background );
 
-    _foreground = new Foreground();
+    _foreground = new ForegroundLayer();
     if( not _foreground->Init( _viewport ) ) {
-        fprintf( stderr, "Unable to initialize Foreground instance!\n" );
+        fprintf( stderr, "Unable to initialize ForegroundLayer instance!\n" );
         result = false;
     }
     _components.push_back( _foreground );

@@ -50,7 +50,7 @@ class Display
         BackgroundLayer* _background;
 
         // Foreground layer.
-        Foreground* _foreground;
+        ForegroundLayer* _foreground;
 
         // Menu layer.
         Menu* _menu;

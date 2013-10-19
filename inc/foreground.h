@@ -8,7 +8,7 @@
 #include <enemymanager.h>
 #include <obstaclemanager.h>
 
-class Foreground : public Layer
+class ForegroundLayer : public Layer
 {
     private:
         enum MoveType {
@@ -20,8 +20,8 @@ class Foreground : public Layer
         };
 
     public:
-        Foreground();
-        ~Foreground();
+        ForegroundLayer();
+        ~ForegroundLayer();
         bool Init( Volume& viewport );
         void Render();
         void Toggle();
