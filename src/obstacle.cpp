@@ -14,7 +14,7 @@ Obstacle::Obstacle(double x, double y, double r)
     _position.y = y;
     _type = objObstacle;
     _size = r;
-    _group = 2;
+    _group = Object::grpOBSTACLE;
     Defaults();
 }
 
@@ -73,4 +73,3 @@ bool Obstacle::CollisionWith(Object* object)
 
     return false;
 }
-

@@ -7,6 +7,13 @@ class Object
 {
     public:
         typedef enum {
+            grpNONE = 0,
+            grpPLAYER,
+            grpENEMY,
+            grpOBSTACLE
+        } GroupType;
+
+        typedef enum {
             objNone = 0,
             objPlayer,
             objEnemy,
@@ -23,8 +30,8 @@ class Object
 
     public:
         bool Alive();
-        int Group();
-        void Group(int group);
+        GroupType Group();
+        void Group(GroupType group);
         double Size();
         Vector2d const& Position();
         void AddDamage(double damage);
@@ -34,7 +41,7 @@ class Object
         ObjectType _type;
         Vector2d _position;
         double _size;
-        int _group;
+        GroupType _group;
         double _life;
         bool _visible;
 };

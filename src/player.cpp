@@ -10,7 +10,7 @@ Player::Player(Vector2d position)
     _life = 5.0;
     _position = position;
     _size = 0.05;
-    _group = 0;
+    _group = Object::grpPLAYER;
     _type = objPlayer;
     _gun_alpha = 0.0;
 }
@@ -58,7 +58,7 @@ void Player::RenderV1()
 Bullet* Player::Fire()
 {
     Bullet* bullet = new Bullet(Vector2d(_position.x, _position.y+0.06));
-    bullet->Group(0);
+    bullet->Group(Object::grpPLAYER);
     bullet->Velocity(Vector2d(0.0, Config::Instance()->player_bullet_speed));
 
     return bullet;

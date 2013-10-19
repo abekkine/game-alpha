@@ -14,7 +14,7 @@ Enemy::Enemy(Vector2d position)
     _width = Config::Instance()->enemy_width;
     _height = Config::Instance()->enemy_height;
     _size = (_width+_height)*0.5;
-    _group = 1;
+    _group = Object::grpENEMY;
     _type = objEnemy;
     _velocity = Vector2d(0.0, 0.0);
     _alpha = 0.0;
@@ -77,7 +77,7 @@ void Enemy::Update(double timestep)
 Bullet* Enemy::Fire()
 {
     Bullet* bullet = new Bullet(Vector2d(_position.x, _position.y-0.02));
-    bullet->Group(1);
+    bullet->Group(Object::grpENEMY);
     bullet->Velocity(Vector2d(_velocity.x, -Config::Instance()->enemy_bullet_speed));
 
     return bullet;

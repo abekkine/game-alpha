@@ -23,7 +23,7 @@ void Particle::Defaults()
     _visible = true;
     _type = objEffect;
     _size = 0.0;
-    _group = 3;
+    _group = Object::grpNONE;
 }
 
 void Particle::Randomize( spreadType spread )

@@ -5,12 +5,12 @@ Object::~Object()
 {
 }
 
-void Object::Group(int group)
+void Object::Group(GroupType group)
 {
     _group = group;
 }
 
-int Object::Group()
+Object::GroupType Object::Group()
 {
     return _group;
 }
