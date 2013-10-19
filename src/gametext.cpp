@@ -1,4 +1,5 @@
 #include <GL/gl.h>
+#include <sstream>
 
 #include <config.h>
 #include <gamestate.h>
@@ -15,6 +16,7 @@ GameText::~GameText()
 
 void GameText::Defaults()
 {
+    // Game over stuff.
     _game_over_font_size = 40;
     _game_over_font = 0;
     _game_over_width = 0.0;
@@ -22,7 +24,18 @@ void GameText::Defaults()
     _game_over_x = 0;
     _game_over_y = 0;
 
+    // Score stuff.
+    _score_text = "";
+    _score_font_size = 40;
+    _score_width = 0.0;
+    _score_height = 0.0;
+    _score_x = 0;
+    _score_y = 0;
+    _score_font = 0;
+
+    // Other stuff.
     _player_health = 0.0;
+    _score = 0;
 }
 
 bool GameText::Init(Volume& viewport)
@@ -35,17 +48,44 @@ bool GameText::Init(Volume& viewport)
     _zoom_factor = 0.0;
     _pan_factor = 0.0;
 
+    // Game over stuff.
     _game_over_font = new Font();
     _game_over_font->Size(_game_over_font_size);
+    _game_over_font->Init();
+
     _game_over_text = "GAME OVER";
-    result = _game_over_font->Init();
     _game_over_font->Box( _game_over_text );
     _game_over_width = _game_over_font->Width();
     _game_over_height = _game_over_font->Height();
     _game_over_x = 0.5 * (Config::Instance()->screen_width - _game_over_width);
     _game_over_y = 0.5 * (Config::Instance()->screen_height - _game_over_height);
 
+    // Score stuff.
+    _score_font = new Font();
+    _score_font->Size(_score_font_size);
+    _score_font->Init();
+
+    _score = 0;
+    ScoreToString();
+    UpdateCoordinates();
+
     return result;
+}
+
+void GameText::UpdateCoordinates()
+{
+    _score_font->Box( _score_text );
+    _score_width = _score_font->Width();
+    _score_height = _score_font->Height();
+    _score_x = Config::Instance()->screen_width - (_score_width + 10.0);
+    _score_y = 10.0+_score_height;
+}
+
+void GameText::ScoreToString()
+{
+    std::ostringstream s;
+    s << _score;
+    _score_text = std::string( s.str() );
 }
 
 void GameText::Render()
@@ -74,6 +114,11 @@ void GameText::ProcessCommand(Command* cmd)
 void GameText::ShowHealth( double health )
 {
     _player_health = health;
+}
+
+void GameText::ShowScore( int score )
+{
+    _score = score;
 }
 
 void GameText::RenderPlayerHealth()
@@ -117,5 +162,11 @@ void GameText::RenderGameOver()
 void GameText::RenderScore()
 {
     // TODO : for rendering score.
+    double scoreColor[] = { 1.0, 1.0, 0.0, 1.0 };
+
+    ScoreToString();
+    UpdateCoordinates();
+    _score_font->SetColor( scoreColor );
+    _score_font->Print( _score_x, _score_y, _score_text );
 }
 

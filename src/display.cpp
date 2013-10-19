@@ -3,6 +3,7 @@
 #include <writer.h>
 #include <gamestate.h>
 #include <display.h>
+#include <objectmanager.h>
 
 Display::Display()
 {
@@ -216,8 +217,9 @@ void Display::RenderScene()
             break;
     }
     
-    // TODO : Following is an Update event.
+    // TODO : Following are Update events.
     _gametext->ShowHealth( _foreground->PlayerHealth() );
+    _gametext->ShowScore( ObjectManager::Instance()->Score() );
 
     _panel->Render();
 }
