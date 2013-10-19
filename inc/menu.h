@@ -6,11 +6,11 @@
 #include <font.h>
 #include <layer.h>
 
-class Menu : public Layer
+class MenuLayer : public Layer
 {
     public:
-        Menu();
-        ~Menu();
+        MenuLayer();
+        ~MenuLayer();
         bool Init( Volume& viewport );
         void Render();
         void Resize(int width, int height);

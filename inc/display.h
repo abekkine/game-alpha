@@ -44,7 +44,7 @@ class Display
         std::vector< Layer * > _components;
 
         // Display panel.
-        Panel* _panel;
+        PanelLayer* _panel;
 
         // Background layer.
         BackgroundLayer* _background;
@@ -53,7 +53,7 @@ class Display
         ForegroundLayer* _foreground;
 
         // Menu layer.
-        Menu* _menu;
+        MenuLayer* _menu;
 
         // Game text layer.
         GameTextLayer* _gametext;

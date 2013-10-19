@@ -4,21 +4,21 @@
 #include <panel.h>
 #include <gamestate.h>
 
-Panel::Panel()
+PanelLayer::PanelLayer()
 {
-    puts("Panel::Panel()");
+    puts("PanelLayer::PanelLayer()");
 
     Defaults();
 }
 
-Panel::~Panel()
+PanelLayer::~PanelLayer()
 {
-    puts("Panel::~Panel()");
+    puts("PanelLayer::~PanelLayer()");
 
     delete _writer;
 }
 
-void Panel::Defaults()
+void PanelLayer::Defaults()
 {
     // These values will be calculated on resize.
     _frame.left = -1;
@@ -49,7 +49,7 @@ void Panel::Defaults()
     _font_color[3] = Config::Instance()->font_color_alpha;
 }
 
-bool Panel::Init( Volume& viewport )
+bool PanelLayer::Init( Volume& viewport )
 {
     bool result = true;
 
@@ -73,7 +73,7 @@ bool Panel::Init( Volume& viewport )
     return result;
 }
 
-void Panel::Resize( int width, int height )
+void PanelLayer::Resize( int width, int height )
 {
     Layer::Resize(width, height);
 
@@ -87,12 +87,12 @@ void Panel::Resize( int width, int height )
     _writer->UpdateOrigin( origin );
 }
 
-void Panel::Toggle() {
+void PanelLayer::Toggle() {
 
     _visible = not _visible;
 }
 
-void Panel::Render()
+void PanelLayer::Render()
 {
     if( _visible ) {
 
@@ -103,7 +103,7 @@ void Panel::Render()
     }
 }
 
-void Panel::RenderPanel()
+void PanelLayer::RenderPanel()
 {
     // Background
     glColor4dv( _panel_color );
@@ -125,12 +125,12 @@ void Panel::RenderPanel()
     glEnd();
 }
 
-void Panel::RenderContent()
+void PanelLayer::RenderContent()
 {
     _writer->Render();
 }
 
-void Panel::ProcessCommand( Command* cmd )
+void PanelLayer::ProcessCommand( Command* cmd )
 {
     Command::CommandType code;
 

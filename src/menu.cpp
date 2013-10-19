@@ -5,16 +5,16 @@
 #include <gamestate.h>
 #include <menu.h>
 
-Menu::Menu()
+MenuLayer::MenuLayer()
 {
     Defaults();
 }
 
-Menu::~Menu()
+MenuLayer::~MenuLayer()
 {
 }
 
-void Menu::Defaults()
+void MenuLayer::Defaults()
 {
     _font = 0;
     _font_height = 20;
@@ -27,7 +27,7 @@ void Menu::Defaults()
     _selected_id = 0;
 }
 
-bool Menu::Init(Volume& viewport)
+bool MenuLayer::Init(Volume& viewport)
 {
     bool result = true;
 
@@ -49,20 +49,20 @@ bool Menu::Init(Volume& viewport)
     return result;
 }
 
-void Menu::Render()
+void MenuLayer::Render()
 {
     PreRender();
     RenderOptions();
     PostRender();
 }
 
-void Menu::Resize(int width, int height)
+void MenuLayer::Resize(int width, int height)
 {
     Layer::Resize(width, height);
 }
 
 // TODO : ProcessCommand is Update code for menu.
-void Menu::ProcessCommand(Command* cmd)
+void MenuLayer::ProcessCommand(Command* cmd)
 {
     Command::CommandType code;
 
@@ -98,7 +98,7 @@ void Menu::ProcessCommand(Command* cmd)
     }
 }
 
-void Menu::RenderOptions()
+void MenuLayer::RenderOptions()
 {
     // TODO : Optimize
     double selectionColor[] = { 1.0, 1.0, 0.0, 1.0 };

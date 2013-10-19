@@ -7,11 +7,11 @@
 #include <writer.h>
 #include <layer.h>
 
-class Panel : public Layer
+class PanelLayer : public Layer
 {
     public:
-        Panel();
-        ~Panel();
+        PanelLayer();
+        ~PanelLayer();
         bool Init( Volume& viewport );
         void Resize( int width, int height );
         void Toggle();

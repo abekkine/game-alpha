@@ -103,9 +103,9 @@ bool Display::InitComponents()
     _fps_timer = new Timer();
     _fps_timer->Reset();
 
-    _menu = new Menu();
+    _menu = new MenuLayer();
     if( not _menu->Init( _viewport ) ) {
-        fprintf( stderr, "Unable to initialize Menu instance!\n" );
+        fprintf( stderr, "Unable to initialize MenuLayer instance!\n" );
         result = false;
     } 
     _components.push_back( _menu );
@@ -117,9 +117,9 @@ bool Display::InitComponents()
     }
     _components.push_back( _gametext );
 
-    _panel = new Panel();
+    _panel = new PanelLayer();
     if( not _panel->Init( _viewport ) ) {
-        fprintf( stderr, "Unable to initialize Panel instance!\n" );
+        fprintf( stderr, "Unable to initialize PanelLayer instance!\n" );
         result = false;
     }
     _components.push_back( _panel );
