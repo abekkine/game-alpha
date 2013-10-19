@@ -56,7 +56,7 @@ config =
     // Player settings.
     player = 
     {
-        speed = 0.005;
+        speed = 0.0025;
         bullet_speed = 0.5;
     };
 
