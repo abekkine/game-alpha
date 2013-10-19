@@ -5,16 +5,16 @@
 #include <gamestate.h>
 #include <gametext.h>
 
-GameText::GameText()
+GameTextLayer::GameTextLayer()
 {
     Defaults();
 }
 
-GameText::~GameText()
+GameTextLayer::~GameTextLayer()
 {
 }
 
-void GameText::Defaults()
+void GameTextLayer::Defaults()
 {
     // Game over stuff.
     _game_over_font_size = 40;
@@ -38,7 +38,7 @@ void GameText::Defaults()
     _score = 0;
 }
 
-bool GameText::Init(Volume& viewport)
+bool GameTextLayer::Init(Volume& viewport)
 {
     bool result = true;
 
@@ -72,7 +72,7 @@ bool GameText::Init(Volume& viewport)
     return result;
 }
 
-void GameText::UpdateCoordinates()
+void GameTextLayer::UpdateCoordinates()
 {
     _score_font->Box( _score_text );
     _score_width = _score_font->Width();
@@ -81,14 +81,14 @@ void GameText::UpdateCoordinates()
     _score_y = 10.0+_score_height;
 }
 
-void GameText::ScoreToString()
+void GameTextLayer::ScoreToString()
 {
     std::ostringstream s;
     s << _score;
     _score_text = std::string( s.str() );
 }
 
-void GameText::Render()
+void GameTextLayer::Render()
 {
     PreRender();
     RenderPlayerHealth();
@@ -101,27 +101,27 @@ void GameText::Render()
     PostRender();
 }
 
-void GameText::Resize(int width, int height)
+void GameTextLayer::Resize(int width, int height)
 {
     Layer::Resize(width, height);
 }
 
-void GameText::ProcessCommand(Command* cmd)
+void GameTextLayer::ProcessCommand(Command* cmd)
 {
     cmd = cmd;
 }
 
-void GameText::ShowHealth( double health )
+void GameTextLayer::ShowHealth( double health )
 {
     _player_health = health;
 }
 
-void GameText::ShowScore( int score )
+void GameTextLayer::ShowScore( int score )
 {
     _score = score;
 }
 
-void GameText::RenderPlayerHealth()
+void GameTextLayer::RenderPlayerHealth()
 {
     const double fWIDTH = 80.0;
     const double fHEIGHT = 20.0;
@@ -151,7 +151,7 @@ void GameText::RenderPlayerHealth()
     glPopMatrix();
 }
 
-void GameText::RenderGameOver()
+void GameTextLayer::RenderGameOver()
 {
     double gameOverColor[] = { 0.75, 0.0, 0.0, 1.0 };
 
@@ -159,7 +159,7 @@ void GameText::RenderGameOver()
     _game_over_font->Print( _game_over_x, _game_over_y, _game_over_text );
 }
 
-void GameText::RenderScore()
+void GameTextLayer::RenderScore()
 {
     // TODO : for rendering score.
     double scoreColor[] = { 1.0, 1.0, 0.0, 1.0 };

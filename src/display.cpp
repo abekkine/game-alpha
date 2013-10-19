@@ -110,9 +110,9 @@ bool Display::InitComponents()
     } 
     _components.push_back( _menu );
 
-    _gametext = new GameText();
+    _gametext = new GameTextLayer();
     if( not _gametext->Init( _viewport ) ) {
-        fprintf( stderr, "Unable to initialize GameText instance!\n" );
+        fprintf( stderr, "Unable to initialize GameTextLayer instance!\n" );
         result = false;
     }
     _components.push_back( _gametext );

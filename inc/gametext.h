@@ -4,11 +4,11 @@
 #include <font.h>
 #include <layer.h>
 
-class GameText : public Layer
+class GameTextLayer : public Layer
 {
     public:
-        GameText();
-        ~GameText();
+        GameTextLayer();
+        ~GameTextLayer();
         bool Init( Volume& viewport );
         void Render();
         void Resize(int width, int height);

@@ -56,7 +56,7 @@ class Display
         Menu* _menu;
 
         // Game text layer.
-        GameText* _gametext;
+        GameTextLayer* _gametext;
 
     private:
         // Members
