@@ -47,7 +47,7 @@ class Display
         Panel* _panel;
 
         // Background layer.
-        Background* _background;
+        BackgroundLayer* _background;
 
         // Foreground layer.
         Foreground* _foreground;

@@ -5,11 +5,11 @@
 #include <definitions.h>
 #include <layer.h>
 
-class Background : public Layer
+class BackgroundLayer : public Layer
 {
     public:
-        Background();
-        ~Background();
+        BackgroundLayer();
+        ~BackgroundLayer();
         bool Init( Volume& viewport );
         void Render();
         void Toggle();

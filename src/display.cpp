@@ -124,9 +124,9 @@ bool Display::InitComponents()
     }
     _components.push_back( _panel );
 
-    _background = new Background();
+    _background = new BackgroundLayer();
     if( not _background->Init( _viewport ) ) {
-        fprintf( stderr, "Unable to initialize Background instance!\n" );
+        fprintf( stderr, "Unable to initialize BackgroundLayer instance!\n" );
         result = false;
     }
     _components.push_back( _background );

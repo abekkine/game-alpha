@@ -7,25 +7,25 @@
 #include <background.h>
 #include <gamestate.h>
 
-Background::Background()
+BackgroundLayer::BackgroundLayer()
 {
-    puts("Background::Background()");
+    puts("BackgroundLayer::BackgroundLayer()");
 
     Defaults();
 }
 
-Background::~Background()
+BackgroundLayer::~BackgroundLayer()
 {
-    puts("Background::~Background()");
+    puts("BackgroundLayer::~BackgroundLayer()");
 }
 
-void Background::Defaults()
+void BackgroundLayer::Defaults()
 {
     _visible = true;
     _wireframe = false;
 }
 
-bool Background::Init( Volume& viewport )
+bool BackgroundLayer::Init( Volume& viewport )
 {
     bool result = true;
 
@@ -37,17 +37,17 @@ bool Background::Init( Volume& viewport )
     return result;
 }
 
-void Background::ToggleWireframe()
+void BackgroundLayer::ToggleWireframe()
 {
     _wireframe = not _wireframe;
 }
 
-void Background::Toggle() {
+void BackgroundLayer::Toggle() {
     
     _visible = not _visible;
 }
 
-void Background::Render()
+void BackgroundLayer::Render()
 {
     if( _visible ) {
 
@@ -57,7 +57,7 @@ void Background::Render()
     }
 }
 
-void Background::RenderBackground()
+void BackgroundLayer::RenderBackground()
 {
     // TODO : Render game background.
     if( Config::Instance()->debug ) {
@@ -80,7 +80,7 @@ void Background::RenderBackground()
     }
 }
 
-void Background::ProcessCommand( Command* cmd )
+void BackgroundLayer::ProcessCommand( Command* cmd )
 {
     Command::CommandType code;
 
