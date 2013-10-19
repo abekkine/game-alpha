@@ -67,14 +67,14 @@ Bullet* Player::Fire()
 void Player::MoveLeft()
 {
     if( _position.x > -0.48 * Config::Instance()->world_width ) {
-        _position.x -= 0.005; 
+        _position.x -= Config::Instance()->player_speed; 
     }
 }
 
 void Player::MoveRight()
 {
     if( _position.x < 0.48 * Config::Instance()->world_width ) {
-        _position.x += 0.005;
+        _position.x += Config::Instance()->player_speed;
     }
 }
  

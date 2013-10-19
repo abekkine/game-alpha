@@ -40,6 +40,12 @@ config =
         pan_factor = 1.0;
     };
 
+    // Player settings.
+    player = 
+    {
+        speed = 0.005;
+    };
+
     // Display configuration.
     display = 
     {

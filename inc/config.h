@@ -33,6 +33,7 @@ class Config
         void ReadBackgroundOffsets();
         void ReadLayer();
         void ReadForeground();
+        void ReadPlayer();
         void ReadDisplay();
         void ReadEvent();
         void ReadFont();
@@ -88,6 +89,9 @@ class Config
         double clear_color_green;
         //! Clear color blue component.
         double clear_color_blue;
+
+        //! Player Settings.
+        double player_speed;
 
         //! Zoom and pan parameters.
         double layer_zoom_factor;

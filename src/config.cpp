@@ -125,6 +125,9 @@ void Config::Defaults()
     // Octave counts
     bg_octaves = 4;
 
+    // Player speed.
+    player_speed = 0.005;
+
     // Event
     // Speed factor
     speed_factor_min = 1;
@@ -210,6 +213,15 @@ void Config::ReadForeground() {
 
         config_setting_lookup_float( _setting, "zoom_factor", &foreground_zoom_factor );
         config_setting_lookup_float( _setting, "pan_factor", &foreground_pan_factor );
+    }
+}
+
+void Config::ReadPlayer() {
+
+    _setting = config_lookup( &_config, "config.player" );
+    if( _setting != 0 ) {
+
+        config_setting_lookup_float( _setting, "speed", &player_speed );
     }
 }
 
