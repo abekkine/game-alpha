@@ -10,6 +10,7 @@ class Player : public Object
         Player(Vector2d position);
         ~Player();
         void Render();
+        void Update();
         bool CollisionWith(Object* object);
         Bullet* Fire();
         void MoveLeft();
@@ -17,6 +18,9 @@ class Player : public Object
         void RenderV1();
         void RenderV2();
         double Health();
+
+    private:
+        double _gun_alpha;
 };
 
 #endif

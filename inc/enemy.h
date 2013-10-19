@@ -11,6 +11,7 @@ class Enemy : public Object
         ~Enemy();
         Bullet* Fire();
         void Render();
+        void Update();
         bool CollisionWith(Object* object);
 
     private:

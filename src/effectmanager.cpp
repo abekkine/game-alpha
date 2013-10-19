@@ -58,7 +58,9 @@ void EffectManager::Render()
     {
         if( (*iParticle)->Alive() )
         {
+            // TODO : Render and Update methods called by different timings.
             (*iParticle)->Render();
+            (*iParticle)->Update();
         }
         else
         {

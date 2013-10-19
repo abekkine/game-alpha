@@ -61,6 +61,7 @@ void Menu::Resize(int width, int height)
     Layer::Resize(width, height);
 }
 
+// TODO : ProcessCommand is Update code for menu.
 void Menu::ProcessCommand(Command* cmd)
 {
     Command::CommandType code;

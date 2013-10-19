@@ -124,6 +124,8 @@ void Foreground::RenderGround()
 
 void Foreground::RenderPlayer()
 {
+    // TODO : This is user input and update code only, not render. 
+    //      : In fact, player is rendered as object, by object manager class.
     switch( _move_horizontal ) {
         case move_LEFT:
             _player->MoveLeft();

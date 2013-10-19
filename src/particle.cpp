@@ -65,7 +65,10 @@ void Particle::Render()
         glEnd();
         glPopMatrix();
     }
+}
 
+void Particle::Update()
+{
     _life -= 0.005;
     _position.x += _velocity.x;
     _position.y += _velocity.y;

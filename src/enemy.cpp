@@ -45,7 +45,10 @@ void Enemy::Render()
         glEnd();
         glPopMatrix();
     }
+}
 
+void Enemy::Update()
+{
     // Movement
     _alpha += 0.01;
     _velocity.x = _span * sin(_alpha) * 0.01;

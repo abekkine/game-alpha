@@ -15,6 +15,7 @@ class Particle : public Object
         Particle(int id, Vector2d position);
         ~Particle();
         void Render();
+        void Update();
         bool CollisionWith(Object* object);
         void Randomize( spreadType spread=stALL );
 

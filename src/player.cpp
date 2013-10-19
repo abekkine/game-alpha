@@ -12,6 +12,7 @@ Player::Player(Vector2d position)
     _size = 0.05;
     _group = 0;
     _type = objPlayer;
+    _gun_alpha = 0.0;
 }
 
 Player::~Player()
@@ -84,6 +85,12 @@ bool Player::CollisionWith(Object* object)
     return false;
 }
 
+void Player::Update()
+{
+    _gun_alpha += 0.05;
+}
+
+// TODO : Better be a display list, for performance boost.
 void Player::RenderV2()
 {
     glPushMatrix();
@@ -96,22 +103,20 @@ void Player::RenderV2()
         const double x1 = 15.0;
         const double x2 = 20.0;
         const double x3 = 65.0;
-        static double alpha = 0.0;
 
         glColor3ub(0xec, 0x5e, 0xc8);
         glBegin(GL_POLYGON);
-            glVertex2d(x2 * cos(alpha), -330.0);
-            glVertex2d(x3 * cos(alpha), -210.0);
-            glVertex2d(x1 * cos(alpha), -210.0);
+            glVertex2d(x2 * cos(_gun_alpha), -330.0);
+            glVertex2d(x3 * cos(_gun_alpha), -210.0);
+            glVertex2d(x1 * cos(_gun_alpha), -210.0);
         glEnd();
 
         glColor3ub(0xec, 0x5e, 0xc8);
         glBegin(GL_POLYGON);
-            glVertex2d(-x2 * cos(alpha), -330.0);
-            glVertex2d(-x3 * cos(alpha), -210.0);
-            glVertex2d(-x1 * cos(alpha), -210.0);
+            glVertex2d(-x2 * cos(_gun_alpha), -330.0);
+            glVertex2d(-x3 * cos(_gun_alpha), -210.0);
+            glVertex2d(-x1 * cos(_gun_alpha), -210.0);
         glEnd();
-        alpha += 0.05;
     }
 
     glColor3ub(0x50, 0xce, 0x80);

@@ -50,7 +50,10 @@ void Bullet::Render()
 
         glPopMatrix();
     }
+}
 
+void Bullet::Update()
+{
     _position.x += _velocity.x;
     _position.y += _velocity.y;
 

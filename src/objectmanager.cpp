@@ -32,7 +32,9 @@ void ObjectManager::Render()
         if( (*iObject)->Alive() )
         {
             CheckCollision( *iObject );
+            // TODO : Render & Update should be in separate timing frames.
             (*iObject)->Render();
+            (*iObject)->Update();
         }
         else
         {

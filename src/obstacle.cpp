@@ -42,11 +42,16 @@ void Obstacle::Render()
         glBegin(GL_POLYGON);
         for(int i=0; i<4; i++)
         {
+            // TODO : avoid these calculations at render time.
             glVertex2d( _r[i] * cos(_a[i]), _r[i] * sin(_a[i]) );
         }
         glEnd();
         glPopMatrix();
     }
+}
+
+void Obstacle::Update()
+{
 }
 
 void Obstacle::Randomize(double r, double a)

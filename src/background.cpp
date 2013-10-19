@@ -63,6 +63,7 @@ void Background::RenderBackground()
     if( Config::Instance()->debug ) {
         static double alpha = 0.0;
         const double SIZE = 0.05;
+        // TODO : This calculations also should be in an Update() method.
         alpha += 0.3;
         glPushMatrix();
         glLoadIdentity();

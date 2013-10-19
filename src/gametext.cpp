@@ -52,6 +52,7 @@ void GameText::Render()
 {
     PreRender();
     RenderPlayerHealth();
+    // TODO : It would be nice to call State's Render() method, instead of checking what state is.
     if( GameState::Instance()->State() == GameState::gsGAMEOVER )
     {
         RenderGameOver();
