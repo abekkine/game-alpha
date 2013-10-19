@@ -21,6 +21,9 @@ Bullet::Bullet(Vector2d position)
     _height = Config::Instance()->bullet_height;
     _size = (_width < _height) ? _width : _height; 
     _visible = true;
+
+    _score_value = 500;
+    _player_hit = false;
 }
 
 Bullet::~Bullet()
@@ -60,6 +63,7 @@ void Bullet::Update(double timestep)
 
     if( _position.y < Config::Instance()->ground_level ) {
         _life = EPSILON;
+        _player_hit = false;
         EffectManager::Instance()->Explode(EffectManager::explosionGROUND, _position);
     }
 
@@ -85,9 +89,19 @@ bool Bullet::CollisionWith(Object* object)
     if(dr < (_size+objSize) ) {
         collision = true;
         _visible = false;
+        // TODO : bullet damage should contain some random factor.
         object->AddDamage( Config::Instance()->bullet_damage );
-        _life = EPSILON;
 
+        if( _group == Object::grpPLAYER || object->Type() == Object::objBullet )
+        {
+            object->PlayerHit( true );
+        }
+        else
+        {
+            object->PlayerHit( false );
+        }
+
+        _life = EPSILON;
         EffectManager::Instance()->Explode(EffectManager::explosionAIR, _position);
     }
 

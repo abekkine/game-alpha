@@ -20,6 +20,8 @@ Enemy::Enemy(Vector2d position)
     _alpha = 0.0;
     _reload_max = Config::Instance()->enemy_reload_time;
     _reload_value = Util::Instance()->RandomValue(0.0, _reload_max);
+    _score_value = 100;
+    _player_hit = false;
 
     _c1 = Config::Instance()->enemy_c1;
     _c2 = Config::Instance()->enemy_c2;

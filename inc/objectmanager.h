@@ -17,11 +17,13 @@ class ObjectManager
         void Render();
         void Update(double timestep);
         void Add(Object* object);
+        int Score();
 
     private:
         void CheckCollision(Object* object);
 
     private:
+        int _score;
         std::vector<Object *> _objects;
 };
 

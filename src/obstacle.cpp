@@ -15,6 +15,8 @@ Obstacle::Obstacle(double x, double y, double r)
     _type = objObstacle;
     _size = r;
     _group = Object::grpOBSTACLE;
+    _score_value = 10;
+    _player_hit = false;
     Defaults();
 }
 

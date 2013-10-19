@@ -17,6 +17,7 @@ ObjectManager* ObjectManager::Instance()
 ObjectManager::ObjectManager()
 {
     _objects.clear();
+    _score = 0;
 }
 
 ObjectManager::~ObjectManager()
@@ -36,6 +37,7 @@ void ObjectManager::Update(double timestep)
         }
         else
         {
+            _score += (*iObject)->ScoreValue();
             // TODO : What if object is deleted while still in rendering?
             delete (*iObject);
             iObject = _objects.erase( iObject );
@@ -75,4 +77,7 @@ void ObjectManager::CheckCollision(Object* object)
     }
 }
 
-
+int ObjectManager::Score()
+{
+    return _score;
+}

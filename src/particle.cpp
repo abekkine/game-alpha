@@ -9,6 +9,8 @@ Particle::Particle(int id, Vector2d position)
 {
     _effect_id = id;
     _position = position;
+    _score_value = 0;
+    _player_hit = false;
 
     Defaults();
 }

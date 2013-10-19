@@ -35,6 +35,8 @@ class Object
         double Size();
         Vector2d const& Position();
         void AddDamage(double damage);
+        int ScoreValue();
+        void PlayerHit(bool flag);
         ObjectType Type();
 
     protected:
@@ -44,6 +46,8 @@ class Object
         GroupType _group;
         double _life;
         bool _visible;
+        int _score_value;
+        bool _player_hit;
 };
 
 #endif

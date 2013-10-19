@@ -32,7 +32,25 @@ bool Object::Alive()
 
 void Object::AddDamage(double damage)
 {
+    // TODO : Effective damage should depend on armor, shield, and existing damage level.
     _life -= damage;
+}
+
+int Object::ScoreValue()
+{
+    int score_value = 0;
+
+    if( _player_hit )
+    {
+        score_value = _score_value;
+    }
+
+    return score_value;
+}
+
+void Object::PlayerHit(bool flag)
+{
+    _player_hit = flag;
 }
 
 Object::ObjectType Object::Type()
