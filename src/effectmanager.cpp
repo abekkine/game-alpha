@@ -50,7 +50,7 @@ int EffectManager::Explode(explosionType type, Vector2d position)
     return _effect_count;
 }
 
-void EffectManager::Render()
+void EffectManager::Update(double timestep)
 {
     std::vector<Particle *>::iterator iParticle;
 
@@ -59,8 +59,7 @@ void EffectManager::Render()
         if( (*iParticle)->Alive() )
         {
             // TODO : Render and Update methods called by different timings.
-            (*iParticle)->Render();
-            (*iParticle)->Update();
+            (*iParticle)->Update(timestep);
         }
         else
         {
@@ -71,6 +70,16 @@ void EffectManager::Render()
                 break;
             }
         }
+    }
+}
+
+void EffectManager::Render()
+{
+    std::vector<Particle *>::iterator iParticle;
+
+    for(iParticle=_particles.begin(); iParticle!=_particles.end(); ++iParticle)
+    {
+        (*iParticle)->Render();
     }
 }
 

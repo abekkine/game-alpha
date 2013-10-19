@@ -24,15 +24,15 @@ class Display
         ~Display();
         //! @brief Initialization method.
         bool Init();
-        //! @brief Update method.
-        void Update();
+        //! @brief Render method.
+        void Render();
 
     private:
         // Methods
         void Defaults();
         bool InitGL();
         bool InitComponents();
-        void Render();
+        void RenderScene();
         bool CheckError();
         void Reshape();
         void Reshape( int width, int height );

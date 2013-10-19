@@ -9,7 +9,7 @@ class Obstacle : public Object
         Obstacle(double x, double y, double r);
         ~Obstacle();
         void Render();
-        void Update();
+        void Update(double timestep);
         bool CollisionWith(Object* object);
         void Randomize(double r, double a);
 

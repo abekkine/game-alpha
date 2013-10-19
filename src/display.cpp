@@ -194,7 +194,7 @@ void Display::Reshape( int width, int height )
     _menu->Resize( width, height );
 }
 
-void Display::Render()
+void Display::RenderScene()
 {
     _fps = _fps_timer->GetFPS();
 
@@ -216,17 +216,18 @@ void Display::Render()
             break;
     }
     
+    // TODO : Following is an Update event.
     _gametext->ShowHealth( _foreground->PlayerHealth() );
 
     _panel->Render();
 }
 
-void Display::Update()
+void Display::Render()
 {
     // Clear screen.
     glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
 
-    Render();
+    RenderScene();
 
     // Swap buffers.
     SDL_GL_SwapBuffers();

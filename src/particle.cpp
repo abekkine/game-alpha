@@ -28,10 +28,11 @@ void Particle::Defaults()
 
 void Particle::Randomize( spreadType spread )
 {
+    const double MAX_PARTICLE_SPEED = 1.0;
     // Direction between 0..360.
     double dir;
     // Speed between 0.0 .. 0.005.
-    double speed = Util::Instance()->RandomValue( 0.0, 0.005 );
+    double speed = Util::Instance()->RandomValue( 0.0, MAX_PARTICLE_SPEED );
 
     switch( spread )
     {
@@ -67,11 +68,13 @@ void Particle::Render()
     }
 }
 
-void Particle::Update()
+void Particle::Update(double timestep)
 {
-    _life -= 0.005;
-    _position.x += _velocity.x;
-    _position.y += _velocity.y;
+    const double FADE_RATE = 1.0;
+
+    _life -= FADE_RATE * timestep;
+    _position.x += _velocity.x * timestep;
+    _position.y += _velocity.y * timestep;
 }
 
 bool Particle::CollisionWith(Object* object)

@@ -10,13 +10,15 @@ class Bullet : public Object
         ~Bullet();
         void Velocity(Vector2d velocity);
         void Render();
-        void Update();
+        void Update(double timestep);
         bool CollisionWith(Object* object);
 
     private:
-        const double LIFE_MAX;
-        const double LIFE_DELTA;
+        const double EPSILON;
+        double _life_delta;
         Vector2d _velocity;
+        double _width;
+        double _height;
 };
 
 #endif

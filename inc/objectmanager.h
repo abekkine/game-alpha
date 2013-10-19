@@ -15,6 +15,7 @@ class ObjectManager
         static ObjectManager* Instance();
         ~ObjectManager();
         void Render();
+        void Update(double timestep);
         void Add(Object* object);
 
     private:

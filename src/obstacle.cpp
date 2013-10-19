@@ -50,8 +50,9 @@ void Obstacle::Render()
     }
 }
 
-void Obstacle::Update()
+void Obstacle::Update(double timestep)
 {
+    timestep = timestep;
 }
 
 void Obstacle::Randomize(double r, double a)

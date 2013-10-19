@@ -10,7 +10,7 @@ class Player : public Object
         Player(Vector2d position);
         ~Player();
         void Render();
-        void Update();
+        void Update(double timestep);
         bool CollisionWith(Object* object);
         Bullet* Fire();
         void MoveLeft();

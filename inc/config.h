@@ -34,6 +34,8 @@ class Config
         void ReadLayer();
         void ReadForeground();
         void ReadPlayer();
+        void ReadBullet();
+        void ReadEnemy();
         void ReadDisplay();
         void ReadEvent();
         void ReadFont();
@@ -83,6 +85,8 @@ class Config
         double world_width;
         //! Height of the world projected to screen.
         double world_height;
+        //! Ground level in world.
+        double ground_level;
         //! Clear color red component.
         double clear_color_red;
         //! Clear color green component.
@@ -92,6 +96,24 @@ class Config
 
         //! Player Settings.
         double player_speed;
+        double player_bullet_speed;
+
+        //! Enemy settings.
+        double enemy_width;
+        double enemy_height;
+        double enemy_reload_time;
+        double enemy_bullet_speed;
+        double enemy_c1;
+        double enemy_c2;
+        double enemy_c3;
+        double enemy_c4;
+
+        //! Bullet settings.
+        double max_bullet_life;
+        double bullet_decay_rate;
+        double bullet_width;
+        double bullet_height;
+        double bullet_damage;
 
         //! Zoom and pan parameters.
         double layer_zoom_factor;

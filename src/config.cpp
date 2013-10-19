@@ -45,6 +45,10 @@ bool Config::Read( std::string configFile )
         ReadEvent();
         ReadPanel();
         ReadFont();
+        ReadPlayer();
+        ReadEnemy();
+        ReadBullet();
+        ReadEnemy();
 
         config_destroy( &_config );
 
@@ -108,6 +112,7 @@ void Config::Defaults()
     // Display World
     world_width = 1.0;
     world_height = 1.0;
+    ground_level = -0.4;
 
     // Display Clear Color
     clear_color_red = 0.0;
@@ -127,6 +132,17 @@ void Config::Defaults()
 
     // Player speed.
     player_speed = 0.005;
+    player_bullet_speed = 0.005;
+
+    // Enemy
+    enemy_width = 0.02;
+    enemy_height = 0.02;
+    enemy_bullet_speed = 0.5;
+    enemy_reload_time = 1.0;
+    enemy_c1 = 0.02;
+    enemy_c2 = 0.005;
+    enemy_c3 = 4.0;
+    enemy_c4 = 0.01;
 
     // Event
     // Speed factor
@@ -222,6 +238,32 @@ void Config::ReadPlayer() {
     if( _setting != 0 ) {
 
         config_setting_lookup_float( _setting, "speed", &player_speed );
+        config_setting_lookup_float( _setting, "bullet_speed", &player_bullet_speed );
+    }
+}
+
+void Config::ReadEnemy() {
+    _setting = config_lookup( &_config, "config.enemy" );
+    if( _setting != 0 ) {
+        config_setting_lookup_float( _setting, "bullet_speed", &enemy_bullet_speed );
+        config_setting_lookup_float( _setting, "width", &enemy_width );
+        config_setting_lookup_float( _setting, "height", &enemy_height );
+        config_setting_lookup_float( _setting, "reload_time", &enemy_reload_time );
+        config_setting_lookup_float( _setting, "c1", &enemy_c1 );
+        config_setting_lookup_float( _setting, "c2", &enemy_c2 );
+        config_setting_lookup_float( _setting, "c3", &enemy_c3 );
+        config_setting_lookup_float( _setting, "c4", &enemy_c4 );
+    }
+}
+
+void Config::ReadBullet() {
+    _setting = config_lookup( &_config, "config.bullet" );
+    if( _setting != 0 ) {
+        config_setting_lookup_float( _setting, "max_life", &max_bullet_life );
+        config_setting_lookup_float( _setting, "decay_rate", &bullet_decay_rate );
+        config_setting_lookup_float( _setting, "width", &bullet_width );
+        config_setting_lookup_float( _setting, "height", &bullet_height );
+        config_setting_lookup_float( _setting, "damage", &bullet_damage );
     }
 }
 
@@ -342,6 +384,7 @@ void Config::ReadDisplayWorld()
     {
         config_setting_lookup_float( _setting, "width", &world_width );
         config_setting_lookup_float( _setting, "height", &world_height );
+        config_setting_lookup_float( _setting, "ground", &ground_level );
     }
 }
 

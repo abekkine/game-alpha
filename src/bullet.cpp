@@ -6,16 +6,20 @@
 #include <config.h>
 #include <effectmanager.h>
 
-Bullet::Bullet(Vector2d position) :
- LIFE_MAX(1.0),
- LIFE_DELTA(0.001)
+Bullet::Bullet(Vector2d position) 
+: EPSILON(1e-6)
 {
     _position = position;
     _velocity = Vector2d(0.0, 0.0);
 
     _type = objBullet;
-    _life = LIFE_MAX;
-    _size = 0.003;
+
+    _life = Config::Instance()->max_bullet_life;
+    _life_delta = Config::Instance()->bullet_decay_rate;
+
+    _width = Config::Instance()->bullet_width;
+    _height = Config::Instance()->bullet_height;
+    _size = (_width < _height) ? _width : _height; 
     _visible = true;
 }
 
@@ -30,9 +34,6 @@ void Bullet::Velocity(Vector2d velocity)
 
 void Bullet::Render()
 {
-    const double w = 0.002;
-    const double h = 0.005;
-
     if( _visible ) {
 
         glPushMatrix();
@@ -42,27 +43,27 @@ void Bullet::Render()
         glColor3d(0.8, 0.8, 0.8);
 
         glBegin(GL_QUADS);
-        glVertex2d( -w, -h );
-        glVertex2d( -w,  h );
-        glVertex2d(  w,  h );
-        glVertex2d(  w, -h );
+        glVertex2d( -_width, -_height );
+        glVertex2d( -_width,  _height );
+        glVertex2d(  _width,  _height );
+        glVertex2d(  _width, -_height );
         glEnd();
 
         glPopMatrix();
     }
 }
 
-void Bullet::Update()
+void Bullet::Update(double timestep)
 {
-    _position.x += _velocity.x;
-    _position.y += _velocity.y;
+    _position.x += _velocity.x * timestep;
+    _position.y += _velocity.y * timestep;
 
-    if( _position.y < -0.4 ) {
-        _life = LIFE_DELTA;
+    if( _position.y < Config::Instance()->ground_level ) {
+        _life = EPSILON;
         EffectManager::Instance()->Explode(EffectManager::explosionGROUND, _position);
     }
 
-    _life -= LIFE_DELTA;
+    _life -= _life_delta * timestep;
 }
 
 bool Bullet::CollisionWith(Object* object)
@@ -84,12 +85,11 @@ bool Bullet::CollisionWith(Object* object)
     if(dr < (_size+objSize) ) {
         collision = true;
         _visible = false;
-        object->AddDamage( 0.25 );
-        _life = LIFE_DELTA;
+        object->AddDamage( Config::Instance()->bullet_damage );
+        _life = EPSILON;
 
         EffectManager::Instance()->Explode(EffectManager::explosionAIR, _position);
     }
-
 
     return collision;
 }

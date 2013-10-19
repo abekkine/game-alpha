@@ -1,6 +1,8 @@
 #include <config.h>
 #include <application.h>
 #include <gamestate.h>
+#include <objectmanager.h>
+#include <effectmanager.h>
 
 Application::Application()
 {
@@ -62,6 +64,9 @@ bool Application::Initialize()
 
 void Application::Run()
 {
+    ObjectManager* objectmanager = ObjectManager::Instance();
+    EffectManager* effectmanager = EffectManager::Instance();
+    GameState* gamestate = GameState::Instance();
     puts("Application::Run()");
 
     while( GameState::Instance()->State() != GameState::gsQUIT )
@@ -70,8 +75,15 @@ void Application::Run()
         if( _num_ticks > _ticks_period )
         {
             _timer->Reset();
+            if( gamestate->State() != GameState::gsMENU ) {
+                objectmanager->Update( _time_step );
+                effectmanager->Update( _time_step );
+            }
         }
 
-        _display->Update();
+        _display->Render();
     }
+
+    delete objectmanager;
+    delete effectmanager;
 }

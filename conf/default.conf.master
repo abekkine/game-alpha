@@ -5,8 +5,8 @@ config =
     // General settings.
     application = 
     {
-        frequency = 20;
-        timestep = 0.5;
+        frequency = 50;
+        timestep = 0.02;
     };
 
     // Layer base settings.
@@ -40,11 +40,37 @@ config =
         pan_factor = 1.0;
     };
 
+    // Enemy settings.
+    enemy =
+    {
+        bullet_speed = 0.5;
+        width = 0.02;
+        height = 0.02;
+        reload_time = 1.0;
+        c1 = 0.2;
+        c2 = 0.005;
+        c3 = 4.0;
+        c4 = 0.5;
+    };
+
     // Player settings.
     player = 
     {
         speed = 0.005;
+        bullet_speed = 0.5;
     };
+
+    // Bullet settings.
+    bullet = 
+    {
+        // Maximum bullet life in seconds.
+        max_life = 1.0;
+        // Bullet decay rate as life per second.
+        decay_rate = 0.1;
+        width = 0.002;
+        height = 0.005;
+        damage = 0.25;
+    }
 
     // Display configuration.
     display = 
@@ -52,8 +78,10 @@ config =
         // Screen dimensions.
         screen = 
         {
-            width = 800; //1200; //400;
-            height = 450; //675; //225; 
+            //width = 1200;
+            width = 1600;
+            //height = 675;
+            height = 900;
         };
 
         // World coordinates.
@@ -61,6 +89,7 @@ config =
         {
             width = 1.6;
             height = 0.9;
+            ground = -0.4;
         };
 
         // Clear color. 

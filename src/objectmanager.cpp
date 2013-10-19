@@ -23,7 +23,7 @@ ObjectManager::~ObjectManager()
 {
 }
 
-void ObjectManager::Render()
+void ObjectManager::Update(double timestep)
 {
     std::vector<Object *>::iterator iObject;
 
@@ -32,12 +32,11 @@ void ObjectManager::Render()
         if( (*iObject)->Alive() )
         {
             CheckCollision( *iObject );
-            // TODO : Render & Update should be in separate timing frames.
-            (*iObject)->Render();
-            (*iObject)->Update();
+            (*iObject)->Update(timestep);
         }
         else
         {
+            // TODO : What if object is deleted while still in rendering?
             delete (*iObject);
             iObject = _objects.erase( iObject );
             if( iObject == _objects.end() )
@@ -45,6 +44,16 @@ void ObjectManager::Render()
                 break;
             }
         }
+    }
+}
+
+void ObjectManager::Render()
+{
+    std::vector<Object *>::iterator iObject;
+
+    for(iObject=_objects.begin(); iObject!=_objects.end(); ++iObject)
+    {
+        (*iObject)->Render();
     }
 }
 

@@ -8,7 +8,7 @@ class Object
     public:
         virtual ~Object() = 0;
         virtual void Render() = 0;
-        virtual void Update() = 0;
+        virtual void Update(double timestep) = 0;
         virtual bool CollisionWith(Object* object) = 0;
 
     public:

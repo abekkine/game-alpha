@@ -22,6 +22,7 @@ class EffectManager
         static EffectManager* Instance();
         ~EffectManager();
         void Render();
+        void Update(double timestep);
         int Explode(explosionType type, Vector2d position);
 
     private:

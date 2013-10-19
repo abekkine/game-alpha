@@ -59,7 +59,7 @@ Bullet* Player::Fire()
 {
     Bullet* bullet = new Bullet(Vector2d(_position.x, _position.y+0.06));
     bullet->Group(0);
-    bullet->Velocity(Vector2d(0.0, 0.00075));
+    bullet->Velocity(Vector2d(0.0, Config::Instance()->player_bullet_speed));
 
     return bullet;
 }
@@ -85,9 +85,9 @@ bool Player::CollisionWith(Object* object)
     return false;
 }
 
-void Player::Update()
+void Player::Update(double timestep)
 {
-    _gun_alpha += 0.05;
+    _gun_alpha += 0.05 * timestep;
 }
 
 // TODO : Better be a display list, for performance boost.
