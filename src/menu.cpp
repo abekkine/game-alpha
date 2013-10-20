@@ -85,6 +85,9 @@ void MenuLayer::ProcessCommand(Command* cmd)
 
             case Command::cmd_SELECT:
                 if( _selected_id == 0 ) {
+// TODO : game initialization before play (See #24).
+//      : after initialization complete, set game state to gsPLAY.
+//                    GameState::Instance()->State(GameState::gsINIT);
                     GameState::Instance()->State(GameState::gsPLAY);
                 }
                 else {

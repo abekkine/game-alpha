@@ -20,6 +20,8 @@ void GameState::Dump()
     {
         case GameState::gsMENU:
             puts("[ gsMENU     ]"); break;
+        case GameState::gsINIT:
+            puts("[ gsINIT     ]"); break;
         case GameState::gsPLAY:
             puts("[ gsPLAY     ]"); break;
         case GameState::gsQUIT:

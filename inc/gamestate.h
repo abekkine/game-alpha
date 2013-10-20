@@ -6,6 +6,7 @@ class GameState
     public:
         typedef enum {
             gsMENU = 0,
+            gsINIT,
             gsPLAY,
             gsPAUSE,
             gsGAMEOVER,
