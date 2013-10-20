@@ -38,9 +38,12 @@ bool Application::Initialize()
     bool result = false;
 
     _timer = new Timer(); 
+    _gamemanager = new GameManager();
     _display = new Display();
 
     GameState::Instance()->State(GameState::gsMENU);
+
+    _gamemanager->Init();
 
     result = _display->Init();
     if( result )
@@ -64,12 +67,10 @@ bool Application::Initialize()
 
 void Application::Run()
 {
-    ObjectManager* objectmanager = ObjectManager::Instance();
-    EffectManager* effectmanager = EffectManager::Instance();
     GameState* gamestate = GameState::Instance();
     puts("Application::Run()");
 
-    while( GameState::Instance()->State() != GameState::gsQUIT )
+    while( gamestate->State() != GameState::gsQUIT )
     {
         Event::Instance()->Update();
         ProcessCommands();
@@ -78,8 +79,7 @@ void Application::Run()
         {
             _timer->Reset();
             if( gamestate->State() != GameState::gsMENU ) {
-                objectmanager->Update( _time_step );
-                effectmanager->Update( _time_step );
+                _gamemanager->Update( _time_step );
             }
         }
 
@@ -96,6 +96,7 @@ void Application::ProcessCommands()
         if( cmd != 0 )
         {
             _display->ProcessCommand( cmd );
+            _gamemanager->ProcessCommand( cmd );
         }
     } while( cmd != 0 );
 }

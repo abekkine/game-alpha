@@ -47,11 +47,6 @@ bool ForegroundLayer::Init( Volume& viewport )
     _player = new Player(Vector2d(0.0, -0.36));
     ObjectManager::Instance()->Add( _player );
 
-    _enemyMgr = new EnemyManager();
-    _enemyMgr->Init();
-    _obstacleMgr = new ObstacleManager();
-    _obstacleMgr->Init();
-
     return result;
 }
 
@@ -165,10 +160,6 @@ void ForegroundLayer::ProcessCommand( Command* cmd )
 
             case Command::cmd_UP:
             case Command::cmd_DOWN:
-                break;
-
-            case Command::cmd_QUIT:
-                GameState::Instance()->State(GameState::gsMENU);
                 break;
 
             default:

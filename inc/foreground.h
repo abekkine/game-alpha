@@ -5,8 +5,6 @@
 #include <layer.h>
 #include <event.h>
 #include <player.h>
-#include <enemymanager.h>
-#include <obstaclemanager.h>
 
 class ForegroundLayer : public Layer
 {
@@ -43,8 +41,6 @@ class ForegroundLayer : public Layer
 
         MoveType _move_horizontal;
         Player* _player;
-        EnemyManager* _enemyMgr;
-        ObstacleManager* _obstacleMgr;
 };
 
 #endif

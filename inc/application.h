@@ -3,6 +3,7 @@
 
 #include <timer.h>
 #include <display.h>
+#include <gamemanager.h>
 
 //! @brief Holds everything regarding the application.
 class Application
@@ -27,6 +28,7 @@ class Application
         // Members
         Timer* _timer;
         Display* _display;
+        GameManager* _gamemanager;
 
         float _ticks_period;
         float _time_step;
