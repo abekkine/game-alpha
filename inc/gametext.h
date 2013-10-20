@@ -13,8 +13,6 @@ class GameTextLayer : public Layer
         void Render();
         void Resize(int width, int height);
         void ProcessCommand( Command* cmd );
-        void ShowHealth( double health );
-        void ShowScore( int score );
 
     private:
         void Defaults();

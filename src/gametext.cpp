@@ -91,12 +91,14 @@ void GameTextLayer::ScoreToString()
 void GameTextLayer::Render()
 {
     PreRender();
+
     RenderPlayerHealth();
     // TODO : It would be nice to call State's Render() method, instead of checking what state is.
     if( GameState::Instance()->State() == GameState::gsGAMEOVER )
     {
         RenderGameOver();
     }
+
     RenderScore();
     PostRender();
 }
@@ -111,21 +113,13 @@ void GameTextLayer::ProcessCommand(Command* cmd)
     cmd = cmd;
 }
 
-void GameTextLayer::ShowHealth( double health )
-{
-    _player_health = health;
-}
-
-void GameTextLayer::ShowScore( int score )
-{
-    _score = score;
-}
-
 void GameTextLayer::RenderPlayerHealth()
 {
     const double fWIDTH = 80.0;
     const double fHEIGHT = 20.0;
     double bar_width = 0.0;
+
+    _player_health = GameState::Instance()->Health();
 
     glPushMatrix();
     glLoadIdentity();
@@ -163,6 +157,8 @@ void GameTextLayer::RenderScore()
 {
     // TODO : for rendering score.
     double scoreColor[] = { 1.0, 1.0, 0.0, 1.0 };
+
+    _score = GameState::Instance()->Score();
 
     ScoreToString();
     UpdateCoordinates();
