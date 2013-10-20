@@ -88,6 +88,8 @@ bool Player::CollisionWith(Object* object)
 void Player::Update(double timestep)
 {
     _gun_alpha += 0.05 * timestep;
+
+    GameState::Instance()->Health( Health() );
 }
 
 // TODO : Better be a display list, for performance boost.

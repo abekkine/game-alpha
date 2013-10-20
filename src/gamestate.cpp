@@ -34,6 +34,8 @@ void GameState::Dump()
 GameState::GameState()
 {
     _state = gsMENU;
+    _score = 0;
+    _health = 1.0;
 }
 
 GameState::~GameState()
@@ -48,5 +50,25 @@ GameState::GameStateType GameState::State()
 void GameState::State( GameStateType state )
 {
     _state = state;
+}
+
+double GameState::Health()
+{
+    return _health;
+}
+
+void GameState::Health(double health)
+{
+    _health = health;
+}
+
+int GameState::Score()
+{
+    return _score;
+}
+
+void GameState::Score(int score)
+{
+    _score = score;
 }
 

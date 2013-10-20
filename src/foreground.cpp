@@ -98,7 +98,6 @@ void ForegroundLayer::RenderForegroundLayer()
 
     RenderGround();
     RenderPlayer();
-    RenderScore();
 
     ObjectManager::Instance()->Render();
     EffectManager::Instance()->Render();
@@ -136,11 +135,6 @@ void ForegroundLayer::RenderPlayer()
         default:
             break;
     }
-}
-
-// TODO : remove following function, since it's implemented on elsewhere.
-void ForegroundLayer::RenderScore()
-{
 }
 
 void ForegroundLayer::ProcessCommand( Command* cmd )
@@ -182,9 +176,3 @@ void ForegroundLayer::ProcessCommand( Command* cmd )
         }
     }
 }
-
-double ForegroundLayer::PlayerHealth()
-{
-    return _player->Health();
-}
-

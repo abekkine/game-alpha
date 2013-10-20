@@ -218,8 +218,8 @@ void Display::RenderScene()
     }
     
     // TODO : Following are Update events.
-    _gametext->ShowHealth( _foreground->PlayerHealth() );
-    _gametext->ShowScore( ObjectManager::Instance()->Score() );
+    _gametext->ShowHealth( GameState::Instance()->Health() );
+    _gametext->ShowScore( GameState::Instance()->Score() );
 
     _panel->Render();
 }

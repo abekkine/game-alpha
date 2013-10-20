@@ -1,5 +1,6 @@
 #include <stdio.h>
 
+#include <gamestate.h>
 #include <objectmanager.h>
 
 ObjectManager* ObjectManager::_instance = 0;
@@ -38,6 +39,7 @@ void ObjectManager::Update(double timestep)
         else
         {
             _score += (*iObject)->ScoreValue();
+            GameState::Instance()->Score( _score );
             // TODO : What if object is deleted while still in rendering?
             delete (*iObject);
             iObject = _objects.erase( iObject );
@@ -77,7 +79,3 @@ void ObjectManager::CheckCollision(Object* object)
     }
 }
 
-int ObjectManager::Score()
-{
-    return _score;
-}

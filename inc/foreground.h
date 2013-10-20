@@ -27,7 +27,6 @@ class ForegroundLayer : public Layer
         void Toggle();
         void ToggleWireframe();
         void ProcessCommand( Command* cmd );
-        double PlayerHealth();
 
     private:
         // Methods.
@@ -36,7 +35,6 @@ class ForegroundLayer : public Layer
 
         void RenderGround();
         void RenderPlayer();
-        void RenderScore();
 
     private:
         // Member.

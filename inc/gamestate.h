@@ -20,11 +20,20 @@ class GameState
     public:
         static GameState* Instance();
         ~GameState();
+
         GameStateType State();
         void State(GameStateType state);
 
+        double Health();
+        void Health(double health);
+
+        int Score();
+        void Score(int score);
+
     private:
         GameStateType _state;
+        double _health;
+        int _score;
 };
 
 #endif
