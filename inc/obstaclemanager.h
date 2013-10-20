@@ -8,7 +8,7 @@ class ObstacleManager
     public:
         ObstacleManager();
         ~ObstacleManager();
-        void Init();
+        bool Init();
 
     private:
         void Defaults();

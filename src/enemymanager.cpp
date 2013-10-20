@@ -14,8 +14,9 @@ void EnemyManager::Defaults()
 {
 }
 
-void EnemyManager::Init()
+bool EnemyManager::Init()
 {
+    bool result = true;
     Enemy* anEnemy;
 
     for(double ix=-0.7; ix<=0.7; ix+=0.1)
@@ -26,5 +27,7 @@ void EnemyManager::Init()
             ObjectManager::Instance()->Add( anEnemy );
         }
     }
+
+    return result;
 }
 

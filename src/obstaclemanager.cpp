@@ -16,14 +16,18 @@ void ObstacleManager::Defaults()
 {
 }
 
-void ObstacleManager::Init()
+bool ObstacleManager::Init()
 {
+    bool result = true;
+
     // X, Y, Width, Height, Density
     CreateBlock(-0.5, -0.2, 0.1, 0.05, 5.0);
     CreateBlock(-0.25, -0.2, 0.1, 0.05, 5.0);
     CreateBlock(0.0, -0.2, 0.1, 0.05, 5.0);
     CreateBlock(0.25, -0.2, 0.1, 0.05, 5.0);
     CreateBlock(0.5, -0.2, 0.1, 0.05, 5.0);
+
+    return result;
 }
 
 void ObstacleManager::CreateBlock(double x, double y, double w, double h, double d)

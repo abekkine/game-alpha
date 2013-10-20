@@ -8,7 +8,7 @@ class EnemyManager
     public:
         EnemyManager();
         ~EnemyManager();
-        void Init();
+        bool Init();
 
     private:
         void Defaults();
