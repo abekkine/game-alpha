@@ -9,7 +9,7 @@ class Layer
 {
     public:
         Layer();
-        ~Layer();
+        virtual ~Layer() = 0;
 
     // Interface
     public:
