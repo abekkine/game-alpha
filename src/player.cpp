@@ -18,6 +18,7 @@ Player::Player(Vector2d position)
 Player::~Player()
 {
     GameState::Instance()->State(GameState::gsGAMEOVER);
+    GameState::Instance()->Health(0.0);
 }
 
 double Player::Health()
