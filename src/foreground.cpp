@@ -22,14 +22,11 @@ ForegroundLayer::~ForegroundLayer()
 
 void ForegroundLayer::Defaults()
 {
-    _move_horizontal = move_NONE;
     _visible = true;
     _wireframe = false;
 
     _zoom_factor = 0.0;
     _pan_factor = 0.0;
-
-    _player = 0;
 }
 
 bool ForegroundLayer::Init( Volume& viewport )
@@ -43,9 +40,6 @@ bool ForegroundLayer::Init( Volume& viewport )
 
     Writer::Instance()->Add("X( %f )", &_viewport.left );
     Writer::Instance()->Add("Y( %f )", &_viewport.bottom );
-
-    _player = new Player(Vector2d(0.0, -0.36));
-    ObjectManager::Instance()->Add( _player );
 
     return result;
 }
@@ -92,7 +86,6 @@ void ForegroundLayer::RenderForegroundLayer()
     }
 
     RenderGround();
-    RenderPlayer();
 
     ObjectManager::Instance()->Render();
     EffectManager::Instance()->Render();
@@ -116,22 +109,6 @@ void ForegroundLayer::RenderGround()
     glPopMatrix();
 }
 
-void ForegroundLayer::RenderPlayer()
-{
-    // TODO : This is user input and update code only, not render. 
-    //      : In fact, player is rendered as object, by object manager class.
-    switch( _move_horizontal ) {
-        case move_LEFT:
-            _player->MoveLeft();
-            break;
-        case move_RIGHT:
-            _player->MoveRight();
-            break;
-        default:
-            break;
-    }
-}
-
 void ForegroundLayer::ProcessCommand( Command* cmd )
 {
     Command::CommandType code;
@@ -145,19 +122,6 @@ void ForegroundLayer::ProcessCommand( Command* cmd )
                 ToggleWireframe(); break;
             case Command::cmd_TOGGLE_FOREGROUND:
                 Toggle(); break;
-            case Command::cmd_LEFT_ENABLE:
-                _move_horizontal = move_LEFT; break;
-            case Command::cmd_LEFT_DISABLE:
-                _move_horizontal = move_NONE; break;
-            case Command::cmd_RIGHT_ENABLE:
-                _move_horizontal = move_RIGHT; break;
-            case Command::cmd_RIGHT_DISABLE:
-                _move_horizontal = move_NONE; break;
-
-            case Command::cmd_FIRE:
-                ObjectManager::Instance()->Add( _player->Fire() );
-                break;    
-
             case Command::cmd_UP:
             case Command::cmd_DOWN:
                 break;

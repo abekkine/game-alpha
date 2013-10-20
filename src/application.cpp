@@ -83,6 +83,8 @@ void Application::Run()
             }
         }
 
+        _gamemanager->MovePlayer();
+
         _display->Render();
     }
 }

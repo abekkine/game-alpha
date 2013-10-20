@@ -4,19 +4,9 @@
 #include <definitions.h>
 #include <layer.h>
 #include <event.h>
-#include <player.h>
 
 class ForegroundLayer : public Layer
 {
-    private:
-        enum MoveType {
-            move_NONE = 0,
-            move_LEFT,
-            move_RIGHT,
-            move_UP,
-            move_DOWN
-        };
-
     public:
         ForegroundLayer();
         ~ForegroundLayer();
@@ -32,15 +22,11 @@ class ForegroundLayer : public Layer
         void RenderForegroundLayer();
 
         void RenderGround();
-        void RenderPlayer();
 
     private:
         // Member.
         bool _visible;
         bool _wireframe;
-
-        MoveType _move_horizontal;
-        Player* _player;
 };
 
 #endif
