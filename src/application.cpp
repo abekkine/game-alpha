@@ -71,6 +71,8 @@ void Application::Run()
 
     while( GameState::Instance()->State() != GameState::gsQUIT )
     {
+        Event::Instance()->Update();
+        ProcessCommands();
         _num_ticks = _timer->GetElapsed();
         if( _num_ticks > _ticks_period )
         {
@@ -83,7 +85,17 @@ void Application::Run()
 
         _display->Render();
     }
+}
 
-    delete objectmanager;
-    delete effectmanager;
+void Application::ProcessCommands()
+{
+    Command* cmd;
+
+    do {
+        cmd = CommandManager::Instance()->Get();
+        if( cmd != 0 )
+        {
+            _display->ProcessCommand( cmd );
+        }
+    } while( cmd != 0 );
 }

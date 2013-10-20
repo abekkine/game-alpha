@@ -229,35 +229,23 @@ void Display::Render()
 
     // Swap buffers.
     SDL_GL_SwapBuffers();
-
-    Event::Instance()->Update();
-        
-    ProcessCommands();
 }
 
-void Display::ProcessCommands()
+void Display::ProcessCommand(Command* cmd)
 {
     std::vector< Layer * >::iterator iter;
     Layer* l;
-    Command* cmd; 
 
-    do {
-        cmd = CommandManager::Instance()->Get();
-        if( cmd != 0 )
-        {
-            for( iter = _components.begin(); iter != _components.end(); ++iter )
-            {
-                l = *iter;
-                l->ProcessCommand( cmd );
-            }
+    for( iter = _components.begin(); iter != _components.end(); ++iter )
+    {
+        l = *iter;
+        l->ProcessCommand( cmd );
+    }
 
-            if( (cmd->Code() == Command::cmd_ZOOM) || (cmd->Code() == Command::cmd_PAN) )
-            {
-                Reshape();
-            }
-        }
-
-    } while( cmd != 0 );
+    if( (cmd->Code() == Command::cmd_ZOOM) || (cmd->Code() == Command::cmd_PAN) )
+    {
+        Reshape();
+    }
 }
 
 // Following method will be used to trace and debug potential OpenGL errors.

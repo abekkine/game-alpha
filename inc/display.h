@@ -26,6 +26,8 @@ class Display
         bool Init();
         //! @brief Render method.
         void Render();
+        //! @brief ProcessCommands method.
+        void ProcessCommand(Command* cmd);
 
     private:
         // Methods
@@ -36,8 +38,6 @@ class Display
         bool CheckError();
         void Reshape();
         void Reshape( int width, int height );
-        
-        void ProcessCommands();
 
     private:
         // Components.

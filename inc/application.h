@@ -16,6 +16,8 @@ class Application
         bool Initialize();
         //! Main application loop.
         void Run();
+        //! Process commands.
+        void ProcessCommands();
 
     private:
         // Methods
